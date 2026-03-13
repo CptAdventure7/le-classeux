@@ -1,0 +1,12 @@
+{
+  "new_information": "Requirement management in this section now uses one canonical `requirements.json` file per requirement scope folder, with fixed object fields and constrained enum values documented in local AGENTS guidance.",
+  "impact_on_existing_information": "Readers should treat the child-folder `requirements.json` files as the source of truth for user, system, and subsystem requirements instead of creating ad hoc markdown requirement lists. The local AGENTS guidance in this section now defines required field shape and ID-prefix allocation.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../user_requirements/requirements.json",
+    "../system_requirements/requirements.json",
+    "../subsystem_requirements/requirements.json"
+  ],
+  "time": "2026-03-11-16h10"
+}

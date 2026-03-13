@@ -1,0 +1,478 @@
+project_name: Maxwell
+project_slug: temp
+structure_version: 2
+strategy: progressive_disclosure
+top_level_sections:
+  - id: 00_GOVERNANCE
+    purpose: "Program-level control documents, current state, and operating workflows."
+    children:
+      - id: change_log
+        purpose: "Chronological governance-level changes, not detailed technical implementation notes."
+      - id: current_overview
+        purpose: "Short current-state summaries, active priorities, and navigation pointers for new readers."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Current Overview. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: workflows
+        purpose: "Operating procedures, intake flows, review workflows, and maintenance playbooks."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Workflows. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 00 Governance. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 01_PROJECT_FOUNDATION
+    purpose: "Why the project exists, who it serves, and the constraints that frame all downstream work."
+    children:
+      - id: project_brief
+        purpose: "Artifacts specifically related to Project Brief."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Project Brief. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: objectives_success_metrics
+        purpose: "Artifacts specifically related to Objectives Success Metrics."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Objectives Success Metrics. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: scope
+        purpose: "Artifacts specifically related to Scope."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Scope. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: stakeholders
+        purpose: "Artifacts specifically related to Stakeholders."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Stakeholders. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: glossary
+        purpose: "Artifacts specifically related to Glossary."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Glossary. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: assumptions_constraints
+        purpose: "Artifacts specifically related to Assumptions Constraints."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Assumptions Constraints. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: business_case
+        purpose: "Artifacts specifically related to Business Case."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Business Case. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 01 Project Foundation. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 02_SYSTEM_DEFINITION
+    purpose: "Problem framing for the system itself, including how users interact with it and how the architecture is partitioned."
+    children:
+      - id: use_cases
+        purpose: "Artifacts specifically related to Use Cases."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Use Cases. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: system_architecture
+        purpose: "Artifacts specifically related to System Architecture."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for System Architecture. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 02 System Definition. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 03_REQUIREMENTS
+    purpose: "Requirements decomposed from user intent to system and subsystem obligations."
+    children:
+      - id: user_requirements
+        purpose: "User-facing needs, jobs-to-be-done, and externally visible acceptance statements."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for User Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: system_requirements
+        purpose: "System-level requirements allocated from user needs, use cases, and constraints."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for System Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: subsystem_requirements
+        purpose: "Subsystem-level requirement sets grouped by technical ownership boundaries."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Subsystem Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 03 Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 04_DESIGN_AND_IMPLEMENTATION
+    purpose: "Design artefacts, interface definitions, code references, prototypes, and technical risk information."
+    children:
+      - id: design
+        purpose: "Design artefacts organized by subsystem or capability as the implementation matures."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Design. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: system_risk_register
+        purpose: "Design and implementation risks, with triggers, mitigations, and owners."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for System Risk Register. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: icd_interface_control_docs
+        purpose: "Artifacts specifically related to Icd Interface Control Docs."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Icd Interface Control Docs. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: code_repositories
+        purpose: "Artifacts specifically related to Code Repositories."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Code Repositories. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: models_simulations
+        purpose: "Artifacts specifically related to Models Simulations."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Models Simulations. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: design_reviews
+        purpose: "Artifacts specifically related to Design Reviews."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Design Reviews. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: prototypes
+        purpose: "Prototype-specific folders. Add one subfolder per prototype stream when needed."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Prototypes. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 04 Design And Implementation. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 05_EXPERIMENTS_AND_VALIDATION
+    purpose: "Verification, validation, experiments, datasets, and analysis evidence."
+    children:
+      - id: test_strategy
+        purpose: "Artifacts specifically related to Test Strategy."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Test Strategy. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: validation_plan
+        purpose: "Artifacts specifically related to Validation Plan."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Validation Plan. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: test_protocols
+        purpose: "Artifacts specifically related to Test Protocols."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Test Protocols. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: test_results
+        purpose: "Artifacts specifically related to Test Results."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Test Results. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: experiments
+        purpose: "Artifacts specifically related to Experiments."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Experiments. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: benchmarks
+        purpose: "Artifacts specifically related to Benchmarks."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Benchmarks. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: calibration
+        purpose: "Artifacts specifically related to Calibration."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Calibration. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: datasets
+        purpose: "Canonical datasets organized by lifecycle state. Keep provenance and lineage explicit."
+        children:
+          - id: raw
+            purpose: "Artifacts specifically related to Raw."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Raw. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: processed
+            purpose: "Artifacts specifically related to Processed."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Processed. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: labeled
+            purpose: "Artifacts specifically related to Labeled."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Labeled. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: synthetic
+            purpose: "Artifacts specifically related to Synthetic."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Synthetic. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: ~history
+            purpose: "Timestamped change notes for Datasets. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: analysis
+        purpose: "Artifacts specifically related to Analysis."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Analysis. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: nonconformities
+        purpose: "Artifacts specifically related to Nonconformities."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Nonconformities. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: lessons_learned
+        purpose: "Artifacts specifically related to Lessons Learned."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Lessons Learned. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 05 Experiments And Validation. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 06_RESEARCH_AND_REFERENCES
+    purpose: "External knowledge, standards, prior art, supplier research, and citation support."
+    children:
+      - id: literature_map
+        purpose: "Artifacts specifically related to Literature Map."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Literature Map. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: papers
+        purpose: "Artifacts specifically related to Papers."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Papers. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: standards
+        purpose: "Artifacts specifically related to Standards."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Standards. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: patents
+        purpose: "Artifacts specifically related to Patents."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Patents. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: competitor_landscape
+        purpose: "Artifacts specifically related to Competitor Landscape."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Competitor Landscape. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: cots
+        purpose: "Commercial off-the-shelf component evaluations. Add one subfolder per candidate or vendor when needed."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Cots. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: web_references
+        purpose: "Artifacts specifically related to Web References."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Web References. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: presentations
+        purpose: "Artifacts specifically related to Presentations."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Presentations. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: bibliography
+        purpose: "Curated references and citation exports used across the context bank."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Bibliography. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 06 Research And References. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 07_PROJECT_EXECUTION
+    purpose: "Planning, staffing, risk, and change-control artefacts used to steer delivery."
+    children:
+      - id: roadmap
+        purpose: "Artifacts specifically related to Roadmap."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Roadmap. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: work_packages
+        purpose: "Artifacts specifically related to Work Packages."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Work Packages. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: backlog
+        purpose: "Artifacts specifically related to Backlog."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Backlog. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: issues
+        purpose: "Artifacts specifically related to Issues."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Issues. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: milestones
+        purpose: "Artifacts specifically related to Milestones."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Milestones. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: budget_resources
+        purpose: "Artifacts specifically related to Budget Resources."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Budget Resources. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: procurement
+        purpose: "Artifacts specifically related to Procurement."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Procurement. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: project_risk_register
+        purpose: "Artifacts specifically related to Project Risk Register."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Project Risk Register. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: change_requests
+        purpose: "Artifacts specifically related to Change Requests."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Change Requests. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 07 Project Execution. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 08_DECISIONS
+    purpose: "Decision records, trade studies, waivers, and other artifacts that explain why the project evolved."
+    children:
+      - id: adrs
+        purpose: "Artifacts specifically related to Adrs."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Adrs. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: tradeoff_analyses
+        purpose: "Artifacts specifically related to Tradeoff Analyses."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Tradeoff Analyses. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: design_decisions
+        purpose: "Artifacts specifically related to Design Decisions."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Design Decisions. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: decisions_from_meetings
+        purpose: "Artifacts specifically related to Decisions From Meetings."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Decisions From Meetings. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: waived_requirements
+        purpose: "Requirements waived by explicit decision, including rationale and expiration if applicable."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Waived Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 08 Decisions. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 09_COLLABORATION
+    purpose: "Working session artefacts and summarized meeting output."
+    children:
+      - id: meetings
+        purpose: "Artifacts specifically related to Meetings."
+        children:
+          - id: raw_notes
+            purpose: "Unedited capture from meetings. Preserve source fidelity and timestamp notes where possible."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Raw Notes. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: summaries
+            purpose: "Cleaned summaries with decisions, actions, and traceable follow-up links."
+            children:
+              - id: ~history
+                purpose: "Timestamped change notes for Summaries. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+          - id: ~history
+            purpose: "Timestamped change notes for Meetings. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 09 Collaboration. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 10_COMMUNICATION
+    purpose: "Internal and external project communication artefacts, demos, reports, and visuals."
+    children:
+      - id: internal_updates
+        purpose: "Artifacts specifically related to Internal Updates."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Internal Updates. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: external_updates
+        purpose: "Artifacts specifically related to External Updates."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for External Updates. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: demos
+        purpose: "Artifacts specifically related to Demos."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Demos. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: customer_feedback
+        purpose: "Artifacts specifically related to Customer Feedback."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Customer Feedback. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: reporting
+        purpose: "Artifacts specifically related to Reporting."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Reporting. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: visuals
+        purpose: "Artifacts specifically related to Visuals."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Visuals. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 10 Communication. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 11_OPERATIONS_AND_HANDOFF
+    purpose: "Deployment, installation, training, release, and support material for transition to operations."
+    children:
+      - id: deployment
+        purpose: "Artifacts specifically related to Deployment."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Deployment. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: installation
+        purpose: "Artifacts specifically related to Installation."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Installation. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: user_docs
+        purpose: "Artifacts specifically related to User Docs."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for User Docs. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: maintenance
+        purpose: "Artifacts specifically related to Maintenance."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Maintenance. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: training
+        purpose: "Artifacts specifically related to Training."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Training. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: support_notes
+        purpose: "Artifacts specifically related to Support Notes."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Support Notes. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: release_notes
+        purpose: "Artifacts specifically related to Release Notes."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Release Notes. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 11 Operations And Handoff. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+  - id: 99_ARCHIVE
+    purpose: "Retired, superseded, or preserved historical artefacts that should remain traceable but inactive."
+    children:
+      - id: snapshots
+        purpose: "Artifacts specifically related to Snapshots."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Snapshots. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: deprecated
+        purpose: "Artifacts specifically related to Deprecated."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Deprecated. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: obsolete_decisions
+        purpose: "Artifacts specifically related to Obsolete Decisions."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Obsolete Decisions. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: retired_requirements
+        purpose: "Artifacts specifically related to Retired Requirements."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Retired Requirements. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: legacy_tests
+        purpose: "Artifacts specifically related to Legacy Tests."
+        children:
+          - id: ~history
+            purpose: "Timestamped change notes for Legacy Tests. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+      - id: ~history
+        purpose: "Timestamped change notes for 99 Archive. Each note records new information, its impact on existing information, the source type, the source link when available, and the capture time."
+conventions:
+  local_readme: Each folder contains a README.md explaining what belongs there.
+  local_agents: Each folder contains an AGENTS.md describing how to draft, update, and cross-link artifacts.
+  history_folder: Every generated folder except the root, other than `change_log` folders, contains a ~history/ child for timestamped impact notes.
+  change_log_file: Each `change_log` folder keeps a single append-only `change_log.md` file with the newest entry first.
+  requirement_traceability: Requirements should link to source, design allocation, validation, and decision history.

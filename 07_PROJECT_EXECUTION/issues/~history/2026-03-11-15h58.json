@@ -1,0 +1,10 @@
+{
+  "new_information": "The Issues folder now includes a canonical top-level kanban snapshot file, and local agent instructions require keeping `kanban.md` up to date when issue status or priority changes affect the board view.",
+  "impact_on_existing_information": "The current interpretation of this folder now includes a maintained board-level status summary in addition to per-issue records. Issue lifecycle updates should be reflected both in individual issue files and in `kanban.md` so readers can rely on the top-level snapshot as the current execution view.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../kanban.md"
+  ],
+  "time": "2026-03-11-15h58"
+}

@@ -1,0 +1,12 @@
+{
+  "new_information": "The COTS folder is now the explicit home for vendor-specific web evidence, supplier comparisons, and product-level evaluation records that might previously have been interpreted as generic web references.",
+  "impact_on_existing_information": "This folder should now be read as the canonical location for both structured COTS assessments and the linked web evidence used to support them. Future vendor research should be drafted here, with direct links back to source pages rather than splitting the evaluation across `cots` and `web_references` without clear ownership.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../README.md",
+    "../AGENTS.md",
+    "../web_references/README.md",
+    "../web_references/AGENTS.md"
+  ],
+  "time": "2026-03-12-08h43"
+}

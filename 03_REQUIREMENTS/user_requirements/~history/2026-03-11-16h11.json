@@ -1,0 +1,10 @@
+{
+  "new_information": "User requirements in this folder are now expected to live in `requirements.json` using the `PRJ-UN-` prefix and the fixed requirement object schema.",
+  "impact_on_existing_information": "Future updates should modify `requirements.json` rather than introducing separate canonical markdown requirement records in this folder. Local AGENTS guidance now constrains requirement and compliance status values for these entries.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../requirements.json"
+  ],
+  "time": "2026-03-11-16h11"
+}

@@ -1,0 +1,9 @@
+{
+  "new_information": "Added a dedicated reference ingestion workflow that defines how source documents, including heavy SharePoint-hosted PDFs and office files, are consumed into the context bank through extraction, canonical artifact updates, local ingestion summaries, and optional page-index JSON generation near the document's main topic area.",
+  "impact_on_existing_information": "The workflows folder now explicitly distinguishes document ingestion from general repository refresh and meeting summarization. Future document-consumption work should delete temporary extraction artifacts, use paired filenames so summaries and page-index trees remain adjacent alphabetically, and require an explicit user decision before generating a page-index JSON.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../reference-ingestion-workflow.md"
+  ],
+  "time": "2026-03-11-18h25"
+}

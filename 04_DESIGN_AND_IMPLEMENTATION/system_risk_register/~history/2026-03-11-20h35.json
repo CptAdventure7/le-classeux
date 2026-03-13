@@ -1,0 +1,10 @@
+{
+  "new_information": "The System Risk Register folder now defines a canonical JSON artifact named system_risk_register.json, including the field schema, scoring scale, identifier format SRSK-XXXX, and control-traceability expectations for system-level hazards and failure modes.",
+  "impact_on_existing_information": "This changes how the parent folder should be interpreted. Future system risk updates should be made in the JSON register rather than ad hoc prose, and new or revised risks should preserve links to requirements, controls, downstream introduced risks, and review dates.",
+  "source_type": "agent_instruction_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../system_risk_register.json"
+  ],
+  "time": "2026-03-11-20h35"
+}

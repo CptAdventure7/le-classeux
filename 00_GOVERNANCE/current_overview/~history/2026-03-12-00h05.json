@@ -1,0 +1,11 @@
+{
+  "new_information": "The Current Overview folder is now defined as a weekly rolling snapshot space for project health, recent notable events, active focus, attention points, and information coherence checks. A single snapshot is updated during a week, a new snapshot starts the following week, and snapshots older than about two months should move to 99_ARCHIVE/snapshots.",
+  "impact_on_existing_information": "This changes how the folder should be interpreted: it is no longer just for generic current-state summaries and navigation pointers, but for time-bounded operational health reporting with explicit attention to stale issues, missed deliveries, and information stability.",
+  "source_type": "governance-guidance-update",
+  "source_links": [
+    "../README.md",
+    "../AGENTS.md",
+    "../../99_ARCHIVE/snapshots/README.md"
+  ],
+  "time": "2026-03-12-00h05"
+}

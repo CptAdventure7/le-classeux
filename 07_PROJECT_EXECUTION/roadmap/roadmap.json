@@ -1,0 +1,63 @@
+{
+  "roadmap_title": "Maxwell Delivery Roadmap",
+  "last_updated": "2026-03-11",
+  "source_links": [
+    "../README.md",
+    "../milestones",
+    "../backlog",
+    "../work_packages"
+  ],
+  "items": [
+    {
+      "id": "RDM-001",
+      "title": "Context Bank Baseline",
+      "phase": "Build",
+      "status": "in_progress",
+      "owner": "Program Management",
+      "target_date": "2026-04-15",
+      "summary": "Align execution artifacts to canonical folder guidance and create the first reusable planning templates.",
+      "dependencies": [
+        "../milestones",
+        "../work_packages"
+      ],
+      "source_links": [
+        "../milestones",
+        "../backlog"
+      ]
+    },
+    {
+      "id": "RDM-002",
+      "title": "Requirements Traceability Pass",
+      "phase": "Validation",
+      "status": "planned",
+      "owner": "Systems Engineering",
+      "target_date": "2026-05-01",
+      "summary": "Cross-link current requirements, execution artifacts, and decisions so planning changes can be traced end to end.",
+      "dependencies": [
+        "RDM-001",
+        "../../03_REQUIREMENTS/system_requirements/requirements.json"
+      ],
+      "source_links": [
+        "../../03_REQUIREMENTS/README.md",
+        "../../08_DECISIONS/README.md"
+      ]
+    },
+    {
+      "id": "RDM-003",
+      "title": "Operational Handoff Package",
+      "phase": "Launch",
+      "status": "planned",
+      "owner": "Operations",
+      "target_date": "2026-06-15",
+      "summary": "Prepare deployment, release, and support artifacts needed for the first structured handoff.",
+      "dependencies": [
+        "RDM-002",
+        "../../11_OPERATIONS_AND_HANDOFF/README.md"
+      ],
+      "source_links": [
+        "../../11_OPERATIONS_AND_HANDOFF/deployment/README.md",
+        "../../11_OPERATIONS_AND_HANDOFF/release_notes/README.md"
+      ]
+    }
+  ]
+}

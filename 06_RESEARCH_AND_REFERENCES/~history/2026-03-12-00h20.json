@@ -1,0 +1,10 @@
+{
+  "new_information": "The 06 Research And References section no longer includes a dedicated research-note subsection.",
+  "impact_on_existing_information": "Readers should treat literature ingestion and citation support as flowing through the remaining active research folders only. Cross-links and the machine-readable section map were updated to remove the retired subsection and its local artifacts.",
+  "source_type": "user_request",
+  "source_links": [
+    "../README.md",
+    "../../project_manifest.yaml"
+  ],
+  "time": "2026-03-12-00h20"
+}

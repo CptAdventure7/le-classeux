@@ -1,0 +1,7 @@
+{
+  "new_information": "The Project Risk Register folder now uses a single canonical JSON file named project_risk_register.json to store the risk schema, allowed enums, and the active risk list.",
+  "impact_on_existing_information": "This establishes the current interpretation of the folder as a structured JSON register rather than a prose or spreadsheet-only placeholder. Future risk additions should update the risks array in the parent JSON file and keep comments append-only.",
+  "source_type": "user_instruction",
+  "source_links": [],
+  "time": "2026-03-11-15h20"
+}

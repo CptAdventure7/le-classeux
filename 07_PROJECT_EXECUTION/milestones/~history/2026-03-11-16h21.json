@@ -1,0 +1,9 @@
+{
+  "new_information": "The milestones folder now explicitly requires milestone guidance in JSON format using the keys title, description, deliverables, and due_date.",
+  "impact_on_existing_information": "Future milestone artifacts in this folder should use the documented JSON schema instead of ad hoc prose. This narrows how agents should author milestone content and improves consistency across planning artifacts.",
+  "source_type": "folder_guidance_update",
+  "source_links": [
+    "../AGENTS.md"
+  ],
+  "time": "2026-03-11-16h21"
+}

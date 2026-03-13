@@ -1,0 +1,12 @@
+{
+  "new_information": "The Web References folder no longer serves as a home for COTS evaluations or vendor-specific assessment material; those artifacts should live in `../cots` instead.",
+  "impact_on_existing_information": "Readers should now interpret this folder as a place for general-purpose web sources only. Any supplier comparison, product assessment, or vendor evidence package should be migrated to or created in the COTS folder, with this folder retaining only supporting source references when needed.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../README.md",
+    "../AGENTS.md",
+    "../cots/README.md",
+    "../cots/AGENTS.md"
+  ],
+  "time": "2026-03-12-08h43"
+}

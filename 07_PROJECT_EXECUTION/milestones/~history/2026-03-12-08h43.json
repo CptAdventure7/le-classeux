@@ -1,0 +1,12 @@
+{
+  "new_information": "The Milestones folder now uses a top-level `milestones.md` board for the active milestone view, and each milestone is expected to live in its own JSON file using `milestone-template.json` as the canonical shape reference.",
+  "impact_on_existing_information": "Milestone tracking in this folder should now be interpreted as a two-layer structure: `milestones.md` provides the current execution snapshot, while individual JSON files carry milestone-specific detail, dependencies, deliverables, and linked artifacts. Future milestone creation and updates should modify both the board and the relevant milestone JSON file when the execution view changes.",
+  "source_type": "repository_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../README.md",
+    "../milestones.md",
+    "../milestone-template.json"
+  ],
+  "time": "2026-03-12-08h43"
+}

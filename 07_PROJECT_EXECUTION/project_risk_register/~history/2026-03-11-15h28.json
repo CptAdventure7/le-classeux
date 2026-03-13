@@ -1,0 +1,10 @@
+{
+  "new_information": "The folder-level AGENTS.md now contains the explicit project risk register field guidance and approved risk types, and the risk identifier format has been corrected from RDK-XXXX to RSK-XXXX.",
+  "impact_on_existing_information": "This changes how agents should author and update artifacts in this folder: the AGENTS.md file now carries the operative schema guidance, and future risk entries must use RSK-prefixed identifiers.",
+  "source_type": "user_instruction",
+  "source_links": [
+    "../AGENTS.md",
+    "../project_risk_register.json"
+  ],
+  "time": "2026-03-11-15h28"
+}

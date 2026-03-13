@@ -1,0 +1,10 @@
+{
+  "new_information": "The backlog folder guidance now states that backlog items are issue records and must use the same canonical Markdown formatting as the issue records in ../issues/.",
+  "impact_on_existing_information": "This changes how documents in the backlog folder should be authored and interpreted. Existing and future backlog items should follow the issue header field order, required sections, checkbox acceptance criteria, and issue-style identifiers.",
+  "source_type": "agent_instruction_update",
+  "source_links": [
+    "../AGENTS.md",
+    "../../issues/AGENTS.md"
+  ],
+  "time": "2026-03-11-15h35"
+}

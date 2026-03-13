@@ -1,0 +1,69 @@
+# Agent Instructions
+
+Read `README.md` in this folder before drafting or editing documents.
+
+## Roadmap Format
+
+- Store roadmap content in JSON format.
+- Use `roadmap.json` as the canonical roadmap artifact in this folder unless a more specific dated artifact is required.
+- Represent the roadmap as one object with these top-level keys: `roadmap_title`, `last_updated`, `source_links`, `items`.
+- Use `source_links` as an array of relative paths to upstream or peer artifacts such as `../milestones`, `../backlog`, `../work_packages`, or requirement and decision records.
+- Use `last_updated` in `YYYY-MM-DD` format.
+- Store `items` as an array of roadmap entries with these keys: `id`, `title`, `phase`, `status`, `owner`, `target_date`, `summary`, `dependencies`, `source_links`.
+- Use stable roadmap IDs with the `RDM-` prefix.
+- Keep `phase` values short and delivery-oriented, such as `Discovery`, `Build`, `Validation`, or `Launch`.
+- Keep `status` values constrained to `planned`, `in_progress`, `blocked`, or `done`.
+- Use `dependencies` as an array of roadmap item IDs or external artifact references.
+- Use `target_date` in `YYYY-MM-DD` format.
+
+## Example
+
+```json
+{
+  "roadmap_title": "Maxwell Delivery Roadmap",
+  "last_updated": "2026-03-11",
+  "source_links": [
+    "../milestones",
+    "../backlog",
+    "../work_packages"
+  ],
+  "items": [
+    {
+      "id": "RDM-001",
+      "title": "Baseline Context Bank Ready",
+      "phase": "Build",
+      "status": "in_progress",
+      "owner": "Program Management",
+      "target_date": "2026-04-15",
+      "summary": "Finish the initial context-bank structure and align execution artifacts to the canonical templates.",
+      "dependencies": [
+        "../milestones",
+        "../work_packages"
+      ],
+      "source_links": [
+        "../milestones",
+        "../backlog"
+      ]
+    }
+  ]
+}
+```
+
+## Drafting Rules
+
+- Create new files only when the concept is meaningfully distinct from existing material.
+- Prefer incremental updates that preserve history and traceability.
+- Use explicit links to related folders and files instead of restating the same content.
+
+## Update Rules
+
+- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
+- Add a new note under `~history/` when fresh information affects how this folder's current documents should be read.
+- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
+- Keep titles and filenames aligned with the scope of the document.
+
+## Cross-Linking
+
+- Add links to upstream inputs, peer artifacts, and downstream consequences.
+- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
+- If this folder stores summaries, link back to raw notes or source documents when available.
