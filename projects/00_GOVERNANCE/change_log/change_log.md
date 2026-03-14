@@ -1,5 +1,6 @@
 # Change Log
 
+- added a shallow workspace-level `project_manifest.yaml` that lists the `projects` entrypoint and aligned the root README plus AGENTS guidance to route through it before opening project internals (2026-03-14-16h15).
 - renamed the workspace project container from `project` to `projects` and aligned the workspace-level guidance and restructure plan to use the plural path consistently (2026-03-14-16h05).
 - renamed the shared agent persona folder from `agent/persona` to `agent/personas` and aligned the workspace-level guidance to use the plural path consistently (2026-03-14-15h55).
 - restructured the repository into a workspace root with `project/` and shared `agent/` folders, migrated governance workflows into `agent/skills`, added workspace-level entrypoint guides, and aligned the project manifest and governance references to the new layout (2026-03-14-15h45).
