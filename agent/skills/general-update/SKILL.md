@@ -19,7 +19,7 @@ Use this skill when the user asks to:
 
 ## Required Inputs
 
-- The active project root, for example `project/`
+- The active project root, for example `projects/<project-name>/`
 - Accessible git history for the repository
 
 If git metadata is unavailable, stop and report that the general update workflow cannot run because git history is unavailable in this workspace.
