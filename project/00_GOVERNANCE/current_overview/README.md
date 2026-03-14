@@ -41,7 +41,7 @@ Lifecycle expectations:
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
 - Link to the concrete sources behind the snapshot when available, especially issues, milestones, decisions, meeting summaries, risk registers, and internal updates.
-- Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `00_GOVERNANCE/workflows`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COLLABORATION`, `10_COMMUNICATION`.
+- Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COLLABORATION`, `10_COMMUNICATION`.
 
 ## Detailed Authoring Guidance
 

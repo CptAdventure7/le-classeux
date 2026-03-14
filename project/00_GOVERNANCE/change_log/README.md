@@ -24,7 +24,7 @@ Use the local `change_log.md` as an append-only record. Add each new change at t
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `00_GOVERNANCE/current_overview`, `00_GOVERNANCE/workflows`.
+- Review adjacent folders when a change affects related material: `00_GOVERNANCE/current_overview`.
 
 ## Detailed Authoring Guidance
 

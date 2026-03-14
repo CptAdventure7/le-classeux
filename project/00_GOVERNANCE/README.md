@@ -1,10 +1,10 @@
-# Workflows
+# 00 Governance
 
 This folder belongs to the Maxwell context bank.
 
 ## What Belongs Here
 
-Operating procedures, intake flows, review workflows, and maintenance playbooks.
+Program-level control documents, current state snapshots, and project memory records.
 
 ## What Does Not Belong Here
 
@@ -16,7 +16,8 @@ Operating procedures, intake flows, review workflows, and maintenance playbooks.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `00_GOVERNANCE/current_overview`.
+- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION`, `07_PROJECT_EXECUTION`, `08_DECISIONS`.
+- Reusable workflows now live in the shared workspace skill library at `../../agent/skills/` rather than inside this project folder.
 
 ## Detailed Authoring Guidance
 

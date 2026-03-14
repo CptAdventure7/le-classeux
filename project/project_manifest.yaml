@@ -4,15 +4,12 @@ structure_version: 2
 strategy: progressive_disclosure
 top_level_sections:
   - id: 00_GOVERNANCE
-    purpose: "Program-level control documents, current state, and operating workflows."
+    purpose: "Program-level control documents, current state, and project memory."
     children:
       - id: change_log
         purpose: "Chronological governance-level changes, not detailed technical implementation notes."
       - id: current_overview
         purpose: "Short current-state summaries, active priorities, and navigation pointers for new readers."
-        children: []
-      - id: workflows
-        purpose: "Operating procedures, intake flows, review workflows, and maintenance playbooks."
         children: []
   - id: 01_PROJECT_FOUNDATION
     purpose: "Why the project exists, who it serves, and the constraints that frame all downstream work."
