@@ -1,5 +1,6 @@
 # Change Log
 
+- renamed the shared agent persona folder from `agent/persona` to `agent/personas` and aligned the workspace-level guidance to use the plural path consistently (2026-03-14-15h55).
 - restructured the repository into a workspace root with `project/` and shared `agent/` folders, migrated governance workflows into `agent/skills`, added workspace-level entrypoint guides, and aligned the project manifest and governance references to the new layout (2026-03-14-15h45).
 - merged each non-root folder's local `AGENTS.md` guidance into its `README.md`, removed the redundant sidecar agent files, and aligned repository conventions plus roadmap validation to the simplified README-only structure (2026-03-14-15h05).
 - removed the repository-wide legacy sidecar memory pattern, deleted the related metadata folders, and aligned guidance to rely on `00_GOVERNANCE/change_log/change_log.md` plus the final git commit for traceability (2026-03-14-14h35).
