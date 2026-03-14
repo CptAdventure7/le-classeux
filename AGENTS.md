@@ -25,7 +25,7 @@ Your job is to route work to the correct project context bank, then retrieve and
 
 ## Repository Map
 
-- `project/`: current project context bank.
+- `projects/`: current project context bank container.
 - `agent/skills/`: shared workflow skills.
 - `agent/personas/`: shared persona definitions.
 - `docs/plans/`: saved design and implementation plans.
