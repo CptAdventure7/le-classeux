@@ -1,0 +1,10 @@
+workspace_name: le-classeux
+structure_version: 1
+strategy: project_index
+projects:
+  - id: project-template
+    name: project-template
+    path: projects/project-template
+    manifest: projects/project-template/project_manifest.yaml
+    purpose: "Primary project-template context bank. Use its local README, AGENTS guide, and manifest before descending further."
+

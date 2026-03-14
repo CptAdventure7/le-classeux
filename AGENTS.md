@@ -15,7 +15,7 @@ Your job is to route work to the correct project context bank, then retrieve and
 ## Mandatory Behavior
 
 1. Read the root `README.md` before answering or editing.
-2. Read the root `project_manifest.yaml` to identify the target project entrypoint before opening project artefacts.
+2. Read the root `projects_manifest.yaml` to identify the target project entrypoint before opening project artefacts.
 3. For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further.
 4. Read the narrowest relevant local `README.md` inside the selected project before answering or editing.
 5. Use `agent/skills/` for reusable workflows that should not live inside a single project's governance tree.
@@ -26,7 +26,7 @@ Your job is to route work to the correct project context bank, then retrieve and
 ## Repository Map
 
 - `projects/`: container of named project folders.
-- `project_manifest.yaml`: shallow workspace manifest listing the available projects.
+- `projects_manifest.yaml`: shallow workspace manifest listing the available projects.
 - `agent/skills/`: shared workflow skills.
 - `agent/personas/`: shared persona definitions.
 - `docs/plans/`: saved design and implementation plans.
@@ -36,3 +36,4 @@ Your job is to route work to the correct project context bank, then retrieve and
 - Prefer project-local evidence over assumptions.
 - Follow the selected project's local `README.md` files as you descend.
 - Keep shared instructions at the workspace root and project-specific instructions inside each project.
+

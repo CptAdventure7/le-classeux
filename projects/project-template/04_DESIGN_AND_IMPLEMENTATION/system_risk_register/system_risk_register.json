@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "notes": [
+    "Higher numeric values represent higher risk.",
+    "Use arrays for multi-value fields when more than one item may apply."
+  ],
+  "risks": [
+    {
+      "id": "SRSK-0001",
+      "hazard_category": "",
+      "function_or_subsystem_affected": "multiple",
+      "failure_mode": "",
+      "potential_causes": [],
+      "potential_harm_effects": [],
+      "severity": 1,
+      "occurrence": 1,
+      "possible_control_measures": [],
+      "applied_control_measures": [],
+      "traceability_to_requirement": [],
+      "control_measure_type": "by_design",
+      "new_risk_introduced_by_control_measure": "no",
+      "residual_risk_severity": 1,
+      "residual_risk_occurrence": 1,
+      "date_of_last_review": "2026-03-11",
+      "status": "open",
+      "owner": "",
+      "comments": [],
+      "links": []
+    }
+  ]
+}
+

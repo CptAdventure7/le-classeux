@@ -1,0 +1,25 @@
+{
+  "id": "KEY-MILESTONE-001",
+  "title": "Prototype integration baseline",
+  "summary": "Complete the first integrated prototype baseline and supporting evidence for internal review.",
+  "status": "Planned",
+  "owner": "Systems Team",
+  "created": "2026-03-12",
+  "target_date": "2026-05-15",
+  "completion_date": null,
+  "deliverables": [
+    "Integrated prototype build",
+    "Verification summary",
+    "Review package"
+  ],
+  "dependencies": [
+    "../work_packages/WP-001-prototype-integration.md",
+    "../issues/KEY-ISSUE-014-prototype-blockers.md"
+  ],
+  "linked_artifacts": [
+    "../roadmap/2026-Q2-roadmap.md",
+    "../../08_DECISIONS/design_decisions/2026-03-10-prototype-baseline.md"
+  ],
+  "notes": "Use explicit links to the execution, decision, and validation artifacts that determine milestone readiness."
+}
+
