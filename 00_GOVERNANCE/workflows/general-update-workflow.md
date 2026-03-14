@@ -1,8 +1,8 @@
-# General Update Workflow
+﻿# General Update Workflow
 
 ## Purpose
 
-Use this workflow to perform a repository-wide context refresh. The agent must gather all new repository material since the most recent commit that explicitly recorded a prior general-update run, determine what that new material changes, update the canonical artifacts that are affected, add the required cross-links and history notes, and then commit the result with the standardized general-update commit message.
+Use this workflow to perform a repository-wide context refresh. The agent must gather all new repository material since the most recent commit that explicitly recorded a prior general-update run, determine what that new material changes, update the canonical artifacts that are affected, add the required cross-links, record the run in the governance change log, and then commit the result with the standardized general-update commit message.
 
 Upstream context:
 - [AGENTS.md](../../AGENTS.md)
@@ -114,7 +114,7 @@ Apply these rules after collecting the new context:
    - upstream source material that introduced the new information
    - peer artifacts affected by the same change
    - downstream evidence, plans, decisions, or communication artifacts that now need to align
-4. Add or update `~history` notes when new information changes how a folder's current documents should be interpreted, except in dedicated `change_log` folders.
+4. Record repository-level changes in `00_GOVERNANCE/change_log/change_log.md` when the refresh updates canonical artifacts or repository guidance.
 5. Surface conflicts explicitly instead of silently choosing one interpretation when sources disagree.
 
 ## Cross-Section Update Expectations
@@ -165,10 +165,9 @@ If a target is unchanged, leave it unchanged. If it is affected, update it in th
 7. Read local `AGENTS.md` for each folder that will be edited.
 8. Extract concrete new facts, changed facts, deleted context, and cross-link impacts from the evidence set.
 9. Update the canonical artifacts required by those facts across the active sections.
-10. Add `~history` notes where folder interpretation changed.
-11. Update append-only change logs where governance or decision logs need a new top entry.
-12. Verify links, identifiers, and traceability after edits.
-13. Commit the result with the exact standardized commit subject and explicit body fields below.
+10. Update append-only change logs where governance or decision logs need a new top entry.
+11. Verify links, identifiers, and traceability after edits.
+12. Commit the result with the exact standardized commit subject and explicit body fields below.
 
 ## Standardized Commit Message
 
@@ -202,6 +201,9 @@ Future runs must use the exact subject line above when searching for the last ge
 - Treating `all new context` as only newly created files while ignoring modified or deleted files.
 - Creating duplicate summaries instead of updating canonical artifacts.
 - Changing requirements, risks, or decisions without updating linked design, validation, issues, or communication records.
-- Skipping `~history` notes when the meaning of a folder changed.
+- Skipping the governance change log update when the refresh changed repository state.
 - Using a non-standardized commit subject that breaks future anchor detection.
 - Running in a workspace copy without git history and pretending the anchor was checked.
+
+
+

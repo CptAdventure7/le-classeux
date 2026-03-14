@@ -1,9 +1,0 @@
-{
-  "new_information": "Added a repository-specific meeting summary workflow that incorporates structured output requirements, completeness checks, action-item extraction, and transcript normalization rules.",
-  "impact_on_existing_information": "This adds an explicit operating workflow for meeting summarization in Maxwell and clarifies that the external guidance must be adapted from 04_COLLABORATION to the repository's active 09_COLLABORATION and 08_DECISIONS structure. It also resolves an internal conflict in the source guidance by standardizing normalized transcript text as .txt.",
-  "source_type": "user_instruction",
-  "source_links": [
-    "c:\\INO_Projets\\Maxwell_repository\\temp\\AGENTS.md"
-  ],
-  "time": "2026-03-11T15:43:00-04:00"
-}

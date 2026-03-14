@@ -1,4 +1,4 @@
-# Agent Instructions
+﻿# Agent Instructions
 
 Read `README.md` in this folder before drafting or editing documents.
 
@@ -12,7 +12,6 @@ Read `README.md` in this folder before drafting or editing documents.
 ## Update Rules
 
 - When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Add a new note under `~history/` when fresh information affects how this folder's current documents should be read.
 - Record superseded material in `99_ARCHIVE` rather than deleting traceability.
 - Keep titles and filenames aligned with the scope of the document.
 
@@ -22,3 +21,4 @@ Read `README.md` in this folder before drafting or editing documents.
 - If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
 - If this folder stores summaries, link back to raw notes or source documents when available.
 - If a web source becomes part of a vendor or product assessment, link to the relevant artifact in `../cots` instead of duplicating the assessment here.
+

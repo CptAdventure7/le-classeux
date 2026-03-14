@@ -1,4 +1,4 @@
-# Maxwell Context Bank
+﻿# Maxwell Context Bank
 
 This repository is organized as a progressive disclosure context bank. Start broad at the root, then follow each folder's local `README.md` and `AGENTS.md` for deeper guidance.
 
@@ -29,10 +29,10 @@ This repository is organized as a progressive disclosure context bank. Start bro
 - Keep one primary concept per file.
 - Use date prefixes when chronology matters: `YYYY-MM-DD-topic.md`.
 - Prefer links over duplication; summarize nearby, source once.
-- Keep governance change logs in an append-only `change_log.md` file within each `change_log` folder, with the most recent entry at the top.
-- Use each folder's `~history/` child for timestamped impact notes, except in dedicated `change_log` folders.
+- Use `00_GOVERNANCE/change_log/change_log.md` as the repository-wide append-only memory artifact, with the most recent entry at the top.
 - Promote durable decisions to `08_DECISIONS` and archive retired material in `99_ARCHIVE`.
 
 ## Project Manifest
 
 The project manifest is the machine-readable map for this structure. Update it if you add, remove, or rename major sections.
+

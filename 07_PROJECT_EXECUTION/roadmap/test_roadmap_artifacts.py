@@ -7,7 +7,6 @@ ROADMAP_DIR = Path(__file__).resolve().parent
 AGENTS_PATH = ROADMAP_DIR / "AGENTS.md"
 ROADMAP_JSON_PATH = ROADMAP_DIR / "roadmap.json"
 ROADMAP_HTML_PATH = ROADMAP_DIR / "roadmap.html"
-HISTORY_DIR = ROADMAP_DIR / "~history"
 
 
 class RoadmapArtifactsTest(unittest.TestCase):
@@ -60,9 +59,14 @@ class RoadmapArtifactsTest(unittest.TestCase):
         self.assertIn("roadmap.items", html_text)
         self.assertIn("roadmap_title", html_text)
 
-    def test_history_note_exists_for_guidance_change(self) -> None:
-        history_files = list(HISTORY_DIR.glob("*.json"))
-        self.assertTrue(history_files, "Expected a history note for the roadmap guidance change.")
+    def test_no_legacy_metadata_directories_are_present(self) -> None:
+        legacy_dirs = [
+            child for child in ROADMAP_DIR.iterdir() if child.is_dir() and child.name.startswith("~")
+        ]
+        self.assertFalse(
+            legacy_dirs,
+            "Roadmap folder should rely on the governance change log and git commits for traceability.",
+        )
 
 
 if __name__ == "__main__":

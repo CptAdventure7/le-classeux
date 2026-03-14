@@ -161,7 +161,7 @@ The agent must not silently create a page-index JSON without this explicit user 
 11. If approved, invoke `pageindex-local-structure` and write the page-index JSON using the paired naming convention.
 12. Link the summary and page-index JSON to each other when both exist.
 13. Delete temporary extraction artifacts.
-14. Add a `~history` note when the new workflow result changes how the folder's current contents should be interpreted.
+14. Update `00_GOVERNANCE/change_log/change_log.md` when the ingestion changes repository state or repository guidance.
 15. Verify links, filenames, source traceability, and topic placement before completion.
 
 ## Cross-Link Expectations

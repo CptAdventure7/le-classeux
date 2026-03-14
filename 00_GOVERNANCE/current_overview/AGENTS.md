@@ -1,4 +1,4 @@
-# Agent Instructions
+﻿# Agent Instructions
 
 Read `README.md` in this folder before drafting or editing documents.
 
@@ -17,7 +17,7 @@ Read `README.md` in this folder before drafting or editing documents.
 ## Update Rules
 
 - When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Add a new note under `~history/` when fresh information affects how this folder's current documents should be read.
+- Rely on linked artifacts, the governance change log, and the final git commit for traceability.
 - Record superseded material in `99_ARCHIVE` rather than deleting traceability.
 - Keep titles and filenames aligned with the scope of the document.
 - Prefer one dated weekly filename per snapshot, using the repository date convention when chronology matters.
@@ -86,3 +86,4 @@ Template expectations:
 - Prefer evidence-backed bullets over opinion.
 - If a section has no material change, say so explicitly instead of leaving it vague.
 - If a risk or inconsistency is listed, include the source artifact that demonstrates it.
+
