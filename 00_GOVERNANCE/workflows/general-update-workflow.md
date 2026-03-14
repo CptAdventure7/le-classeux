@@ -1,4 +1,4 @@
-﻿# General Update Workflow
+# General Update Workflow
 
 ## Purpose
 
@@ -79,7 +79,7 @@ This includes governance notes, requirements, design content, validation evidenc
    - `git status --short` so working-tree changes are not skipped
 5. Exclude `.git` internals and use `99_ARCHIVE` only when a changed active artifact points there or when traceability for retired material is required.
 6. For each changed or newly relevant path, read the nearest local `README.md` before descending further.
-7. For each folder that will be edited, also read its local `AGENTS.md`.
+7. For each folder that will be edited, use its local `README.md` as both the scope summary and the folder-specific authoring guidance.
 8. Prefer the newest dated artifact when two same-type artifacts conflict, unless source-priority rules resolve the conflict first.
 
 ## Required Review Scope
@@ -162,7 +162,7 @@ If a target is unchanged, leave it unchanged. If it is affected, update it in th
 4. Capture the pre-commit HEAD hash for the current run.
 5. Build the complete candidate evidence set from git diff, git status, and first-run full sweep rules.
 6. Read the nearest local `README.md` for each changed or impacted folder before opening deeper files.
-7. Read local `AGENTS.md` for each folder that will be edited.
+7. Re-read local `README.md` for each folder that will be edited so the folder-specific authoring guidance is in view.
 8. Extract concrete new facts, changed facts, deleted context, and cross-link impacts from the evidence set.
 9. Update the canonical artifacts required by those facts across the active sections.
 10. Update append-only change logs where governance or decision logs need a new top entry.

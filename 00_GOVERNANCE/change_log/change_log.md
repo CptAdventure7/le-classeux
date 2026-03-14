@@ -1,5 +1,6 @@
 # Change Log
 
+- merged each non-root folder's local `AGENTS.md` guidance into its `README.md`, removed the redundant sidecar agent files, and aligned repository conventions plus roadmap validation to the simplified README-only structure (2026-03-14-15h05).
 - removed the repository-wide legacy sidecar memory pattern, deleted the related metadata folders, and aligned guidance to rely on `00_GOVERNANCE/change_log/change_log.md` plus the final git commit for traceability (2026-03-14-14h35).
 - clarified that vendor-specific web evidence and COTS assessments belong in `06_RESEARCH_AND_REFERENCES/cots`, and updated both `cots` and `web_references` guidance plus local history notes to reflect that migration boundary (2026-03-12-08h43).
 - updated `07_PROJECT_EXECUTION/milestones` to use a folder-level `milestones.md` board plus one JSON file per milestone, and aligned the local guidance and template to that execution pattern (2026-03-12-08h43).

@@ -1,6 +1,6 @@
-﻿# Maxwell Context Bank
+# Maxwell Context Bank
 
-This repository is organized as a progressive disclosure context bank. Start broad at the root, then follow each folder's local `README.md` and `AGENTS.md` for deeper guidance.
+This repository is organized as a progressive disclosure context bank. Start broad at the root, then follow each folder's local `README.md` for both context and folder-specific guidance.
 
 ## Start Here
 

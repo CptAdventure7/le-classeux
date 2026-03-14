@@ -4,24 +4,24 @@ from pathlib import Path
 
 
 ROADMAP_DIR = Path(__file__).resolve().parent
-AGENTS_PATH = ROADMAP_DIR / "AGENTS.md"
+README_PATH = ROADMAP_DIR / "README.md"
 ROADMAP_JSON_PATH = ROADMAP_DIR / "roadmap.json"
 ROADMAP_HTML_PATH = ROADMAP_DIR / "roadmap.html"
 
 
 class RoadmapArtifactsTest(unittest.TestCase):
-    def test_agents_documents_canonical_json_format(self) -> None:
-        agents_text = AGENTS_PATH.read_text(encoding="utf-8")
+    def test_readme_documents_canonical_json_format(self) -> None:
+        readme_text = README_PATH.read_text(encoding="utf-8")
 
-        self.assertIn("## Roadmap Format", agents_text)
-        self.assertIn("Store roadmap content in JSON format.", agents_text)
-        self.assertIn("roadmap.json", agents_text)
-        self.assertIn("phase", agents_text)
-        self.assertIn("items", agents_text)
-        self.assertIn("dependencies", agents_text)
-        self.assertIn("owner", agents_text)
-        self.assertIn("target_date", agents_text)
-        self.assertIn("status", agents_text)
+        self.assertIn("## Roadmap Format", readme_text)
+        self.assertIn("Store roadmap content in JSON format.", readme_text)
+        self.assertIn("roadmap.json", readme_text)
+        self.assertIn("phase", readme_text)
+        self.assertIn("items", readme_text)
+        self.assertIn("dependencies", readme_text)
+        self.assertIn("owner", readme_text)
+        self.assertIn("target_date", readme_text)
+        self.assertIn("status", readme_text)
 
     def test_sample_roadmap_json_matches_expected_shape(self) -> None:
         roadmap = json.loads(ROADMAP_JSON_PATH.read_text(encoding="utf-8"))

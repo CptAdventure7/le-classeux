@@ -1,4 +1,4 @@
-﻿project_name: Maxwell
+project_name: Maxwell
 project_slug: temp
 structure_version: 2
 strategy: progressive_disclosure
@@ -285,8 +285,7 @@ top_level_sections:
         purpose: "Artifacts specifically related to Legacy Tests."
         children: []
 conventions:
-  local_readme: Each folder contains a README.md explaining what belongs there.
-  local_agents: Each folder contains an AGENTS.md describing how to draft, update, and cross-link artifacts.
+  local_readme: Each folder contains a README.md explaining what belongs there and the local drafting, update, cross-linking, and formatting guidance.
   change_log_file: Each `change_log` folder keeps a single append-only `change_log.md` file with the newest entry first.
   requirement_traceability: Requirements should link to source, design allocation, validation, and decision history.
 

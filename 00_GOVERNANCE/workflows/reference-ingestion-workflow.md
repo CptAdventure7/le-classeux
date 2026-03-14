@@ -51,7 +51,7 @@ The workflow must not keep temporary extraction artifacts after the run complete
 
 1. Identify the narrowest relevant active folder for the document's main topic.
 2. Read that folder's local `README.md` before opening deeper files.
-3. If the workflow will edit content in that folder, also read its local `AGENTS.md`.
+3. Use the same local `README.md` as the folder-specific source for drafting, update, cross-linking, and formatting guidance when editing content there.
 4. Prefer active sections `00_GOVERNANCE` through `11_OPERATIONS_AND_HANDOFF` over `99_ARCHIVE`.
 5. Keep the persistent summary and optional page-index JSON near that main topic area rather than in a centralized reference bucket.
 
@@ -151,7 +151,7 @@ The agent must not silently create a page-index JSON without this explicit user 
 1. Resolve the source document path or URL.
 2. Identify the main topic area in the context bank.
 3. Read the local `README.md` for that area before going deeper.
-4. Read the local `AGENTS.md` for any folder that will be edited.
+4. Re-read the local `README.md` for any folder that will be edited so the folder-specific authoring guidance is in view.
 5. Extract the source content from the original file.
 6. If the document is heavy or lengthy, reduce it to a structured working analysis focused on repository-relevant information.
 7. Compare extracted facts against the current canonical artifacts in the topic area and any required adjacent sections.

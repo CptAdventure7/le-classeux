@@ -1,4 +1,4 @@
-﻿# Change Log
+# Change Log
 
 This folder belongs to the Maxwell context bank.
 
@@ -26,3 +26,15 @@ Use the local `change_log.md` as an append-only record. Add each new change at t
 - Link to downstream evidence, implementation, or decision records affected by changes here.
 - Review adjacent folders when a change affects related material: `00_GOVERNANCE/current_overview`, `00_GOVERNANCE/workflows`.
 
+## Detailed Authoring Guidance
+
+The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+
+Read `README.md` in this folder before updating the change log.
+
+## Change Log Rules
+
+- Update the local `change_log.md` file instead of creating separate dated markdown files.
+- Keep the log append-only, with the most recent entry at the top.
+- Add one line per change and end it with a timestamp in `YYYY-MM-DD-HHhMM` form.
+- Keep the change log as the only append-only memory artifact inside the repository.
