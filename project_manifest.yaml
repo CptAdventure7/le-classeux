@@ -2,8 +2,8 @@ workspace_name: le-classeux
 structure_version: 1
 strategy: project_index
 projects:
-  - id: projects
+  - id: maxwell
     name: Maxwell
-    path: projects
-    manifest: projects/project_manifest.yaml
+    path: projects/Maxwell
+    manifest: projects/Maxwell/project_manifest.yaml
     purpose: "Primary project context bank. Use its local README, AGENTS guide, and manifest before descending further."

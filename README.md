@@ -4,7 +4,7 @@ This repository is the workspace root for one or more project context banks plus
 
 ## Layout
 
-- `projects/`: the current project context bank container, with each project keeping its own `README.md`, `AGENTS.md`, and `project_manifest.yaml`.
+- `projects/`: project folders. Each project keeps its own `README.md`, `AGENTS.md`, and `project_manifest.yaml` inside its named folder.
 - `agent/skills/`: reusable workflow skills that are not owned by a single project.
 - `agent/personas/`: persona definitions for future agent specializations.
 - `docs/plans/`: implementation and restructuring plans that explain larger repository changes.

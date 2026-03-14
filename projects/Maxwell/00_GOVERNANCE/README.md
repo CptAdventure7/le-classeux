@@ -17,7 +17,7 @@ Program-level control documents, current state snapshots, and project memory rec
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
 - Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION`, `07_PROJECT_EXECUTION`, `08_DECISIONS`.
-- Reusable workflows now live in the shared workspace skill library at `../../agent/skills/` rather than inside this project folder.
+- Reusable workflows now live in the shared workspace skill library at `../../../agent/skills/` rather than inside this project folder.
 
 ## Detailed Authoring Guidance
 

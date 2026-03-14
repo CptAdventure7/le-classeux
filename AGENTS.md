@@ -25,7 +25,7 @@ Your job is to route work to the correct project context bank, then retrieve and
 
 ## Repository Map
 
-- `projects/`: current project context bank container.
+- `projects/`: container of named project folders.
 - `project_manifest.yaml`: shallow workspace manifest listing the available projects.
 - `agent/skills/`: shared workflow skills.
 - `agent/personas/`: shared persona definitions.

@@ -94,7 +94,7 @@ When inconsistencies are found:
 - Use progressive disclosure. Read the local `README.md` before creating or editing content in a folder, and only descend into children that are directly relevant.
 - Read `project_manifest.yaml` when section intent, naming, or repository conventions need confirmation.
 - Prefer active artefacts in the current section over broad repository scans.
-- Check the shared workflow skills in `../agent/skills/` when a reusable workflow may apply to the current request.
+- Check the shared workflow skills in `../../agent/skills/` when a reusable workflow may apply to the current request.
 - Use `99_ARCHIVE` only for historical context, superseded rationale, or traceability.
 
 ## Authoring Rules

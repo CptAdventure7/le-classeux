@@ -1,5 +1,6 @@
 # Change Log
 
+- moved the Maxwell context bank under `projects/Maxwell/`, made `projects/README.md` a simple project-listing note, and updated root plus project navigation references for the new named-project folder layout (2026-03-14-16h30).
 - added a shallow workspace-level `project_manifest.yaml` that lists the `projects` entrypoint and aligned the root README plus AGENTS guidance to route through it before opening project internals (2026-03-14-16h15).
 - renamed the workspace project container from `project` to `projects` and aligned the workspace-level guidance and restructure plan to use the plural path consistently (2026-03-14-16h05).
 - renamed the shared agent persona folder from `agent/persona` to `agent/personas` and aligned the workspace-level guidance to use the plural path consistently (2026-03-14-15h55).
