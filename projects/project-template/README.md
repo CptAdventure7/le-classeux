@@ -12,8 +12,6 @@
 ### Read Next
 
 - `project_manifest.yaml`
-- `00_GOVERNANCE/current_overview/README.md`
-- `00_GOVERNANCE/change_log/change_log.md`
 
 ### Avoid Unless Needed
 
@@ -40,9 +38,3 @@
 - Keep links between upstream context, related requirements or decisions, and downstream evidence.
 - Record every repository change in `00_GOVERNANCE/change_log/change_log.md`, keeping the newest entry at the top.
 - When current state changes materially, refresh the `Current Overview Summary` section in this README alongside the relevant governance snapshot so the root-level entrypoint stays accurate.
-
-## More Detail
-
-The authoritative folder map and section purposes live in `project_manifest.yaml`.
-
-
