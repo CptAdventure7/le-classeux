@@ -1,5 +1,6 @@
 # Change Log
 
+- merged `projects/project-template/AGENTS.md` into the project `README.md`, simplified the top-level guidance, and removed the redundant sidecar agent file (2026-03-14-21h45).
 - renamed the sole project context bank from `Maxwell` to `project-template`, renamed the workspace manifest to `projects_manifest.yaml`, and updated active navigation plus README references accordingly (2026-03-14-15h38).
 - moved the Maxwell context bank under `projects/Maxwell/`, made `projects/README.md` a simple project-listing note, and updated root plus project navigation references for the new named-project folder layout (2026-03-14-16h30).
 - added a shallow workspace-level `project_manifest.yaml` that lists the `projects` entrypoint and aligned the root README plus AGENTS guidance to route through it before opening project internals (2026-03-14-16h15).

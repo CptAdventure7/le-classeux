@@ -1,20 +1,22 @@
 # project-template
 
-project-template is maintained as an evidence-first project context bank. It keeps the project brief, system framing, requirements, design and implementation context, validation evidence, execution state, decisions, collaboration records, communication artefacts, and operational handoff material in one traceable structure.
+`project-template` is an evidence-first project context bank for keeping project knowledge traceable, current, and easy to retrieve.
 
-## Start Here
+## How To Work In This Project
 
-- Read `project_manifest.yaml` for the authoritative section map.
-- Read `AGENTS.md` for the project-specific retrieval and update rules.
-- Open the nearest relevant folder and read its local `README.md` before going deeper.
+- Start in the narrowest relevant folder and read that folder's local `README.md` before opening deeper artefacts.
+- Prefer active working sections over `99_ARCHIVE`, and use archived material only for historical traceability.
+- Treat dated filenames in `YYYY-MM-DD-*` form as freshness signals when comparing similar artefacts.
+- If sources conflict, state the conflict explicitly and rely on linked evidence instead of guessing.
 
-## Sections
+## Update Rules
 
-- `00_GOVERNANCE`: governance state, current overview, and project memory.
-- `01_PROJECT_FOUNDATION` to `02_SYSTEM_DEFINITION`: project brief, scope, stakeholders, use cases, and architecture framing.
-- `03_REQUIREMENTS` to `05_EXPERIMENTS_AND_VALIDATION`: requirements, design, implementation, tests, datasets, and validation evidence.
-- `06_RESEARCH_AND_REFERENCES` to `08_DECISIONS`: external references, execution context, and major decisions.
-- `09_COLLABORATION` to `11_OPERATIONS_AND_HANDOFF`: meeting records, communication artefacts, and release or support material.
-- `99_ARCHIVE`: inactive historical artefacts kept for traceability.
+- Update the existing artefact when possible instead of creating duplicate summaries.
+- Keep links between upstream context, related requirements or decisions, and downstream evidence.
+- Record every repository change in `00_GOVERNANCE/change_log/change_log.md`, keeping the newest entry at the top.
+
+## More Detail
+
+The authoritative folder map and section purposes live in `project_manifest.yaml`.
 
 
