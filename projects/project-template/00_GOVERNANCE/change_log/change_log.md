@@ -23,3 +23,4 @@
 - Added a root-level `LLM_CURRENT_RECAP.md` file for low-token project routing.
 - Updated `00_GOVERNANCE/current_overview/README.md` to require maintaining the compact LLM recap alongside weekly snapshots.
 - Updated `README.md` so the recommended read order starts with the root-level LLM recap, then the project manifest, before deeper folder traversal.
+- Replaced the standalone recap file with a `Current Overview Summary` section in the project `README.md` and updated governance guidance to treat that section as the low-token entrypoint.

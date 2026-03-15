@@ -2,9 +2,32 @@
 
 `project-template` is an evidence-first project context bank for keeping project knowledge traceable, current, and easy to retrieve.
 
+## Current Overview Summary
+
+- Last updated: `2026-03-14`
+- Current phase: `Template / structure definition`
+
+`project-template` is a context-bank scaffold optimized for traceable project memory. The current focus is maintaining a clear evidence-first folder model, concise navigation guidance, and low-token entrypoints for agents before they descend into local folder documentation.
+
+### Read Next
+
+- `project_manifest.yaml`
+- `00_GOVERNANCE/current_overview/README.md`
+- `00_GOVERNANCE/change_log/change_log.md`
+
+### Avoid Unless Needed
+
+- `99_ARCHIVE/`
+- deep folder-by-folder README traversal before checking this summary and the manifest
+
+### Active Watchpoints
+
+- keep root-level routing concise so agents do not spend tokens on repeated folder boilerplate
+- update this section whenever the active overview, priorities, or best next reads change
+
 ## How To Work In This Project
 
-- Start with [`LLM_CURRENT_RECAP.md`](LLM_CURRENT_RECAP.md) for the compact current-state summary and recommended next reads.
+- Start with the `Current Overview Summary` section in this README for the compact current-state summary and recommended next reads.
 - Then check `project_manifest.yaml` for the authoritative folder map.
 - After that, move to the narrowest relevant folder and read that folder's local `README.md` before opening deeper artefacts.
 - Prefer active working sections over `99_ARCHIVE`, and use archived material only for historical traceability.
@@ -16,7 +39,7 @@
 - Update the existing artefact when possible instead of creating duplicate summaries.
 - Keep links between upstream context, related requirements or decisions, and downstream evidence.
 - Record every repository change in `00_GOVERNANCE/change_log/change_log.md`, keeping the newest entry at the top.
-- When current state changes materially, refresh `LLM_CURRENT_RECAP.md` alongside the relevant governance snapshot so the root-level entrypoint stays accurate.
+- When current state changes materially, refresh the `Current Overview Summary` section in this README alongside the relevant governance snapshot so the root-level entrypoint stays accurate.
 
 ## More Detail
 
