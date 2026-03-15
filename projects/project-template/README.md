@@ -9,15 +9,6 @@
 
 `project-template` is a context-bank scaffold optimized for traceable project memory. The current focus is maintaining a clear evidence-first folder model, concise navigation guidance, and low-token entrypoints for agents before they descend into local folder documentation.
 
-### Read Next
-
-- `project_manifest.yaml`
-
-### Avoid Unless Needed
-
-- `99_ARCHIVE/`
-- deep folder-by-folder README traversal before checking this summary and the manifest
-
 ### Active Watchpoints
 
 - keep root-level routing concise so agents do not spend tokens on repeated folder boilerplate
@@ -31,6 +22,7 @@
 - Prefer active working sections over `99_ARCHIVE`, and use archived material only for historical traceability.
 - Treat dated filenames in `YYYY-MM-DD-*` form as freshness signals when comparing similar artefacts.
 - If sources conflict, state the conflict explicitly and rely on linked evidence instead of guessing.
+- Avoid deep folder-by-folder README traversal before checking this summary and the manifest
 
 ## Update Rules
 

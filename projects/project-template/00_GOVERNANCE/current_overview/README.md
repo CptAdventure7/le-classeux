@@ -47,17 +47,8 @@ Lifecycle expectations:
 - Link to the concrete sources behind the snapshot when available, especially issues, milestones, decisions, meeting summaries, risk registers, and internal updates.
 - Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COLLABORATION`, `10_COMMUNICATION`.
 
-## Detailed Authoring Guidance
-
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
-
-Read `README.md` in this folder before drafting or editing documents.
-
 ## Drafting Rules
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
 - Treat this folder as the project health-check layer, not as a replacement for canonical source artifacts.
 - Maintain one rolling snapshot per week. Update that week's snapshot in place; start a new snapshot when a new week begins.
 - Write snapshots as concise operational reporting focused on recent developments, current focus, urgent attention points, and information coherence.
@@ -69,20 +60,8 @@ Read `README.md` in this folder before drafting or editing documents.
 
 ## Update Rules
 
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Rely on linked artifacts, the governance change log, and the final git commit for traceability.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-- Prefer one dated weekly filename per snapshot, using the repository date convention when chronology matters.
 - If a weekly snapshot is updated repeatedly, keep the file focused on the same reporting window instead of turning it into a multi-month running log.
 - Treat the root-level summary section as a continuously updated index, not a dated log. It should always describe the current state only.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
-- When reporting health concerns, link directly to the artifact that shows the problem: stale issue list, slipped milestone, conflicting requirement, outdated communication, or missing decision record.
 
 ## Root-Level Summary Section
 
@@ -159,4 +138,3 @@ Template expectations:
 - Prefer evidence-backed bullets over opinion.
 - If a section has no material change, say so explicitly instead of leaving it vague.
 - If a risk or inconsistency is listed, include the source artifact that demonstrates it.
-
