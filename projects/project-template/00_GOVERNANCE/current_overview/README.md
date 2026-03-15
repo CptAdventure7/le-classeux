@@ -6,6 +6,8 @@ This folder belongs to the project-template context bank.
 
 Weekly rolling snapshots of current project health, current-state summaries, active priorities, and navigation pointers for new readers.
 
+This folder also owns the compact LLM-facing recap published at [`../../LLM_CURRENT_RECAP.md`](../../LLM_CURRENT_RECAP.md). That root-level recap is the low-token entrypoint for agents and should be updated whenever the active weekly snapshot changes materially.
+
 Each snapshot is the quick report for "where things stand now" and should help a reader answer:
 - what happened recently that matters
 - what is currently important
@@ -22,6 +24,7 @@ Recommended snapshot content:
 - stale issues, blocked work, or items lacking ownership
 - information incoherences, conflicting statements, or outdated references
 - a concise health-check assessment of information stability and project coherence
+- the minimal facts needed to refresh [`../../LLM_CURRENT_RECAP.md`](../../LLM_CURRENT_RECAP.md)
 
 Lifecycle expectations:
 - keep the active weekly snapshots here while they remain operationally relevant
@@ -35,6 +38,7 @@ Lifecycle expectations:
 - Final decisions without a link to the originating issue, requirement, or review.
 - Long-form meeting notes, raw logs, or detailed plans that should remain in their canonical folders.
 - Timeless reference material that belongs in requirements, decisions, risks, or workflows instead of a time-bounded snapshot.
+- Detailed evidence dumps inside the root-level LLM recap; keep that artifact short and route readers to canonical sources instead.
 
 ## Cross-Links To Maintain
 
@@ -60,6 +64,8 @@ Read `README.md` in this folder before drafting or editing documents.
 - Call out missed deliveries, stale issues, unresolved blockers, and contradictory or stale information explicitly.
 - Include a clear judgement on current information stability: what appears reliable, what looks stale, and what needs verification.
 - When a snapshot ages past roughly two months, move it to `99_ARCHIVE/snapshots` instead of leaving this folder crowded with stale current-state reports.
+- After updating the active weekly snapshot, refresh [`../../LLM_CURRENT_RECAP.md`](../../LLM_CURRENT_RECAP.md) in the same change if the project state, priorities, canonical next reads, or archive-avoidance guidance changed.
+- Keep the LLM recap intentionally smaller than the weekly snapshot: prefer a 150-300 word limit, a few bullets, and direct links to the most useful next files instead of repeating narrative detail.
 
 ## Update Rules
 
@@ -69,6 +75,7 @@ Read `README.md` in this folder before drafting or editing documents.
 - Keep titles and filenames aligned with the scope of the document.
 - Prefer one dated weekly filename per snapshot, using the repository date convention when chronology matters.
 - If a weekly snapshot is updated repeatedly, keep the file focused on the same reporting window instead of turning it into a multi-month running log.
+- Treat the root-level LLM recap as a continuously updated index, not a dated log. It should always describe the current state only.
 
 ## Cross-Linking
 
@@ -76,6 +83,25 @@ Read `README.md` in this folder before drafting or editing documents.
 - If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
 - If this folder stores summaries, link back to raw notes or source documents when available.
 - When reporting health concerns, link directly to the artifact that shows the problem: stale issue list, slipped milestone, conflicting requirement, outdated communication, or missing decision record.
+
+## Root-Level LLM Recap
+
+Maintain [`../../LLM_CURRENT_RECAP.md`](../../LLM_CURRENT_RECAP.md) as the compact machine-facing project recap.
+
+Required content:
+- last-updated date
+- current phase or operating mode
+- 1 short paragraph on the active project state
+- 3-7 canonical files or folders to open next
+- stale or archival areas to avoid unless explicitly needed
+- open risks, blockers, or verification needs only if currently active
+
+Authoring rules:
+- keep it terse and navigational
+- do not restate full weekly snapshot sections
+- prefer links over prose
+- remove stale bullets instead of accumulating history
+- optimize for first-read routing by an LLM with limited context budget
 
 ## Weekly Snapshot Template
 

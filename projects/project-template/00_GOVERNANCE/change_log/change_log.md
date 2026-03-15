@@ -18,3 +18,8 @@
 - clarified in the root agent instructions that every repository change must also be recorded in this governance change log (2026-03-11-20h42).
 - added the general update workflow to standardize repo-wide context refresh, cross-link propagation, and commit-message anchoring for future runs (2026-03-11-18h00).
 - updated change log convention to use a single append-only markdown file and removed local change-log history folders (2026-03-11-14h30).
+# 2026-03-14
+
+- Added a root-level `LLM_CURRENT_RECAP.md` file for low-token project routing.
+- Updated `00_GOVERNANCE/current_overview/README.md` to require maintaining the compact LLM recap alongside weekly snapshots.
+- Updated `README.md` so the recommended read order starts with the root-level LLM recap, then the project manifest, before deeper folder traversal.
