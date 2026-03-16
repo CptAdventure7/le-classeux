@@ -1,44 +1,68 @@
 # Glossary
 
-This folder belongs to the project-template context bank.
+Store glossary entries here in a single canonical JSON artifact with minimal boilerplate.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to Glossary.
+When this folder is populated, it should contain exactly one maintained data artifact: `glossary.json`.
 
-## What Does Not Belong Here
+That file captures the project vocabulary that needs stable shared definitions.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Use this folder for:
+- project-specific terms
+- acronyms or abbreviations that need expansion
+- domain language that readers may interpret inconsistently
 
-## Cross-Links To Maintain
+Do not use this folder for:
+- long narrative explanations better suited to `project_definition`
+- stakeholder information that belongs in `stakeholders`
+- duplicate definitions copied from other artifacts without source traceability
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_definition`, `01_PROJECT_FOUNDATION/objectives_success_metrics`, `01_PROJECT_FOUNDATION/stakeholders`.
+## Folder Rule
 
-## Detailed Authoring Guidance
+- Keep exactly one JSON data file in this folder: `glossary.json`.
+- In the starter project template, do not keep a placeholder JSON file with fake seed content.
+- Create `glossary.json` only when the project has real terms to record.
+- If it already exists, update it in place.
+- Do not create multiple glossary files in this folder.
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Required JSON Shape
 
-Read `README.md` in this folder before drafting or editing documents.
+`glossary.json` should contain a JSON array.
 
-## Drafting Rules
+Each array item must include:
+- `term`: the word, phrase, or acronym being defined
+- `definition`: the concise project-relevant meaning
+- `source`: where the definition came from
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
+Recommended fields:
+- `id`: stable identifier
+- `notes`: short clarification if needed
+- `aliases`: alternate spellings or synonymous labels
+- `related_links`: links to artifacts where the term is used or justified
 
-## Update Rules
+## Example
 
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
+```json
+[
+  {
+    "id": "TERM-001",
+    "term": "Context bank",
+    "definition": "The structured project repository used to store evidence, decisions, requirements, and other traceable project knowledge.",
+    "source": "projects/project-template/README.md",
+    "related_links": [
+      "projects/project-template/project_manifest.yaml",
+      "projects/project-template/01_PROJECT_FOUNDATION/project_definition/README.md"
+    ]
+  }
+]
+```
 
-## Cross-Linking
+## Authoring Rules
 
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Prefer updating `glossary.json` instead of creating new files.
+- Keep definitions concise and specific to the project context.
+- Make `source` specific enough that another reader can trace it.
+- If a term changes project interpretation, update the affected upstream and downstream artifacts as well.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 

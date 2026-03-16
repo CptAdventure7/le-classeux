@@ -1,44 +1,72 @@
 # Stakeholders
 
-This folder belongs to the project-template context bank.
+Store stakeholders here in a single canonical JSON artifact with minimal boilerplate.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to Stakeholders.
+When this folder is populated, it should contain exactly one maintained data artifact: `stakeholders.json`.
 
-## What Does Not Belong Here
+That file captures the people, groups, or organizations that shape the project and their roles in it.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Use this folder for:
+- project sponsors, owners, users, reviewers, approvers, and contributors
+- internal and external actors who influence scope, constraints, or decisions
+- role summaries that clarify what each stakeholder does in this project
 
-## Cross-Links To Maintain
+Do not use this folder for:
+- glossary or terminology content better suited to `glossary`
+- detailed resourcing plans better suited to `07_PROJECT_EXECUTION`
+- duplicate biographical notes without project relevance
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_definition`, `01_PROJECT_FOUNDATION/objectives_success_metrics`, `01_PROJECT_FOUNDATION/glossary`.
+## Folder Rule
 
-## Detailed Authoring Guidance
+- Keep exactly one JSON data file in this folder: `stakeholders.json`.
+- In the starter project template, do not keep a placeholder JSON file with fake seed content.
+- Create `stakeholders.json` only when the project has real stakeholders to record.
+- If it already exists, update it in place.
+- Do not create multiple stakeholder files in this folder.
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Required JSON Shape
 
-Read `README.md` in this folder before drafting or editing documents.
+`stakeholders.json` should contain a JSON array.
 
-## Drafting Rules
+Each array item must include:
+- `name`: the stakeholder's name
+- `type`: the stakeholder category such as `person`, `team`, `customer`, `partner`, or `organization`
+- `affiliation`: the organization, team, or group they belong to
+- `role`: a short few-sentence description of what this stakeholder does in the project
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
+Recommended fields:
+- `id`: stable identifier
+- `influence`: qualitative or numeric indication of decision influence
+- `source`: where the stakeholder information came from
+- `notes`: short clarification if needed
+- `related_links`: links to artifacts affected by or owned by the stakeholder
 
-## Update Rules
+## Example
 
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
+```json
+[
+  {
+    "id": "SH-001",
+    "name": "Project structure maintainer",
+    "type": "person",
+    "affiliation": "project-template workspace",
+    "role": "Maintains the project-template folder model and its authoring conventions. Reviews structural changes to keep the context bank queryable, consistent, and traceable across updates.",
+    "source": "workspace governance and repository conventions",
+    "related_links": [
+      "projects/project-template/README.md",
+      "projects/project-template/project_manifest.yaml"
+    ]
+  }
+]
+```
 
-## Cross-Linking
+## Authoring Rules
 
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Prefer updating `stakeholders.json` instead of creating new files.
+- Keep each `role` concrete and specific to the project rather than generic job-title text.
+- Make `affiliation` and `type` consistent across entries so the file stays queryable.
+- If stakeholder changes affect requirements, decisions, ownership, or validation plans, update the linked artifacts as well.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 
