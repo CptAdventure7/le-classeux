@@ -16,7 +16,7 @@ Artifacts specifically related to Business Case.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_brief`, `01_PROJECT_FOUNDATION/objectives_success_metrics`, `01_PROJECT_FOUNDATION/scope`, `01_PROJECT_FOUNDATION/stakeholders`.
+- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_definition`, `01_PROJECT_FOUNDATION/objectives_success_metrics`, `01_PROJECT_FOUNDATION/stakeholders`.
 
 ## Detailed Authoring Guidance
 

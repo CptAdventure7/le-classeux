@@ -15,7 +15,7 @@ Use this folder for:
 - measurable success metrics and targets
 
 Do not use this folder for:
-- broad narrative notes better suited to `project_brief` or `scope`
+- broad narrative notes better suited to `project_definition`
 - detailed stakeholder lists better suited to `stakeholders`
 - duplicate copies of evidence already stored elsewhere
 
@@ -61,7 +61,7 @@ Recommended fields:
     "status": "active",
     "related_links": [
       "projects/project-template/project_manifest.yaml",
-      "projects/project-template/01_PROJECT_FOUNDATION/project_brief/README.md"
+      "projects/project-template/01_PROJECT_FOUNDATION/project_definition/README.md"
     ]
   },
   {

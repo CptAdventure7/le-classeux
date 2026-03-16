@@ -1,5 +1,6 @@
 # Change Log
 
+- merged `01_PROJECT_FOUNDATION/project_brief` and `01_PROJECT_FOUNDATION/scope` into `01_PROJECT_FOUNDATION/project_definition`, simplified the merged README to a single-artifact contract around `project_definition.md`, and updated neighboring references accordingly (2026-03-15-01h20).
 - removed placeholder JSON files from the starter template for `assumptions_constraints` and `objectives_success_metrics`, and clarified in both READMEs that the canonical JSON file is created only when real project content exists (2026-03-15-01h05).
 - applied the single-canonical-JSON pattern to `01_PROJECT_FOUNDATION/objectives_success_metrics`, created `objectives_success_metrics.json`, restored the missing `assumptions_constraints.json`, and added `stakeholder_provenance` to both folder schemas and example artifacts (2026-03-15-00h50).
 - clarified `01_PROJECT_FOUNDATION/assumptions_constraints` to use exactly one canonical JSON file, created `assumptions_constraints.json`, and updated the folder README to require create-or-update behavior for that single artifact (2026-03-15-00h35).

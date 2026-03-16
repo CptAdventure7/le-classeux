@@ -16,7 +16,7 @@ Use this folder for:
 
 Do not use this folder for:
 - final decisions without supporting context
-- broad narrative notes better suited to `project_brief` or `scope`
+- broad narrative notes better suited to `project_definition`
 - duplicate copies of evidence already stored elsewhere
 
 ## Folder Rule
@@ -60,7 +60,7 @@ Recommended fields:
     "status": "active",
     "related_links": [
       "projects/project-template/README.md",
-      "projects/project-template/01_PROJECT_FOUNDATION/scope/README.md"
+      "projects/project-template/01_PROJECT_FOUNDATION/project_definition/README.md"
     ]
   },
   {

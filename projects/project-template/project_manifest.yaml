@@ -14,14 +14,11 @@ top_level_sections:
   - id: 01_PROJECT_FOUNDATION
     purpose: "Why the project exists, who it serves, and the constraints that frame all downstream work."
     children:
-      - id: project_brief
-        purpose: "Artifacts specifically related to Project Brief."
+      - id: project_definition
+        purpose: "Single-source definition of what the project is trying to accomplish and the current versus long-term scope boundaries."
         children: []
       - id: objectives_success_metrics
         purpose: "Artifacts specifically related to Objectives Success Metrics."
-        children: []
-      - id: scope
-        purpose: "Artifacts specifically related to Scope."
         children: []
       - id: stakeholders
         purpose: "Artifacts specifically related to Stakeholders."
