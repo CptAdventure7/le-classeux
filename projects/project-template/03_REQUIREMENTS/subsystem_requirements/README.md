@@ -11,7 +11,7 @@ Subsystem-level requirements grouped by technical ownership boundary live here.
 
 ## Authoring Rules
 
-- Use IDs with the `PRJ-SUBREQ-` prefix.
+- Use IDs with the `PRJ-<three-letter subsystem acronym>-` prefix, where the acronym is unique within the project.
 - Requirement `status` must be one of `Accepted`, `Preliminary`, or `Abandoned`.
 - `compliance_status` must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
 - Link each subsystem requirement to its parent system requirement and to downstream design, interface, validation, and decision evidence.
@@ -23,7 +23,7 @@ Example filename: `sensor_stack_requirements.json`
 
 ```json
 {
-  "id": "PRJ-SUBREQ-12",
+  "id": "PRJ-SEN-12",
   "requirement_class": "Interface",
   "groupings": [
     "Subsystem Boundary"

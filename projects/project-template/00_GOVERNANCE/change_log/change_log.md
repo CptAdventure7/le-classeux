@@ -1,5 +1,6 @@
 # Change Log
 
+- updated `03_REQUIREMENTS/subsystem_requirements/README.md` so subsystem requirement IDs now use `PRJ-<three-letter subsystem acronym>-<n>` instead of `PRJ-SUBREQ-<n>`, and aligned the example accordingly (2026-03-15-02h00).
 - simplified the three `03_REQUIREMENTS/*_requirements/README.md` files to remove repeated boilerplate, clarified that JSON examples live in the READMEs, changed `subsystem_requirements` to a one-file-per-subsystem pattern named `<subsystem>_requirements.json`, and removed the placeholder requirement JSON files (2026-03-15-01h50).
 - converted `01_PROJECT_FOUNDATION/glossary` and `01_PROJECT_FOUNDATION/stakeholders` to the same single-canonical-JSON folder contract used by `assumptions_constraints`, defining `glossary.json` and `stakeholders.json` schemas and removing repeated README boilerplate (2026-03-15-01h35).
 - merged `01_PROJECT_FOUNDATION/project_brief` and `01_PROJECT_FOUNDATION/scope` into `01_PROJECT_FOUNDATION/project_definition`, simplified the merged README to a single-artifact contract around `project_definition.md`, and updated neighboring references accordingly (2026-03-15-01h20).
