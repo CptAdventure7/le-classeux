@@ -1,74 +1,120 @@
 # System Risk Register
 
-This folder belongs to the project-template context bank.
+Store system design and implementation risks here in a single canonical JSON artifact with minimal boilerplate.
 
-## What Belongs Here
+## Purpose
 
-Design and implementation risks, with triggers, mitigations, and owners.
+When this folder is populated, it should contain exactly one maintained data artifact: `system_risk_register.json`.
 
-## What Does Not Belong Here
+That file captures the system risk register for the project.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Use this folder for:
+- system-level hazards, failure modes, causes, harms, and affected subsystems
+- candidate and applied control measures with residual-risk scoring
+- traceability to requirements, reviews, designs, and related evidence
 
-## Cross-Links To Maintain
+Do not use this folder for:
+- project-management risks that belong in `07_PROJECT_EXECUTION/project_risk_register`
+- duplicate summaries, parallel drafts, or separate example files
+- final decisions without traceability to the design, review, or requirement context that supports them
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `04_DESIGN_AND_IMPLEMENTATION/design`, `04_DESIGN_AND_IMPLEMENTATION/icd_interface_control_docs`, `04_DESIGN_AND_IMPLEMENTATION/code_repositories`, `04_DESIGN_AND_IMPLEMENTATION/models_simulations`.
+## Folder Rule
 
-## Detailed Authoring Guidance
+- Keep exactly one JSON data file in this folder: `system_risk_register.json`.
+- In the starter project template, do not keep a placeholder JSON file with fake seed content.
+- Create `system_risk_register.json` only when the project has real system-risk content to record.
+- If it already exists, update it in place.
+- Do not create multiple system-risk files in this folder.
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Required JSON Shape
 
-Read `README.md` in this folder before drafting or editing documents.
+`system_risk_register.json` should contain a JSON object with:
+- `schema_version`: version string for the register shape
+- `notes`: optional array of register-wide guidance or scoring notes
+- `risks`: array of system-risk entries
 
-## Current Canonical Artifact
+Each risk entry must include:
+- `id`: format `SRSK-0001`
+- `hazard_category`: hazard class or domain
+- `function_or_subsystem_affected`: string or array; use `multiple` when one risk spans several subsystems
+- `failure_mode`: concise statement of how the system can fail
+- `potential_causes`: array; use `["multiple"]` only when specific causes are not yet decomposed
+- `potential_harm_effects`: array of user, operator, property, mission, or other harms
+- `severity`: integer `1` to `5`
+- `occurrence`: integer `1` to `5`
+- `possible_control_measures`: array of candidate controls not yet committed
+- `applied_control_measures`: array of controls implemented or formally accepted for implementation
+- `traceability_to_requirement`: array of `REQ-*` identifiers; use an empty array when no requirement link exists yet
+- `control_measure_type`: one of `by_design`, `protective_measure`, or `labelling`
+- `new_risk_introduced_by_control_measure`: `no` or an `SRSK-*` identifier
+- `residual_risk_severity`: integer `1` to `5`
+- `residual_risk_occurrence`: integer `1` to `5`
+- `date_of_last_review`: ISO date `YYYY-MM-DD`
+- `status`: `open`, `mitigated`, `accepted`, or `closed`
+- `owner`: person or team responsible for review and updates
+- `comments`: append-only dated entries
+- `links`: array with zero or more related artifact links
 
-- The single source of truth for the system risk register is `system_risk_register.json` in this folder.
-- Keep system-risk data in that JSON file instead of creating parallel prose summaries unless a separate artifact is explicitly needed.
-- When updating risk content, preserve append-only traceability for comments.
+## Example
 
-## Drafting Rules
+```json
+{
+  "schema_version": "1.0",
+  "notes": [
+    "Higher numeric values represent higher risk."
+  ],
+  "risks": [
+    {
+      "id": "SRSK-0001",
+      "hazard_category": "Controls",
+      "function_or_subsystem_affected": [
+        "Imaging",
+        "Motion Control"
+      ],
+      "failure_mode": "The system can capture blurred images when motion settles too late.",
+      "potential_causes": [
+        "Trigger timing drift",
+        "Stage acceleration beyond tuned limits"
+      ],
+      "potential_harm_effects": [
+        "Invalid measurement result",
+        "Operator rework"
+      ],
+      "severity": 3,
+      "occurrence": 2,
+      "possible_control_measures": [
+        "Add capture timing margin analysis",
+        "Limit acceleration profiles per recipe"
+      ],
+      "applied_control_measures": [
+        "Recipe validation blocks unsupported acceleration settings"
+      ],
+      "traceability_to_requirement": [
+        "REQ-042"
+      ],
+      "control_measure_type": "by_design",
+      "new_risk_introduced_by_control_measure": "no",
+      "residual_risk_severity": 2,
+      "residual_risk_occurrence": 1,
+      "date_of_last_review": "2026-03-16",
+      "status": "mitigated",
+      "owner": "Systems Engineering",
+      "comments": [
+        "2026-03-16: Initial risk captured from motion-imaging integration review."
+      ],
+      "links": [
+        "projects/project-template/04_DESIGN_AND_IMPLEMENTATION/design/README.md"
+      ]
+    }
+  ]
+}
+```
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
-- Use the following system-risk structure in `system_risk_register.json`:
-  - `id`: format `SRSK-0001`
-  - `hazard_category`: hazard class or domain
-  - `function_or_subsystem_affected`: string or array; use `multiple` when one risk spans several subsystems
-  - `failure_mode`: concise statement of how the system can fail
-  - `potential_causes`: array; use `["multiple"]` only when specific causes are not yet decomposed
-  - `potential_harm_effects`: array of patient, user, operator, property, or mission harms
-  - `severity`: integer `1` to `5`
-  - `occurrence`: integer `1` to `5`
-  - `possible_control_measures`: array of candidate controls not yet committed
-  - `applied_control_measures`: array of controls implemented or formally accepted for implementation
-  - `traceability_to_requirement`: array of `REQ-*` identifiers; use an empty array when no requirement link exists yet
-  - `control_measure_type`: one of `by_design`, `protective_measure`, or `labelling`
-  - `new_risk_introduced_by_control_measure`: `no` or an `SRSK-*` identifier
-  - `residual_risk_severity`: integer `1` to `5`
-  - `residual_risk_occurrence`: integer `1` to `5`
-  - `date_of_last_review`: ISO date `YYYY-MM-DD`
-  - `status`: `open`, `mitigated`, `accepted`, or `closed`
-  - `owner`: person or team responsible for review and updates
-  - `comments`: append-only dated entries
-  - `links`: array with zero or more related artifact links
+## Authoring Rules
+
+- Prefer updating `system_risk_register.json` instead of creating new files.
 - Treat larger numeric values in `severity`, `occurrence`, `residual_risk_severity`, and `residual_risk_occurrence` as higher risk.
 - Prefer arrays for multi-value fields even when there is currently only one value.
 - When a control introduces a new risk, create or link the downstream `SRSK-*` entry explicitly instead of embedding that new risk inside the parent record.
-
-## Update Rules
-
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Keep links to upstream inputs, peer artifacts, and downstream consequences current when the register changes.
 
