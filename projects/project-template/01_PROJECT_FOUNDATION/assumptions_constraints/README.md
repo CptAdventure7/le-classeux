@@ -1,10 +1,12 @@
 # Assumptions Constraints
 
-Store assumptions and constraints here as JSON artifacts with minimal boilerplate.
+Store assumptions and constraints here in a single canonical JSON artifact with minimal boilerplate.
 
 ## Purpose
 
-Each artifact in this folder should capture one or more assumptions or constraints that shape the project.
+This folder should contain exactly one maintained data artifact: `assumptions_constraints.json`.
+
+That file captures all assumptions and constraints that shape the project.
 
 Use this folder for:
 - planning assumptions
@@ -17,15 +19,24 @@ Do not use this folder for:
 - broad narrative notes better suited to `project_brief` or `scope`
 - duplicate copies of evidence already stored elsewhere
 
+## Folder Rule
+
+- Keep exactly one JSON data file in this folder: `assumptions_constraints.json`.
+- If the file does not exist, create it.
+- If it already exists, update it in place.
+- Do not create multiple assumption or constraint files in this folder.
+
 ## Required JSON Shape
 
-Each record must include:
+`assumptions_constraints.json` should contain a JSON array.
+
+Each array item must include:
 - `description`: the assumption or constraint itself
 - `rationale`: why it exists or why it matters
 - `source`: where it came from
 - `importance`: a numeric importance score
 
-Recommended supporting fields:
+Recommended fields:
 - `id`: stable identifier
 - `type`: `assumption` or `constraint`
 - `status`: such as `active`, `validated`, `invalidated`, or `retired`
@@ -63,7 +74,7 @@ Recommended supporting fields:
 
 ## Authoring Rules
 
-- Prefer updating an existing JSON artifact instead of creating overlapping files.
+- Prefer updating `assumptions_constraints.json` instead of creating new files.
 - Keep wording concrete and evidence-based.
 - Use one consistent importance scale within a file. Recommended scale: `1` low to `5` critical.
 - Make `source` specific enough that another reader can trace it.

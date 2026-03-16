@@ -1,0 +1,24 @@
+[
+  {
+    "id": "AC-001",
+    "type": "constraint",
+    "description": "The first release must fit the existing project-template folder model.",
+    "rationale": "The repository is structured for evidence-first project memory, so introducing a competing structure would reduce traceability and retrieval quality.",
+    "source": "projects/project-template/project_manifest.yaml",
+    "importance": 5,
+    "status": "active",
+    "related_links": [
+      "projects/project-template/README.md",
+      "projects/project-template/01_PROJECT_FOUNDATION/scope/README.md"
+    ]
+  },
+  {
+    "id": "AC-002",
+    "type": "assumption",
+    "description": "Assumptions and constraints can be reviewed independently instead of being embedded in long narrative documents.",
+    "rationale": "A structured JSON format reduces repeated prose and makes the content easier to query, compare, and update over time.",
+    "source": "projects/project-template/01_PROJECT_FOUNDATION/assumptions_constraints/README.md",
+    "importance": 4,
+    "status": "active"
+  }
+]
