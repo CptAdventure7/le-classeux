@@ -1,44 +1,63 @@
 # Design Reviews
 
-This folder belongs to the project-template context bank.
+Store each design review as one markdown artifact.
 
-## What Belongs Here
+## Canonical Artifact Pattern
 
-Artifacts specifically related to Design Reviews.
+- Create exactly one `.md` file per review.
+- Name each file `YYYY-MM-DD-<concise-meaningful-name>.md`.
+- Use a short scope name that helps a reader recognize the review topic immediately.
+- Update the existing review artifact if the same review record is refined later.
+- Do not create placeholder files in the starter template.
 
-## What Does Not Belong Here
+## Required Categories
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Each review artifact must contain these categories in this order:
+- `Project Number`
+- `Project Name`
+- `Review Date`
+- `Review Type`
+- `Quality Assessment`
+- `Attendee List`
+- `Absentee List`
+- `Objective`
+- `Meeting Notes`
+- `Conclusion`
+- `Action Items`
 
-## Cross-Links To Maintain
+`Quality Assessment` must be explicitly `Yes` or `No`.
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `04_DESIGN_AND_IMPLEMENTATION/design`, `04_DESIGN_AND_IMPLEMENTATION/system_risk_register`, `02_SYSTEM_DEFINITION/system_architecture`, `04_DESIGN_AND_IMPLEMENTATION/code_repositories`.
+## Action Items
 
-## Detailed Authoring Guidance
+Write `Action Items` as a JSON array using the same structure as the meeting-summary workflow:
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+```json
+[
+  {
+    "assignee": "Name or Unknown",
+    "description": "Action to complete, with relevant context from the review.",
+    "definition_of_done": "Concrete completion condition.",
+    "time_horizon": "Exact date or Unknown",
+    "status": "backlog"
+  }
+]
+```
 
-Read `README.md` in this folder before drafting or editing documents.
+Allowed `status` values:
+- `backlog`
+- `selected for developpement`
+- `in progress`
 
-## Drafting Rules
+If there are no action items, use an empty array: `[]`.
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
+## Authoring Rules
 
-## Update Rules
+- Keep one artifact per review; do not split the same review across sibling files.
+- Keep the artifact focused on the review record, not on broader design history that belongs in `04_DESIGN_AND_IMPLEMENTATION/design`.
+- Link to the reviewed design artifact, related requirements, risks, code, and decisions instead of copying large sections into the review.
+- Remove filler and repeated boilerplate; the file should read like a usable review record.
+- Move superseded or cancelled review records to `99_ARCHIVE` rather than deleting traceability.
 
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
+## Example Filename
 
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
-
+- `2026-03-16-control-loop-preliminary-review.md`

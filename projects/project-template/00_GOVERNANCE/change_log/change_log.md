@@ -1,5 +1,6 @@
 # Change Log
 
+- simplified `04_DESIGN_AND_IMPLEMENTATION/design_reviews/README.md` to remove repeated boilerplate, defined a one-markdown-file-per-review pattern named `YYYY-MM-DD-<concise-meaningful-name>.md`, required the core review categories, and aligned `Action Items` with the meeting-summary JSON structure (2026-03-16-14h35).
 - removed the separate `04_DESIGN_AND_IMPLEMENTATION/icd_interface_control_docs` section from the project template, updated related structure references, and clarified in `02_SYSTEM_DEFINITION/system_architecture/README.md` that interface control details belong inside architecture artifacts (2026-03-16-14h20).
 - simplified `04_DESIGN_AND_IMPLEMENTATION/design/README.md` to remove repeated boilerplate, defined `system_design_info.md` as the main design artifact, and changed subsystem design records to a one-file-per-subsystem markdown pattern named `<subsystem_name>_design_info.md` that also carries implementation detail (2026-03-16-14h05).
 - simplified `04_DESIGN_AND_IMPLEMENTATION/system_risk_register/README.md` to remove repeated boilerplate, moved the example into the README, defined `system_risk_register.json` as the single canonical artifact created only for real content, and removed the seeded example JSON file from the starter template (2026-03-16-13h55).
