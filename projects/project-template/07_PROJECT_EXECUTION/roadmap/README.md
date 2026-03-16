@@ -16,7 +16,7 @@ Artifacts specifically related to Roadmap.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `07_PROJECT_EXECUTION/work_packages`, `07_PROJECT_EXECUTION/backlog`, `07_PROJECT_EXECUTION/issues`, `07_PROJECT_EXECUTION/milestones`.
+- Review adjacent folders when a change affects related material: `07_PROJECT_EXECUTION/work_packages`, `07_PROJECT_EXECUTION/issues`, `07_PROJECT_EXECUTION/milestones`, `07_PROJECT_EXECUTION/change_requests`.
 
 ## Detailed Authoring Guidance
 
@@ -29,7 +29,7 @@ Read `README.md` in this folder before drafting or editing documents.
 - Store roadmap content in JSON format.
 - Use `roadmap.json` as the canonical roadmap artifact in this folder unless a more specific dated artifact is required.
 - Represent the roadmap as one object with these top-level keys: `roadmap_title`, `last_updated`, `source_links`, `items`.
-- Use `source_links` as an array of relative paths to upstream or peer artifacts such as `../milestones`, `../backlog`, `../work_packages`, or requirement and decision records.
+- Use `source_links` as an array of relative paths to upstream or peer artifacts such as `../milestones`, `../work_packages`, `../issues`, or requirement and decision records.
 - Use `last_updated` in `YYYY-MM-DD` format.
 - Store `items` as an array of roadmap entries with these keys: `id`, `title`, `phase`, `status`, `owner`, `target_date`, `summary`, `dependencies`, `source_links`.
 - Use stable roadmap IDs with the `RDM-` prefix.
@@ -46,8 +46,8 @@ Read `README.md` in this folder before drafting or editing documents.
   "last_updated": "2026-03-11",
   "source_links": [
     "../milestones",
-    "../backlog",
-    "../work_packages"
+    "../work_packages",
+    "../issues"
   ],
   "items": [
     {
@@ -64,7 +64,7 @@ Read `README.md` in this folder before drafting or editing documents.
       ],
       "source_links": [
         "../milestones",
-        "../backlog"
+        "../issues"
       ]
     }
   ]

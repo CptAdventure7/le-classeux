@@ -62,12 +62,6 @@ top_level_sections:
       - id: system_risk_register
         purpose: "Design and implementation risks, with triggers, mitigations, and owners."
         children: []
-      - id: code_repositories
-        purpose: "Artifacts specifically related to Code Repositories."
-        children: []
-      - id: models_simulations
-        purpose: "Artifacts specifically related to Models Simulations."
-        children: []
       - id: design_reviews
         purpose: "Artifacts specifically related to Design Reviews."
         children: []
@@ -75,14 +69,8 @@ top_level_sections:
         purpose: "Prototype-specific folders. Add one subfolder per prototype stream when needed."
         children: []
   - id: 05_EXPERIMENTS_AND_VALIDATION
-    purpose: "Verification, validation, experiments, datasets, and analysis evidence."
+    purpose: "Verification, validation, experiments, and analysis evidence."
     children:
-      - id: test_strategy
-        purpose: "Artifacts specifically related to Test Strategy."
-        children: []
-      - id: validation_plan
-        purpose: "Artifacts specifically related to Validation Plan."
-        children: []
       - id: test_protocols
         purpose: "Artifacts specifically related to Test Protocols."
         children: []
@@ -92,27 +80,6 @@ top_level_sections:
       - id: experiments
         purpose: "Artifacts specifically related to Experiments."
         children: []
-      - id: benchmarks
-        purpose: "Artifacts specifically related to Benchmarks."
-        children: []
-      - id: calibration
-        purpose: "Artifacts specifically related to Calibration."
-        children: []
-      - id: datasets
-        purpose: "Canonical datasets organized by lifecycle state. Keep provenance and lineage explicit."
-        children:
-          - id: raw
-            purpose: "Artifacts specifically related to Raw."
-            children: []
-          - id: processed
-            purpose: "Artifacts specifically related to Processed."
-            children: []
-          - id: labeled
-            purpose: "Artifacts specifically related to Labeled."
-            children: []
-          - id: synthetic
-            purpose: "Artifacts specifically related to Synthetic."
-            children: []
       - id: analysis
         purpose: "Artifacts specifically related to Analysis."
         children: []
@@ -125,9 +92,6 @@ top_level_sections:
   - id: 06_RESEARCH_AND_REFERENCES
     purpose: "External knowledge, standards, prior art, supplier research, and citation support."
     children:
-      - id: literature_map
-        purpose: "Artifacts specifically related to Literature Map."
-        children: []
       - id: papers
         purpose: "Artifacts specifically related to Papers."
         children: []
@@ -149,9 +113,6 @@ top_level_sections:
       - id: presentations
         purpose: "Artifacts specifically related to Presentations."
         children: []
-      - id: bibliography
-        purpose: "Curated references and citation exports used across the context bank."
-        children: []
   - id: 07_PROJECT_EXECUTION
     purpose: "Planning, staffing, risk, and change-control artefacts used to steer delivery."
     children:
@@ -160,9 +121,6 @@ top_level_sections:
         children: []
       - id: work_packages
         purpose: "Artifacts specifically related to Work Packages."
-        children: []
-      - id: backlog
-        purpose: "Artifacts specifically related to Backlog."
         children: []
       - id: issues
         purpose: "Artifacts specifically related to Issues."
@@ -184,22 +142,7 @@ top_level_sections:
         children: []
   - id: 08_DECISIONS
     purpose: "Decision records, trade studies, waivers, and other artifacts that explain why the project evolved."
-    children:
-      - id: adrs
-        purpose: "Artifacts specifically related to Adrs."
-        children: []
-      - id: tradeoff_analyses
-        purpose: "Artifacts specifically related to Tradeoff Analyses."
-        children: []
-      - id: design_decisions
-        purpose: "Artifacts specifically related to Design Decisions."
-        children: []
-      - id: decisions_from_meetings
-        purpose: "Artifacts specifically related to Decisions From Meetings."
-        children: []
-      - id: waived_requirements
-        purpose: "Requirements waived by explicit decision, including rationale and expiration if applicable."
-        children: []
+    children: []
   - id: 09_COLLABORATION
     purpose: "Working session artefacts and summarized meeting output."
     children:
@@ -213,7 +156,7 @@ top_level_sections:
             purpose: "Cleaned summaries with decisions, actions, and traceable follow-up links."
             children: []
   - id: 10_COMMUNICATION
-    purpose: "Internal and external project communication artefacts, demos, reports, and visuals."
+    purpose: "Internal and external project communication artefacts and reporting."
     children:
       - id: internal_updates
         purpose: "Artifacts specifically related to Internal Updates."
@@ -221,17 +164,8 @@ top_level_sections:
       - id: external_updates
         purpose: "Artifacts specifically related to External Updates."
         children: []
-      - id: demos
-        purpose: "Artifacts specifically related to Demos."
-        children: []
-      - id: customer_feedback
-        purpose: "Artifacts specifically related to Customer Feedback."
-        children: []
       - id: reporting
         purpose: "Artifacts specifically related to Reporting."
-        children: []
-      - id: visuals
-        purpose: "Artifacts specifically related to Visuals."
         children: []
   - id: 11_OPERATIONS_AND_HANDOFF
     purpose: "Deployment, installation, training, release, and support material for transition to operations."

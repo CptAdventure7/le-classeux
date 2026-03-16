@@ -18,7 +18,7 @@ This includes vendor-specific web evidence, supplier comparisons, downselect rec
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `06_RESEARCH_AND_REFERENCES/literature_map`, `06_RESEARCH_AND_REFERENCES/papers`, `06_RESEARCH_AND_REFERENCES/standards`.
+- Review adjacent folders when a change affects related material: `06_RESEARCH_AND_REFERENCES/papers`, `06_RESEARCH_AND_REFERENCES/standards`, `06_RESEARCH_AND_REFERENCES/web_references`.
 
 ## Detailed Authoring Guidance
 

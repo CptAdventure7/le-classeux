@@ -18,7 +18,7 @@
   ],
   "linked_artifacts": [
     "../roadmap/2026-Q2-roadmap.md",
-    "../../08_DECISIONS/design_decisions/2026-03-10-prototype-baseline.md"
+    "../../08_DECISIONS/README.md"
   ],
   "notes": "Use explicit links to the execution, decision, and validation artifacts that determine milestone readiness."
 }

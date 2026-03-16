@@ -4,8 +4,8 @@
   "source_links": [
     "../README.md",
     "../milestones",
-    "../backlog",
-    "../work_packages"
+    "../work_packages",
+    "../issues"
   ],
   "items": [
     {
@@ -22,7 +22,7 @@
       ],
       "source_links": [
         "../milestones",
-        "../backlog"
+        "../issues"
       ]
     },
     {

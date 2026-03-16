@@ -16,7 +16,7 @@ Artifacts specifically related to Experiments.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `05_EXPERIMENTS_AND_VALIDATION/test_strategy`, `05_EXPERIMENTS_AND_VALIDATION/validation_plan`, `05_EXPERIMENTS_AND_VALIDATION/test_protocols`, `05_EXPERIMENTS_AND_VALIDATION/test_results`.
+- Review adjacent folders when a change affects related material: `05_EXPERIMENTS_AND_VALIDATION/analysis`, `05_EXPERIMENTS_AND_VALIDATION/test_protocols`, `05_EXPERIMENTS_AND_VALIDATION/test_results`, `05_EXPERIMENTS_AND_VALIDATION/nonconformities`.
 
 ## Detailed Authoring Guidance
 

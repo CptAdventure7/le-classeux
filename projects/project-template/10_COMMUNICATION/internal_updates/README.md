@@ -16,7 +16,7 @@ Artifacts specifically related to Internal Updates.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `10_COMMUNICATION/external_updates`, `10_COMMUNICATION/demos`, `10_COMMUNICATION/customer_feedback`, `10_COMMUNICATION/reporting`.
+- Review adjacent folders when a change affects related material: `10_COMMUNICATION/external_updates`, `10_COMMUNICATION/reporting`, `00_GOVERNANCE/current_overview`, `09_COLLABORATION/meetings`.
 
 ## Detailed Authoring Guidance
 
