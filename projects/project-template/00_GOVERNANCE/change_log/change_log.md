@@ -1,5 +1,6 @@
 # Change Log
 
+- simplified `01_PROJECT_FOUNDATION/assumptions_constraints/README.md` into a compact JSON-first folder contract with required fields, authoring rules, and an inline example artifact schema (2026-03-15-00h20).
 - simplified the `project-template` top-level section `README.md` files to match the concise `00_GOVERNANCE/README.md` pattern and list only each section's direct child folders (2026-03-15-00h00).
 - merged `projects/project-template/AGENTS.md` into the project `README.md`, simplified the top-level guidance, and removed the redundant sidecar agent file (2026-03-14-21h45).
 - renamed the sole project context bank from `Maxwell` to `project-template`, renamed the workspace manifest to `projects_manifest.yaml`, and updated active navigation plus README references accordingly (2026-03-14-15h38).

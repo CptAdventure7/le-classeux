@@ -1,44 +1,72 @@
 # Assumptions Constraints
 
-This folder belongs to the project-template context bank.
+Store assumptions and constraints here as JSON artifacts with minimal boilerplate.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to Assumptions Constraints.
+Each artifact in this folder should capture one or more assumptions or constraints that shape the project.
 
-## What Does Not Belong Here
+Use this folder for:
+- planning assumptions
+- technical constraints
+- organizational or operational constraints
+- external dependencies or boundary conditions
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Do not use this folder for:
+- final decisions without supporting context
+- broad narrative notes better suited to `project_brief` or `scope`
+- duplicate copies of evidence already stored elsewhere
 
-## Cross-Links To Maintain
+## Required JSON Shape
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_brief`, `01_PROJECT_FOUNDATION/objectives_success_metrics`, `01_PROJECT_FOUNDATION/scope`, `01_PROJECT_FOUNDATION/stakeholders`.
+Each record must include:
+- `description`: the assumption or constraint itself
+- `rationale`: why it exists or why it matters
+- `source`: where it came from
+- `importance`: a numeric importance score
 
-## Detailed Authoring Guidance
+Recommended supporting fields:
+- `id`: stable identifier
+- `type`: `assumption` or `constraint`
+- `status`: such as `active`, `validated`, `invalidated`, or `retired`
+- `notes`: short clarification if needed
+- `related_links`: links to upstream or downstream artifacts
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Example
 
-Read `README.md` in this folder before drafting or editing documents.
+```json
+[
+  {
+    "id": "AC-001",
+    "type": "constraint",
+    "description": "The first release must fit the existing project-template folder model.",
+    "rationale": "The repository is structured for evidence-first project memory, so introducing a competing structure would reduce traceability and retrieval quality.",
+    "source": "projects/project-template/project_manifest.yaml",
+    "importance": 5,
+    "status": "active",
+    "related_links": [
+      "projects/project-template/README.md",
+      "projects/project-template/01_PROJECT_FOUNDATION/scope/README.md"
+    ]
+  },
+  {
+    "id": "AC-002",
+    "type": "assumption",
+    "description": "Assumptions and constraints can be reviewed independently instead of being embedded in long narrative documents.",
+    "rationale": "A structured JSON format reduces repeated prose and makes the content easier to query, compare, and update over time.",
+    "source": "folder authoring convention",
+    "importance": 4,
+    "status": "active"
+  }
+]
+```
 
-## Drafting Rules
+## Authoring Rules
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
-
-## Update Rules
-
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Prefer updating an existing JSON artifact instead of creating overlapping files.
+- Keep wording concrete and evidence-based.
+- Use one consistent importance scale within a file. Recommended scale: `1` low to `5` critical.
+- Make `source` specific enough that another reader can trace it.
+- When an entry changes related requirements, design, validation, or decisions, update the linked artifacts as well.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 
