@@ -19,6 +19,7 @@ Add more `.md` artifacts only when they provide a clearly different view that th
 - Keep architecture artifacts in `.md` files only.
 - Create `system_overview.md` first when real project content exists.
 - Update the overview in place instead of splitting it too early.
+- Treat interface definitions and interface control details as architecture artifacts in this folder.
 - Add additional markdown artifacts only for stable subsystem or specific-view needs.
 - Name additional files for the view they represent, for example `sensor_subsystem_architecture.md` or `external_interfaces_view.md`.
 - Do not keep placeholder artifacts with fake content in the starter template.

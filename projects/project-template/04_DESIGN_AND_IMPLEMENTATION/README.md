@@ -4,5 +4,5 @@ This folder belongs to the project-template context bank.
 
 ## What Belongs Here
 
-`design`, `system_risk_register`, `icd_interface_control_docs`, `code_repositories`, `models_simulations`, `design_reviews`, `prototypes` folders and this readme.md. Nothing else.
+`design`, `system_risk_register`, `code_repositories`, `models_simulations`, `design_reviews`, `prototypes` folders and this readme.md. Nothing else.
 

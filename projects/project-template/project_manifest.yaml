@@ -62,9 +62,6 @@ top_level_sections:
       - id: system_risk_register
         purpose: "Design and implementation risks, with triggers, mitigations, and owners."
         children: []
-      - id: icd_interface_control_docs
-        purpose: "Artifacts specifically related to Icd Interface Control Docs."
-        children: []
       - id: code_repositories
         purpose: "Artifacts specifically related to Code Repositories."
         children: []

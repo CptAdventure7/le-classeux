@@ -16,7 +16,7 @@ Artifacts specifically related to Code Repositories.
 
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `04_DESIGN_AND_IMPLEMENTATION/design`, `04_DESIGN_AND_IMPLEMENTATION/system_risk_register`, `04_DESIGN_AND_IMPLEMENTATION/icd_interface_control_docs`, `04_DESIGN_AND_IMPLEMENTATION/models_simulations`.
+- Review adjacent folders when a change affects related material: `04_DESIGN_AND_IMPLEMENTATION/design`, `04_DESIGN_AND_IMPLEMENTATION/system_risk_register`, `02_SYSTEM_DEFINITION/system_architecture`, `04_DESIGN_AND_IMPLEMENTATION/models_simulations`.
 
 ## Detailed Authoring Guidance
 
