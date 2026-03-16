@@ -1,5 +1,6 @@
 # Change Log
 
+- simplified `01_PROJECT_FOUNDATION/business_case/README.md` to remove generic folder boilerplate, define `business_case.md` as the single canonical artifact, and focus the guidance on capturing a concise decision-ready business case (2026-03-16-13h45).
 - clarified requirement lifecycle guidance so obsolete or non-relevant requirements stay in live requirement files as `Abandoned`, and `Accepted` requirements require explicit user confirmation before modification (2026-03-16-13h14).
 - simplified `02_SYSTEM_DEFINITION/system_architecture/README.md` and `02_SYSTEM_DEFINITION/use_cases/README.md` to remove repeated boilerplate, defined `system_overview.md` as the primary architecture artifact with optional additional markdown views, required Mermaid diagrams in those artifacts, and constrained use cases to a single canonical `use_cases.md` file (2026-03-15-02h20).
 - updated `03_REQUIREMENTS/subsystem_requirements/README.md` so subsystem requirement IDs now use `PRJ-<three-letter subsystem acronym>-<n>` instead of `PRJ-SUBREQ-<n>`, and aligned the example accordingly (2026-03-15-02h00).
