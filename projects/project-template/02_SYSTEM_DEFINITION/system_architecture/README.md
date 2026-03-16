@@ -1,44 +1,46 @@
 # System Architecture
 
-This folder belongs to the project-template context bank.
+Store the system architecture views here as markdown artifacts with Mermaid diagrams.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to System Architecture.
+Start with one general-view artifact for the full system:
+- `system_overview.md`
 
-## What Does Not Belong Here
+That file should explain the main system boundary, the major parts, and how the pieces relate at a high level.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Add more `.md` artifacts only when they provide a clearly different view that the overview should not absorb, such as:
+- a subsystem-specific architecture view
+- a deployment or integration view
+- a data-flow or interface-focused view
 
-## Cross-Links To Maintain
+## Folder Rule
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `02_SYSTEM_DEFINITION/use_cases`.
+- Keep architecture artifacts in `.md` files only.
+- Create `system_overview.md` first when real project content exists.
+- Update the overview in place instead of splitting it too early.
+- Add additional markdown artifacts only for stable subsystem or specific-view needs.
+- Name additional files for the view they represent, for example `sensor_subsystem_architecture.md` or `external_interfaces_view.md`.
+- Do not keep placeholder artifacts with fake content in the starter template.
 
-## Detailed Authoring Guidance
+## Required Content
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+Every architecture artifact in this folder must include:
+- concise narrative text for the view it captures
+- at least one Mermaid diagram as part of the artifact
+- links to the related upstream use cases, requirements, or decisions when they exist
 
-Read `README.md` in this folder before drafting or editing documents.
+`system_overview.md` should usually cover:
+- system purpose or scope boundary
+- major subsystems or components
+- principal external actors or systems
+- the most important interfaces or flows
 
-## Drafting Rules
+## Authoring Rules
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
-
-## Update Rules
-
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Prefer the general system view unless a narrower view materially improves clarity.
+- Keep each artifact focused on one architecture viewpoint.
+- Use Mermaid as the default visual representation rather than external images.
+- When a view changes the architecture meaningfully, update linked use cases, requirements, design artifacts, or decisions as needed.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 

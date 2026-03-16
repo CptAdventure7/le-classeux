@@ -1,44 +1,35 @@
 # Use Cases
 
-This folder belongs to the project-template context bank.
+Store the system use cases here in one markdown artifact.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to Use Cases.
+When this folder is populated, it should contain exactly one maintained artifact:
+- `use_cases.md`
 
-## What Does Not Belong Here
+That file should capture the current set of user or external-system interactions that define what the system needs to support.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+## Folder Rule
 
-## Cross-Links To Maintain
+- Keep exactly one `.md` file in this folder: `use_cases.md`.
+- Create `use_cases.md` only when the project has real content to capture.
+- If it already exists, update it in place.
+- Do not split use cases across multiple sibling files in this folder.
+- Do not keep placeholder artifacts with fake content in the starter template.
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `02_SYSTEM_DEFINITION/system_architecture`.
+## Expected Content
 
-## Detailed Authoring Guidance
+`use_cases.md` should usually include:
+- a short scope statement for the use-case set
+- the main actors
+- the use cases themselves, each with a stable title or identifier
+- links to related requirements, architecture views, or decisions when they exist
+- at least one Mermaid diagram that summarizes the actors, interactions, or major flows
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Authoring Rules
 
-Read `README.md` in this folder before drafting or editing documents.
-
-## Drafting Rules
-
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
-
-## Update Rules
-
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Keep the full use-case set together so readers can understand coverage in one pass.
+- Prefer concise use-case descriptions over long scenario prose unless detail is necessary.
+- Update linked architecture, requirements, validation, or decision artifacts when the use-case set changes materially.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 
