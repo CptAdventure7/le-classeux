@@ -15,6 +15,8 @@ Use the local `change_log.md` as an append-only record. Add each new change at t
 - Keep the log append-only, with the most recent entry at the top.
 - End each entry with a timestamp in `YYYY-MM-DD-HHhMM` form.
 - Example: `- added requirement REQ-334 about cake (2026-03-10-11h32).`
+- Example: `- changed requirement PRJ-REQ-12 status to Abandoned instead of removing it (2026-03-10-11h40).`
+- Example: `- updated accepted requirement PRJ-REQ-12 after explicit user confirmation (2026-03-10-11h45).`
 - Keep the change log as the only append-only memory artifact inside the project.
 
 ## What Does Not Belong Here

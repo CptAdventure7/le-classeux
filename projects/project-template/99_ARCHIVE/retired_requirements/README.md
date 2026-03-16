@@ -5,6 +5,7 @@ This folder belongs to the project-template context bank.
 ## What Belongs Here
 
 Artifacts specifically related to Retired Requirements.
+Use this archive for supporting historical artifacts about retired requirements, not as a substitute for the live requirement record. If a requirement becomes obsolete or non-relevant, keep it in the active requirement JSON file and tag it `Abandoned` unless there is a separate explicit retirement artifact to preserve.
 
 ## What Does Not Belong Here
 

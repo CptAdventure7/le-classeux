@@ -12,6 +12,8 @@ User-facing needs, jobs-to-be-done, and externally visible acceptance statements
 
 - Use IDs with the `PRJ-UN-` prefix.
 - Requirement `status` must be one of `Accepted`, `Preliminary`, or `Abandoned`.
+- Obsolete or non-relevant requirements must remain in `requirements.json` and be retagged as `Abandoned`; do not delete them from the live record.
+- If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.md`.
 - `compliance_status` must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
 - Link each requirement to its source need and to downstream design, validation, and decision evidence.
 - When requirements change, update affected material in `system_requirements` and `subsystem_requirements`.

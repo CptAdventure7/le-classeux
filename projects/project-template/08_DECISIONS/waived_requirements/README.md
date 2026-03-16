@@ -5,6 +5,7 @@ This folder belongs to the project-template context bank.
 ## What Belongs Here
 
 Requirements waived by explicit decision, including rationale and expiration if applicable.
+Use this folder when a requirement remains traceable but is formally waived by a recorded decision. For obsolete or non-relevant requirements without a waiver decision, keep the requirement in its live JSON file and set `status` to `Abandoned` instead.
 
 ## What Does Not Belong Here
 
