@@ -1,44 +1,25 @@
 # Design
 
-This folder belongs to the project-template context bank.
+Detailed design and implementation information lives here as markdown artifacts.
 
-## What Belongs Here
+## Canonical Artifacts
 
-Design artefacts organized by subsystem or capability as the implementation matures.
+- Create one system-level file when real content exists: `system_design_info.md`.
+- Create at most one additional markdown file per stable subsystem.
+- Name each subsystem file `<subsystem_name>_design_info.md`.
+- Keep the design and implementation detail for a given scope in that single file instead of splitting it across multiple sibling documents.
+- Do not keep placeholder files in the starter template.
 
-## What Does Not Belong Here
+## Authoring Rules
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+- Start with `system_design_info.md` for the full-system view, then add subsystem files only when the subsystem boundary is clear and the detail would make the system file harder to use.
+- Update the existing scope file instead of creating another document for the same subsystem.
+- Each design info file should capture the architecture or design choices for that scope, the implementation approach or status that matters for traceability, and links to the related requirements, interfaces, code, validation, risks, and decisions.
+- Use concise headings and remove filler; these files should be working design records, not generic templates.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 
-## Cross-Links To Maintain
+## Example Filenames
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `04_DESIGN_AND_IMPLEMENTATION/system_risk_register`, `04_DESIGN_AND_IMPLEMENTATION/icd_interface_control_docs`, `04_DESIGN_AND_IMPLEMENTATION/code_repositories`, `04_DESIGN_AND_IMPLEMENTATION/models_simulations`.
-
-## Detailed Authoring Guidance
-
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
-
-Read `README.md` in this folder before drafting or editing documents.
-
-## Drafting Rules
-
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
-
-## Update Rules
-
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
-
-## Cross-Linking
-
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
-
+- `system_design_info.md`
+- `sensor_stack_design_info.md`
+- `control_loop_design_info.md`
