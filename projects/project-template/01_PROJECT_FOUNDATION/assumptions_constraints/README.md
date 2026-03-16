@@ -4,7 +4,7 @@ Store assumptions and constraints here in a single canonical JSON artifact with 
 
 ## Purpose
 
-This folder should contain exactly one maintained data artifact: `assumptions_constraints.json`.
+When this folder is populated, it should contain exactly one maintained data artifact: `assumptions_constraints.json`.
 
 That file captures all assumptions and constraints that shape the project.
 
@@ -22,7 +22,8 @@ Do not use this folder for:
 ## Folder Rule
 
 - Keep exactly one JSON data file in this folder: `assumptions_constraints.json`.
-- If the file does not exist, create it.
+- In the starter project template, do not keep a placeholder JSON file with fake seed content.
+- Create `assumptions_constraints.json` only when the project has real assumptions or constraints to record.
 - If it already exists, update it in place.
 - Do not create multiple assumption or constraint files in this folder.
 

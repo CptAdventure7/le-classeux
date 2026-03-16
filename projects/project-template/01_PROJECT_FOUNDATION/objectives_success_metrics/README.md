@@ -4,7 +4,7 @@ Store objectives and success metrics here in a single canonical JSON artifact wi
 
 ## Purpose
 
-This folder should contain exactly one maintained data artifact: `objectives_success_metrics.json`.
+When this folder is populated, it should contain exactly one maintained data artifact: `objectives_success_metrics.json`.
 
 That file captures the project's objectives and the metrics used to judge success.
 
@@ -22,7 +22,8 @@ Do not use this folder for:
 ## Folder Rule
 
 - Keep exactly one JSON data file in this folder: `objectives_success_metrics.json`.
-- If the file does not exist, create it.
+- In the starter project template, do not keep a placeholder JSON file with fake seed content.
+- Create `objectives_success_metrics.json` only when the project has real objectives or metrics to record.
 - If it already exists, update it in place.
 - Do not create multiple objective or metric files in this folder.
 
