@@ -68,8 +68,8 @@ top_level_sections:
       - id: prototypes
         purpose: "Prototype-specific folders. Add one subfolder per prototype stream when needed."
         children: []
-  - id: 05_EXPERIMENTS_AND_VALIDATION
-    purpose: "Verification, validation, experiments, and analysis evidence."
+  - id: 05_EXPERIMENT_AND_VERIFICATION
+    purpose: "Experiment, verification, and analysis evidence."
     children:
       - id: test_protocols
         purpose: "Artifacts specifically related to Test Protocols."
@@ -82,9 +82,6 @@ top_level_sections:
         children: []
       - id: analysis
         purpose: "Artifacts specifically related to Analysis."
-        children: []
-      - id: nonconformities
-        purpose: "Artifacts specifically related to Nonconformities."
         children: []
       - id: lessons_learned
         purpose: "Artifacts specifically related to Lessons Learned."

@@ -4,7 +4,7 @@
 
 ## Current Overview Summary
 
-- Last updated: `2026-03-14`
+- Last updated: `2026-03-16`
 - Current phase: `Template / structure definition`
 
 `project-template` is a context-bank scaffold optimized for traceable project memory. The current focus is maintaining a clear evidence-first folder model, concise navigation guidance, and low-token entrypoints for agents before they descend into local folder documentation.
@@ -12,6 +12,7 @@
 ### Active Watchpoints
 
 - keep root-level routing concise so agents do not spend tokens on repeated folder boilerplate
+- keep `05_EXPERIMENT_AND_VERIFICATION` on a simple one-file-per-analysis, experiment, protocol, or result pattern
 - update this section whenever the active overview, priorities, or best next reads change
 
 ## How To Work In This Project
