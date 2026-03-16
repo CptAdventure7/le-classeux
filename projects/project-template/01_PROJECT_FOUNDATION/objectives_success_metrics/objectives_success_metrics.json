@@ -1,0 +1,27 @@
+[
+  {
+    "id": "OSM-001",
+    "type": "objective",
+    "description": "Keep the project template easy for humans and agents to navigate with minimal repeated folder guidance.",
+    "rationale": "A concise structure lowers retrieval cost and reduces drift between related project artifacts.",
+    "source": "projects/project-template/README.md",
+    "importance": 5,
+    "stakeholder_provenance": "project context-bank maintainers",
+    "status": "active",
+    "related_links": [
+      "projects/project-template/project_manifest.yaml",
+      "projects/project-template/01_PROJECT_FOUNDATION/project_brief/README.md"
+    ]
+  },
+  {
+    "id": "OSM-002",
+    "type": "success_metric",
+    "description": "Core foundation folders use one canonical structured artifact instead of repeated narrative boilerplate.",
+    "rationale": "Structured artifacts are easier to maintain, compare, and update over time.",
+    "source": "projects/project-template/01_PROJECT_FOUNDATION/objectives_success_metrics/README.md",
+    "importance": 4,
+    "stakeholder_provenance": "repository governance maintainers",
+    "target": "One canonical JSON file per structured foundation folder where applicable",
+    "status": "tracked"
+  }
+]

@@ -1,44 +1,89 @@
 # Objectives Success Metrics
 
-This folder belongs to the project-template context bank.
+Store objectives and success metrics here in a single canonical JSON artifact with minimal boilerplate.
 
-## What Belongs Here
+## Purpose
 
-Artifacts specifically related to Objectives Success Metrics.
+This folder should contain exactly one maintained data artifact: `objectives_success_metrics.json`.
 
-## What Does Not Belong Here
+That file captures the project's objectives and the metrics used to judge success.
 
-- Unscoped notes that should live in a broader parent folder.
-- Duplicate copies of documents that already exist elsewhere in the context bank.
-- Final decisions without a link to the originating issue, requirement, or review.
+Use this folder for:
+- business or mission objectives
+- user-outcome objectives
+- operational objectives
+- measurable success metrics and targets
 
-## Cross-Links To Maintain
+Do not use this folder for:
+- broad narrative notes better suited to `project_brief` or `scope`
+- detailed stakeholder lists better suited to `stakeholders`
+- duplicate copies of evidence already stored elsewhere
 
-- Link to the immediate upstream context that justifies the artifact.
-- Link to downstream evidence, implementation, or decision records affected by changes here.
-- Review adjacent folders when a change affects related material: `01_PROJECT_FOUNDATION/project_brief`, `01_PROJECT_FOUNDATION/scope`, `01_PROJECT_FOUNDATION/stakeholders`, `01_PROJECT_FOUNDATION/glossary`.
+## Folder Rule
 
-## Detailed Authoring Guidance
+- Keep exactly one JSON data file in this folder: `objectives_success_metrics.json`.
+- If the file does not exist, create it.
+- If it already exists, update it in place.
+- Do not create multiple objective or metric files in this folder.
 
-The sections below capture the drafting, update, cross-linking, and any folder-specific formatting rules for this folder.
+## Required JSON Shape
 
-Read `README.md` in this folder before drafting or editing documents.
+`objectives_success_metrics.json` should contain a JSON array.
 
-## Drafting Rules
+Each array item must include:
+- `description`: the objective or success metric statement
+- `rationale`: why it matters to the project
+- `source`: where it came from
+- `importance`: a numeric importance score
+- `stakeholder_provenance`: which stakeholder, group, or source context introduced or justified the entry
 
-- Create new files only when the concept is meaningfully distinct from existing material.
-- Prefer incremental updates that preserve history and traceability.
-- Use explicit links to related folders and files instead of restating the same content.
+Recommended fields:
+- `id`: stable identifier
+- `type`: `objective` or `success_metric`
+- `target`: the measurable threshold when relevant
+- `status`: such as `active`, `tracked`, `met`, `missed`, or `retired`
+- `notes`: short clarification if needed
+- `related_links`: links to upstream or downstream artifacts
 
-## Update Rules
+## Example
 
-- When content changes here, check whether linked requirements, decisions, tests, or plans also need updates.
-- Record superseded material in `99_ARCHIVE` rather than deleting traceability.
-- Keep titles and filenames aligned with the scope of the document.
+```json
+[
+  {
+    "id": "OSM-001",
+    "type": "objective",
+    "description": "Keep the project template easy for humans and agents to navigate with minimal repeated folder guidance.",
+    "rationale": "A concise structure lowers retrieval cost and reduces drift between related project artifacts.",
+    "source": "projects/project-template/README.md",
+    "importance": 5,
+    "stakeholder_provenance": "project context-bank maintainers",
+    "status": "active",
+    "related_links": [
+      "projects/project-template/project_manifest.yaml",
+      "projects/project-template/01_PROJECT_FOUNDATION/project_brief/README.md"
+    ]
+  },
+  {
+    "id": "OSM-002",
+    "type": "success_metric",
+    "description": "Core foundation folders use one canonical structured artifact instead of repeated narrative boilerplate.",
+    "rationale": "Structured artifacts are easier to maintain, compare, and update over time.",
+    "source": "folder authoring convention",
+    "importance": 4,
+    "stakeholder_provenance": "repository governance maintainers",
+    "target": "One canonical JSON file per structured foundation folder where applicable",
+    "status": "tracked"
+  }
+]
+```
 
-## Cross-Linking
+## Authoring Rules
 
-- Add links to upstream inputs, peer artifacts, and downstream consequences.
-- If a document changes requirements, ensure the linked design, validation, and decision records stay consistent.
-- If this folder stores summaries, link back to raw notes or source documents when available.
+- Prefer updating `objectives_success_metrics.json` instead of creating new files.
+- Keep wording concrete and evidence-based.
+- Use one consistent importance scale within a file. Recommended scale: `1` low to `5` critical.
+- Make `source` specific enough that another reader can trace it.
+- Use `target` for entries that need measurable success thresholds.
+- When an entry changes related requirements, design, validation, or decisions, update the linked artifacts as well.
+- Move superseded material to `99_ARCHIVE` rather than deleting traceability.
 

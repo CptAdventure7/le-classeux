@@ -1,5 +1,6 @@
 # Change Log
 
+- applied the single-canonical-JSON pattern to `01_PROJECT_FOUNDATION/objectives_success_metrics`, created `objectives_success_metrics.json`, restored the missing `assumptions_constraints.json`, and added `stakeholder_provenance` to both folder schemas and example artifacts (2026-03-15-00h50).
 - clarified `01_PROJECT_FOUNDATION/assumptions_constraints` to use exactly one canonical JSON file, created `assumptions_constraints.json`, and updated the folder README to require create-or-update behavior for that single artifact (2026-03-15-00h35).
 - simplified `01_PROJECT_FOUNDATION/assumptions_constraints/README.md` into a compact JSON-first folder contract with required fields, authoring rules, and an inline example artifact schema (2026-03-15-00h20).
 - simplified the `project-template` top-level section `README.md` files to match the concise `00_GOVERNANCE/README.md` pattern and list only each section's direct child folders (2026-03-15-00h00).

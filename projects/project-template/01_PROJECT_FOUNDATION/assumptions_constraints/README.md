@@ -35,6 +35,7 @@ Each array item must include:
 - `rationale`: why it exists or why it matters
 - `source`: where it came from
 - `importance`: a numeric importance score
+- `stakeholder_provenance`: which stakeholder, group, or source context introduced or justified the entry
 
 Recommended fields:
 - `id`: stable identifier
@@ -54,6 +55,7 @@ Recommended fields:
     "rationale": "The repository is structured for evidence-first project memory, so introducing a competing structure would reduce traceability and retrieval quality.",
     "source": "projects/project-template/project_manifest.yaml",
     "importance": 5,
+    "stakeholder_provenance": "workspace governance and project-structure maintainers",
     "status": "active",
     "related_links": [
       "projects/project-template/README.md",
@@ -67,6 +69,7 @@ Recommended fields:
     "rationale": "A structured JSON format reduces repeated prose and makes the content easier to query, compare, and update over time.",
     "source": "folder authoring convention",
     "importance": 4,
+    "stakeholder_provenance": "project context-bank maintainers",
     "status": "active"
   }
 ]
