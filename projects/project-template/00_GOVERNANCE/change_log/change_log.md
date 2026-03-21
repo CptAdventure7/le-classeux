@@ -1,5 +1,7 @@
 # Change Log
 
+- simplified all README files under `06_RESEARCH_AND_REFERENCES` to remove repeated folder boilerplate and keep only concise scope guidance, with the main remaining distinction being `cots` for vendor-specific assessments versus `web_references` for general web research (2026-03-21-00h00).
+
 - renamed `05_EXPERIMENTS_AND_VALIDATION` to `05_EXPERIMENT_AND_VERIFICATION`, removed the `nonconformities` template folder, and simplified the `05` README files to a minimal one-markdown-file-per-analysis, experiment, protocol, or result pattern with meaningful filenames and update-in-place guidance (2026-03-16-16h45).
 
 - removed the `code_repositories`, `models_simulations`, `benchmarks`, `calibration`, `datasets`, `test_strategy`, `validation_plan`, `bibliography`, `literature_map`, `backlog`, `demos`, `customer_feedback`, and `visuals` template folders; deleted all `08_DECISIONS` subfolders; and aligned the manifest plus surviving README/example links to the slimmer structure (2026-03-16-15h10).
