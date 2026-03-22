@@ -1,5 +1,7 @@
 # Change Log
 
+- simplified all README files under `10_COMMUNICATION` to remove repeated boilerplate and keep only concise scope guidance for `internal_updates`, `external_updates`, and `reporting` (2026-03-21-00h15).
+
 - simplified the `09_COLLABORATION` README files to remove repeated boilerplate, keep only simple folder-level guidance, and point `meetings/summaries` to the `meeting-summary` skill for summary structure (2026-03-21-00h10).
 
 - simplified all README files under `06_RESEARCH_AND_REFERENCES` to remove repeated folder boilerplate and keep only concise scope guidance, with the main remaining distinction being `cots` for vendor-specific assessments versus `web_references` for general web research (2026-03-21-00h00).
