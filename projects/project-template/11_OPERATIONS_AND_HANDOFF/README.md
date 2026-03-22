@@ -1,8 +1,14 @@
 # 11 Operations And Handoff
 
-This folder belongs to the project-template context bank.
+Use this section for materials needed to move the project into real use and keep it running.
 
-## What Belongs Here
+## Folders
 
-`deployment`, `installation`, `user_docs`, `maintenance`, `training`, `support_notes`, `release_notes` folders and this readme.md. Nothing else.
+- `deployment`: rollout and cutover information
+- `installation`: setup and install instructions
+- `user_docs`: end-user guidance
+- `maintenance`: upkeep and service procedures
+- `training`: training plans and materials
+- `support_notes`: operational troubleshooting notes
+- `release_notes`: change summaries for releases
 

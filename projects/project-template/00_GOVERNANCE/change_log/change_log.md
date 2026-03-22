@@ -1,5 +1,9 @@
 # Change Log
 
+- simplified all README files under `07_PROJECT_EXECUTION`, removed repeated boilerplate, kept folder guidance minimal, moved the milestone example into `milestones/README.md`, and removed the separate `milestone-template.json` sidecar template (2026-03-21-22h30).
+
+- simplified all README files under `11_OPERATIONS_AND_HANDOFF` to remove repeated boilerplate and keep only short folder-level guidance for deployment, installation, user docs, maintenance, training, support notes, and release notes (2026-03-21-22h15).
+
 - simplified all README files under `10_COMMUNICATION` to remove repeated boilerplate and keep only concise scope guidance for `internal_updates`, `external_updates`, and `reporting` (2026-03-21-00h15).
 
 - simplified the `09_COLLABORATION` README files to remove repeated boilerplate, keep only simple folder-level guidance, and point `meetings/summaries` to the `meeting-summary` skill for summary structure (2026-03-21-00h10).
