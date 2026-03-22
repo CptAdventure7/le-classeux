@@ -4,6 +4,8 @@ Keep milestone tracking here. Use `milestones.md` for the board view and one JSO
 
 ## `milestones.md`
 
+When a project is instantiated and milestone tracking starts, create `milestones.md` as the board view. Do not keep a seeded template `milestones.md` file in the project template.
+
 Keep the board concise and update it whenever a milestone is created, changes status, moves date, or completes.
 
 Use these sections:
@@ -14,6 +16,28 @@ Use these sections:
 - `## Notes`
 
 Each active or completed entry should stay to a one-line summary with the milestone ID, short title, and the most important date or state. Use `Watchlist` for milestones at risk, blocked, or otherwise needing attention. Use `Notes` only for short folder-level reminders about how the board should be maintained.
+
+Example board shape:
+
+```md
+# Milestones
+
+## Active Milestones
+
+- KEY-MILESTONE-001 Prototype integration baseline due 2026-05-15
+
+## Watchlist
+
+- None.
+
+## Recently Completed
+
+- None.
+
+## Notes
+
+- Keep this file synchronized with milestone creation, status changes, due-date movement, and completion.
+```
 
 ## Per-milestone JSON Files
 

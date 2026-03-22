@@ -1,5 +1,7 @@
 # Change Log
 
+- moved the `07_PROJECT_EXECUTION/milestones` board example into the local README and removed the seeded `milestones.md` template file so the board is created only when a project actually starts tracking milestones (2026-03-21-23h12).
+
 - moved the `07_PROJECT_EXECUTION/issues` Kanban reference example into the local README and removed the separate `kanban.md` template file so the folder guidance stays self-contained (2026-03-21-23h20).
 
 - clarified `07_PROJECT_EXECUTION/procurement/README.md` so procurement records follow a one-folder-per-item pattern, with each item folder regrouping quotes, evaluations, approvals, and related execution links (2026-03-21-23h15).
