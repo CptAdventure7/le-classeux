@@ -33,7 +33,7 @@ The local `README.md` inside each component-area subfolder may add context-speci
 
 - Put general web research that is not tied to a specific COTS comparison in `../web_references`.
 - Put procurement execution artifacts such as quote approval flow or purchase timing in `../../07_PROJECT_EXECUTION/procurement`.
-- Do not keep original downloaded evidence here. Internet screenshots, PDFs, datasheets, quotes, and other source captures belong in the linked SharePoint location under `03-Design\cots`, using a similar folder structure.
+- Do not keep original downloaded evidence here. Internet screenshots, PDFs, datasheets, quotes, and other source captures belong in the linked SharePoint location under `03-Design\cots\option_name\model`, using a similar folder structure.
 - Keep only the relevant references in this repository, primarily through `internet_reference_links`, `sharepoint_reference_links`, and concise notes.
 
 ## Example
