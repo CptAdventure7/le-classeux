@@ -1,5 +1,7 @@
 # Change Log
 
+- integrated the `07_PROJECT_EXECUTION/milestones/milestones.md` board guidance into `07_PROJECT_EXECUTION/milestones/README.md` and removed the inline milestone JSON example so the README is guidance-only (2026-03-21-23h09).
+
 - added a simple `07_PROJECT_EXECUTION/issues/kanban.md` reference board that lists all active issues in one human-readable table, and renamed the issue template section from `Acceptance Criteria` to `Definition of Done` in the issues README (2026-03-21-23h05).
 
 - merged `09_COLLABORATION` and `10_COMMUNICATION` into `09_COMMUNICATION`, renumbered `11_OPERATIONS_AND_HANDOFF` to `10_OPERATIONS_AND_HANDOFF`, and updated manifest plus roadmap/current-overview references to the new structure (2026-03-21-22h55).

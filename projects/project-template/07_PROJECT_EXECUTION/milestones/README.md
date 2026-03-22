@@ -2,14 +2,24 @@
 
 Keep milestone tracking here. Use `milestones.md` for the board view and one JSON file per milestone for details.
 
-## Keep Here
+## `milestones.md`
 
-- milestone summaries and status changes
-- target and completion dates
-- deliverables and dependencies
-- links to roadmap, issues, work packages, and evidence
+Keep the board concise and update it whenever a milestone is created, changes status, moves date, or completes.
 
-## Milestone JSON Shape
+Use these sections:
+
+- `## Active Milestones`
+- `## Watchlist`
+- `## Recently Completed`
+- `## Notes`
+
+Each active or completed entry should stay to a one-line summary with the milestone ID, short title, and the most important date or state. Use `Watchlist` for milestones at risk, blocked, or otherwise needing attention. Use `Notes` only for short folder-level reminders about how the board should be maintained.
+
+## Per-milestone JSON Files
+
+Create one JSON file per milestone when the board needs supporting detail. Keep the filename aligned to the milestone ID and title so it is easy to scan.
+
+Each file should capture milestone summaries and status changes, target and completion dates, deliverables and dependencies, and links to roadmap, issues, work packages, and evidence.
 
 Each milestone file should use these keys:
 
@@ -26,33 +36,5 @@ Each milestone file should use these keys:
 - `linked_artifacts`
 - `notes`
 
-Keep `deliverables`, `dependencies`, and `linked_artifacts` as arrays. Use `null` when `completion_date` is not known yet.
-
-## Example
-
-```json
-{
-  "id": "KEY-MILESTONE-001",
-  "title": "Prototype integration baseline",
-  "summary": "Complete the first integrated prototype baseline and supporting evidence for internal review.",
-  "status": "Planned",
-  "owner": "Systems Team",
-  "created": "2026-03-12",
-  "target_date": "2026-05-15",
-  "completion_date": null,
-  "deliverables": [
-    "Integrated prototype build",
-    "Verification summary",
-    "Review package"
-  ],
-  "dependencies": [
-    "../work_packages/WP-001-prototype-integration.md",
-    "../issues/KEY-ISSUE-014-prototype-blockers.md"
-  ],
-  "linked_artifacts": [
-    "../roadmap/roadmap.json"
-  ],
-  "notes": "Link the milestone to the artifacts that determine readiness."
-}
-```
+Keep `deliverables`, `dependencies`, and `linked_artifacts` as arrays. Use `null` when `completion_date` is not known yet. Link dependencies and related evidence with repository-relative paths when possible.
 
