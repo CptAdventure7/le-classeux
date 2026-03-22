@@ -28,7 +28,7 @@ Recommended snapshot content:
 
 Lifecycle expectations:
 - keep the active weekly snapshots here while they remain operationally relevant
-- after about two months, move older snapshots to [99_ARCHIVE/snapshots](../../99_ARCHIVE/snapshots/README.md)
+- after about two months, retire older weekly overviews to [99_ARCHIVE/current_overview](../../99_ARCHIVE/current_overview/README.md)
 - preserve traceability by linking each snapshot to the upstream evidence it summarizes
 
 ## What Does Not Belong Here
@@ -45,7 +45,7 @@ Lifecycle expectations:
 - Link to the immediate upstream context that justifies the artifact.
 - Link to downstream evidence, implementation, or decision records affected by changes here.
 - Link to the concrete sources behind the snapshot when available, especially issues, milestones, decisions, meeting summaries, risk registers, and internal updates.
-- Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COLLABORATION`, `10_COMMUNICATION`.
+- Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COMMUNICATION`, `10_OPERATIONS_AND_HANDOFF`.
 
 ## Drafting Rules
 
@@ -54,7 +54,7 @@ Lifecycle expectations:
 - Write snapshots as concise operational reporting focused on recent developments, current focus, urgent attention points, and information coherence.
 - Call out missed deliveries, stale issues, unresolved blockers, and contradictory or stale information explicitly.
 - Include a clear judgement on current information stability: what appears reliable, what looks stale, and what needs verification.
-- When a snapshot ages past roughly two months, move it to `99_ARCHIVE/snapshots` instead of leaving this folder crowded with stale current-state reports.
+- When a snapshot ages past roughly two months, retire older weekly overviews to `99_ARCHIVE/current_overview` instead of leaving this folder crowded with stale current-state reports.
 - After updating the active weekly snapshot, refresh the `Current Overview Summary` section in [`../../README.md`](../../README.md) in the same change if the project state, priorities, canonical next reads, or archive-avoidance guidance changed.
 - Keep the root-level summary intentionally smaller than the weekly snapshot: prefer a 150-300 word limit, a few bullets, and direct links to the most useful next files instead of repeating narrative detail.
 

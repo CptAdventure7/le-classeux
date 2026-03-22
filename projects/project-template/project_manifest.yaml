@@ -140,8 +140,8 @@ top_level_sections:
   - id: 08_DECISIONS
     purpose: "Decision records, trade studies, waivers, and other artifacts that explain why the project evolved."
     children: []
-  - id: 09_COLLABORATION
-    purpose: "Working session artefacts and summarized meeting output."
+  - id: 09_COMMUNICATION
+    purpose: "Project communication artifacts, including meetings, updates, and reporting."
     children:
       - id: meetings
         purpose: "Artifacts specifically related to Meetings."
@@ -152,9 +152,6 @@ top_level_sections:
           - id: summaries
             purpose: "Cleaned summaries with decisions, actions, and traceable follow-up links."
             children: []
-  - id: 10_COMMUNICATION
-    purpose: "Internal and external project communication artefacts and reporting."
-    children:
       - id: internal_updates
         purpose: "Artifacts specifically related to Internal Updates."
         children: []
@@ -164,7 +161,7 @@ top_level_sections:
       - id: reporting
         purpose: "Artifacts specifically related to Reporting."
         children: []
-  - id: 11_OPERATIONS_AND_HANDOFF
+  - id: 10_OPERATIONS_AND_HANDOFF
     purpose: "Deployment, installation, training, release, and support material for transition to operations."
     children:
       - id: deployment
