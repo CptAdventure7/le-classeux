@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "copied the shared `internal-docs` skill into `agent/skills` and updated workspace guidance so the new shared skill is discoverable",
+    "date": "2026-03-22-18h35"
+  },
+  {
     "change_summary": "reworked the shared execution dashboard so section tabs and project filtering sit at the top level, execution-only controls stay inside the execution view, and README files are excluded from dashboard documents",
     "date": "2026-03-22-18h26"
   },

@@ -22,6 +22,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - Use `agent/skills/` for reusable workflows that apply across projects and subagents personas.
 - The current shared skills in `agent/skills/` are:
   - `general-update`: repository-wide project context refresh, canonical artefact propagation, governance log update, and standardized commit.
+  - `internal-docs`: guidance for reading and writing internal engineering documents and branded internal presentation decks.
   - `meeting-summary`: convert meeting transcripts or notes into structured project meeting summaries.
   - `reference-ingestion`: ingest source documents into the project context bank and update canonical artefacts.
 - Nerver invent, base actions and answer on evidence, without guessing. Prefer project-local evidence over assumptions.
@@ -39,5 +40,6 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - `workspace_change_log/`: workspace-level append-only trace log for changes outside any individual project.
 - `agent/skills/`: shared workflow skills and personas.
 - `agent/skills/general-update/`: repository-wide refresh workflow.
+- `agent/skills/internal-docs/`: internal engineering document and presentation guidance.
 - `agent/skills/meeting-summary/`: meeting transcript and notes summarization workflow.
 - `agent/skills/reference-ingestion/`: source document ingestion workflow.
