@@ -7,12 +7,3 @@ files:
   - name: local_manifest.yaml
     summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
     original_links: []
-  - name: EXEC-MILESTONE-001-template-structure-baseline.json
-    summary: "Sample planned milestone for the template structure baseline and dashboard testing."
-    original_links: []
-  - name: EXEC-ISSUE-001-dashboard-sample-data-gap.json
-    summary: "Sample blocked issue showing a delivery blocker tied to dashboard test data."
-    original_links: []
-  - name: EXEC-MILESTONE-002-shared-dashboard-ready.json
-    summary: "Sample in-progress milestone representing the shared human dashboard rollout."
-    original_links: []
