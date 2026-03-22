@@ -1,3 +1,4 @@
 docs/
 .pytest_cache/
 __pycache__/
+human_dashboards/execution_dashboard_resources/execution_items_kanban.html

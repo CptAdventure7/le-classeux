@@ -27,5 +27,6 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 ## Repository Map
 
 - `projects/`: container of named project folders.
+- `human_dashboards/`: shared read-only derived views for humans, generated from project-owned source artifacts.
 - `projects_manifest.yaml`: shallow workspace manifest listing the available projects.
 - `agent/skills/`: shared workflow skills and personas.

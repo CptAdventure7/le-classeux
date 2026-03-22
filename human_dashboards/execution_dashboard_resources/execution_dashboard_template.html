@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Execution Radar</title>
+  <style>
+    :root {
+      --paper: #f4efe4;
+      --paper-deep: #e2d8c2;
+      --ink: #1b1a17;
+      --muted: #5f5a4f;
+      --panel: rgba(255, 251, 242, 0.76);
+      --line: rgba(27, 26, 23, 0.14);
+      --accent: #c65d2e;
+      --accent-soft: #efc3af;
+      --planned: #78806a;
+      --progress: #2f5f90;
+      --blocked: #a43628;
+      --done: #2e7a4f;
+      --shadow: 0 16px 40px rgba(46, 37, 24, 0.12);
+      --radius: 20px;
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: "Georgia", "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at top left, rgba(198, 93, 46, 0.13), transparent 28%),
+        radial-gradient(circle at top right, rgba(47, 95, 144, 0.14), transparent 24%),
+        linear-gradient(180deg, #fbf7ef 0%, var(--paper) 48%, #efe7d7 100%);
+      min-height: 100vh;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      background-image:
+        linear-gradient(rgba(27, 26, 23, 0.025) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(27, 26, 23, 0.025) 1px, transparent 1px);
+      background-size: 32px 32px;
+      mask-image: radial-gradient(circle at center, black, transparent 85%);
+    }
+
+    .shell {
+      width: min(1520px, calc(100vw - 32px));
+      margin: 22px auto;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background: rgba(255, 251, 242, 0.68);
+      backdrop-filter: blur(18px);
+      box-shadow: var(--shadow);
+    }
+
+    .masthead {
+      display: grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 18px;
+      align-items: stretch;
+      margin-bottom: 18px;
+    }
+
+    .hero,
+    .meta,
+    .filters,
+    .board,
+    .details {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .hero {
+      padding: 24px 26px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      right: -70px;
+      top: -60px;
+      width: 220px;
+      height: 220px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(198, 93, 46, 0.28), transparent 68%);
+    }
+
+    .eyebrow {
+      font-family: "Consolas", "Courier New", monospace;
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 12px;
+      color: var(--muted);
+      margin-bottom: 10px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(34px, 5vw, 62px);
+      line-height: 0.95;
+      font-weight: 700;
+      max-width: 10ch;
+    }
+
+    .hero p,
+    .meta p,
+    .details p,
+    .warning-text {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.5;
+    }
+
+    .meta {
+      padding: 24px;
+      display: grid;
+      gap: 16px;
+      align-content: space-between;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.56);
+      border: 1px solid rgba(27, 26, 23, 0.08);
+    }
+
+    .stat-label {
+      display: block;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+      margin-bottom: 8px;
+    }
+
+    .stat-value {
+      font-size: 28px;
+      font-weight: 700;
+    }
+
+    .filters {
+      padding: 18px;
+      margin-bottom: 18px;
+    }
+
+    .filters-grid {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 14px;
+      align-items: end;
+    }
+
+    .filter-block {
+      display: grid;
+      gap: 8px;
+    }
+
+    .filter-label {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: var(--muted);
+    }
+
+    label.checkbox-line {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-family: "Consolas", "Courier New", monospace;
+      color: var(--muted);
+      height: 42px;
+    }
+
+    select,
+    input[type="search"] {
+      width: 100%;
+      height: 42px;
+      border-radius: 12px;
+      border: 1px solid rgba(27, 26, 23, 0.12);
+      background: rgba(255, 255, 255, 0.78);
+      color: var(--ink);
+      padding: 0 12px;
+      font: inherit;
+    }
+
+    .warning-strip {
+      display: none;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(164, 54, 40, 0.2);
+      background: rgba(164, 54, 40, 0.07);
+    }
+
+    .warning-strip.is-visible {
+      display: block;
+    }
+
+    .main {
+      display: grid;
+      grid-template-columns: minmax(0, 1.65fr) 340px;
+      gap: 18px;
+      align-items: start;
+    }
+
+    .board {
+      padding: 18px;
+    }
+
+    .columns {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(240px, 1fr));
+      gap: 14px;
+      overflow-x: auto;
+      padding-bottom: 4px;
+    }
+
+    .column {
+      min-height: 480px;
+      border-radius: 18px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.52);
+      border: 1px solid rgba(27, 26, 23, 0.08);
+    }
+
+    .column-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 12px;
+    }
+
+    .column-title {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 18px;
+      font-weight: 700;
+    }
+
+    .status-chip {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      display: inline-block;
+    }
+
+    .status-planned { background: var(--planned); }
+    .status-in_progress { background: var(--progress); }
+    .status-blocked { background: var(--blocked); }
+    .status-done { background: var(--done); }
+
+    .count-pill {
+      min-width: 28px;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(27, 26, 23, 0.06);
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      text-align: center;
+    }
+
+    .card-stack {
+      display: grid;
+      gap: 12px;
+    }
+
+    .card {
+      border: 1px solid rgba(27, 26, 23, 0.1);
+      border-left-width: 5px;
+      border-radius: 16px;
+      background: rgba(255, 255, 255, 0.86);
+      padding: 14px;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
+      box-shadow: 0 10px 20px rgba(34, 26, 18, 0.05);
+    }
+
+    .card:hover,
+    .card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 24px rgba(34, 26, 18, 0.1);
+      outline: none;
+    }
+
+    .card[data-status="planned"] { border-left-color: var(--planned); }
+    .card[data-status="in_progress"] { border-left-color: var(--progress); }
+    .card[data-status="blocked"] { border-left-color: var(--blocked); }
+    .card[data-status="done"] { border-left-color: var(--done); }
+
+    .card-top,
+    .card-meta {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+    }
+
+    .card-top {
+      margin-bottom: 8px;
+    }
+
+    .card-id,
+    .tag,
+    .micro {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    .card-id,
+    .micro {
+      color: var(--muted);
+    }
+
+    .tag-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 10px 0 0;
+    }
+
+    .tag {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(27, 26, 23, 0.06);
+    }
+
+    .details {
+      padding: 20px;
+      position: sticky;
+      top: 22px;
+    }
+
+    .details h2 {
+      margin: 0 0 10px;
+      font-size: 28px;
+      line-height: 1.05;
+    }
+
+    .details-grid {
+      display: grid;
+      gap: 12px;
+      margin: 16px 0;
+    }
+
+    .details-section {
+      padding-top: 14px;
+      border-top: 1px solid rgba(27, 26, 23, 0.08);
+    }
+
+    .details-section h3 {
+      margin: 0 0 8px;
+      font-size: 13px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      font-family: "Consolas", "Courier New", monospace;
+      color: var(--muted);
+    }
+
+    .details-section ul {
+      margin: 0;
+      padding-left: 18px;
+      color: var(--muted);
+    }
+
+    .empty-state {
+      padding: 18px;
+      border-radius: 16px;
+      border: 1px dashed rgba(27, 26, 23, 0.14);
+      color: var(--muted);
+      background: rgba(255, 255, 255, 0.34);
+    }
+
+    @media (max-width: 1180px) {
+      .masthead,
+      .main {
+        grid-template-columns: 1fr;
+      }
+
+      .details {
+        position: static;
+      }
+
+      .filters-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 720px) {
+      .shell {
+        width: min(100vw - 18px, 100%);
+        margin: 9px auto;
+        padding: 12px;
+      }
+
+      .filters-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .columns {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="shell">
+    <section class="masthead">
+      <div class="hero">
+        <div class="eyebrow">Workspace Dashboard / __WORKSPACE_NAME__</div>
+        <h1>Execution Radar</h1>
+        <p style="max-width: 54ch; margin-top: 14px;">A read-only kanban view generated from project execution-item JSON files. The board normalizes workflow state across projects without becoming a new source of truth.</p>
+      </div>
+      <div class="meta">
+        <p>Generated on <strong>__GENERATED_AT__</strong>. Open the launcher again at any time to rebuild this view from the latest project data.</p>
+        <div class="stats">
+          <div class="stat">
+            <span class="stat-label">Projects</span>
+            <span class="stat-value" id="project-count">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Visible Items</span>
+            <span class="stat-value" id="item-count">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Blocked</span>
+            <span class="stat-value" id="blocked-count">0</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Due Soon</span>
+            <span class="stat-value" id="due-soon-count">0</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="filters">
+      <div class="filters-grid">
+        <div class="filter-block">
+          <label class="filter-label" for="project-filter">Filter by project</label>
+          <select id="project-filter"></select>
+        </div>
+        <div class="filter-block">
+          <label class="filter-label" for="type-filter">Filter by type</label>
+          <select id="type-filter"></select>
+        </div>
+        <div class="filter-block">
+          <label class="filter-label" for="owner-filter">Filter by owner</label>
+          <select id="owner-filter"></select>
+        </div>
+        <div class="filter-block">
+          <label class="filter-label" for="priority-filter">Filter by priority</label>
+          <select id="priority-filter"></select>
+        </div>
+        <div class="filter-block">
+          <label class="filter-label" for="search-filter">Search</label>
+          <input id="search-filter" type="search" placeholder="ID, title, summary">
+        </div>
+      </div>
+      <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr;">
+        <label class="checkbox-line">
+          <input id="cancelled-toggle" type="checkbox">
+          <span>Show cancelled</span>
+        </label>
+        <div class="warning-strip" id="warning-strip">
+          <div class="warning-text" id="warning-text"></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="main">
+      <div class="board">
+        <div class="columns" id="columns"></div>
+      </div>
+      <aside class="details" id="details"></aside>
+    </section>
+  </div>
+
+  <script>
+    const DASHBOARD_DATA = __DASHBOARD_DATA__;
+    const DASHBOARD_WARNINGS = __DASHBOARD_WARNINGS__;
+    const STATUS_COLUMNS = [
+      { key: "planned", label: "Planned" },
+      { key: "in_progress", label: "In Progress" },
+      { key: "blocked", label: "Blocked" },
+      { key: "done", label: "Done" }
+    ];
+
+    const els = {
+      projectFilter: document.getElementById("project-filter"),
+      typeFilter: document.getElementById("type-filter"),
+      ownerFilter: document.getElementById("owner-filter"),
+      priorityFilter: document.getElementById("priority-filter"),
+      searchFilter: document.getElementById("search-filter"),
+      cancelledToggle: document.getElementById("cancelled-toggle"),
+      columns: document.getElementById("columns"),
+      details: document.getElementById("details"),
+      warningStrip: document.getElementById("warning-strip"),
+      warningText: document.getElementById("warning-text"),
+      projectCount: document.getElementById("project-count"),
+      itemCount: document.getElementById("item-count"),
+      blockedCount: document.getElementById("blocked-count"),
+      dueSoonCount: document.getElementById("due-soon-count")
+    };
+
+    const state = {
+      selectedId: DASHBOARD_DATA[0] ? DASHBOARD_DATA[0].id : null
+    };
+
+    function titleCase(value) {
+      return value.replaceAll("_", " ").replace(/\b\w/g, (match) => match.toUpperCase());
+    }
+
+    function isDueSoon(item) {
+      if (!item.target_date || item.status === "done" || item.status === "cancelled") {
+        return false;
+      }
+      const today = new Date();
+      const target = new Date(item.target_date + "T00:00:00");
+      if (Number.isNaN(target.valueOf())) {
+        return false;
+      }
+      const diffDays = Math.floor((target - today) / 86400000);
+      return diffDays >= 0 && diffDays <= 7;
+    }
+
+    function buildOptions(items, key, fallbackLabel) {
+      const values = [...new Set(items.map((item) => item[key]).filter(Boolean))].sort((a, b) => a.localeCompare(b));
+      return [{ value: "", label: fallbackLabel }, ...values.map((value) => ({ value, label: titleCase(value) }))];
+    }
+
+    function fillSelect(select, options) {
+      select.innerHTML = "";
+      options.forEach((option) => {
+        const element = document.createElement("option");
+        element.value = option.value;
+        element.textContent = option.label;
+        select.appendChild(element);
+      });
+    }
+
+    function matchesFilters(item) {
+      const searchValue = els.searchFilter.value.trim().toLowerCase();
+      if (!els.cancelledToggle.checked && item.status === "cancelled") {
+        return false;
+      }
+      if (els.projectFilter.value && item.project_id !== els.projectFilter.value) {
+        return false;
+      }
+      if (els.typeFilter.value && item.type !== els.typeFilter.value) {
+        return false;
+      }
+      if (els.ownerFilter.value && item.owner !== els.ownerFilter.value) {
+        return false;
+      }
+      if (els.priorityFilter.value && item.priority !== els.priorityFilter.value) {
+        return false;
+      }
+      if (!searchValue) {
+        return true;
+      }
+
+      return [
+        item.id,
+        item.title,
+        item.summary,
+        item.project_id,
+        item.owner
+      ].filter(Boolean).some((value) => value.toLowerCase().includes(searchValue));
+    }
+
+    function renderCard(item) {
+      const card = document.createElement("button");
+      card.type = "button";
+      card.className = "card";
+      card.dataset.status = item.status;
+      card.innerHTML = `
+        <div class="card-top">
+          <span class="card-id">${item.id}</span>
+          <span class="micro">${item.project_id}</span>
+        </div>
+        <div style="font-size: 20px; line-height: 1.1; font-weight: 700;">${item.title}</div>
+        <p style="margin: 8px 0 0;">${item.summary || "No summary provided."}</p>
+        <div class="tag-row">
+          <span class="tag">${titleCase(item.type)}</span>
+          <span class="tag">${item.owner || "Unassigned"}</span>
+          ${item.priority ? `<span class="tag">${titleCase(item.priority)}</span>` : ""}
+        </div>
+        <div class="card-meta" style="margin-top: 12px;">
+          <span class="micro">${item.target_date || "No target date"}</span>
+          <span class="micro">${titleCase(item.status)}</span>
+        </div>
+      `;
+      card.addEventListener("click", () => {
+        state.selectedId = item.id;
+        renderDetails(item);
+      });
+      return card;
+    }
+
+    function renderDetails(item) {
+      if (!item) {
+        els.details.innerHTML = `
+          <div class="eyebrow">Details</div>
+          <h2>No item selected</h2>
+          <p>Select a card to inspect the normalized execution metadata.</p>
+        `;
+        return;
+      }
+
+      const focusList = item.type === "milestone" ? item.deliverables : item.definition_of_done;
+      const focusLabel = item.type === "milestone" ? "Deliverables" : "Definition of Done";
+      const dependencies = item.dependencies.length
+        ? `<ul>${item.dependencies.map((value) => `<li>${value}</li>`).join("")}</ul>`
+        : `<p>No dependencies recorded.</p>`;
+      const focusSection = focusList && focusList.length
+        ? `<ul>${focusList.map((value) => `<li>${value}</li>`).join("")}</ul>`
+        : `<p>No ${focusLabel.toLowerCase()} recorded.</p>`;
+      const notesSection = item.notes.length
+        ? `<ul>${item.notes.map((value) => `<li>${value}</li>`).join("")}</ul>`
+        : `<p>No notes recorded.</p>`;
+
+      els.details.innerHTML = `
+        <div class="eyebrow">Details / ${item.project_id}</div>
+        <h2>${item.title}</h2>
+        <p>${item.summary || "No summary provided."}</p>
+        <div class="details-grid">
+          <div class="stat">
+            <span class="stat-label">ID</span>
+            <span class="micro">${item.id}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Status</span>
+            <span class="micro">${titleCase(item.status)}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Owner</span>
+            <span class="micro">${item.owner || "Unassigned"}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Target Date</span>
+            <span class="micro">${item.target_date || "None"}</span>
+          </div>
+        </div>
+        ${item.problem_statement ? `
+          <div class="details-section">
+            <h3>Problem Statement</h3>
+            <p>${item.problem_statement}</p>
+          </div>
+        ` : ""}
+        <div class="details-section">
+          <h3>${focusLabel}</h3>
+          ${focusSection}
+        </div>
+        <div class="details-section">
+          <h3>Dependencies</h3>
+          ${dependencies}
+        </div>
+        <div class="details-section">
+          <h3>Notes</h3>
+          ${notesSection}
+        </div>
+        <div class="details-section">
+          <h3>Source File</h3>
+          <p>${item.relative_path}</p>
+        </div>
+      `;
+    }
+
+    function renderBoard() {
+      const filteredItems = DASHBOARD_DATA.filter(matchesFilters);
+      els.columns.innerHTML = "";
+
+      STATUS_COLUMNS.forEach((column) => {
+        const items = filteredItems.filter((item) => item.status === column.key);
+        const columnNode = document.createElement("section");
+        columnNode.className = "column";
+
+        const stack = document.createElement("div");
+        stack.className = "card-stack";
+
+        if (items.length === 0) {
+          const empty = document.createElement("div");
+          empty.className = "empty-state";
+          empty.textContent = "No items match this column.";
+          stack.appendChild(empty);
+        } else {
+          items.forEach((item) => stack.appendChild(renderCard(item)));
+        }
+
+        columnNode.innerHTML = `
+          <div class="column-header">
+            <div class="column-title">
+              <span class="status-chip status-${column.key}"></span>
+              <span>${column.label}</span>
+            </div>
+            <span class="count-pill">${items.length}</span>
+          </div>
+        `;
+        columnNode.appendChild(stack);
+        els.columns.appendChild(columnNode);
+      });
+
+      const visibleProjects = new Set(filteredItems.map((item) => item.project_id));
+      els.projectCount.textContent = String(visibleProjects.size);
+      els.itemCount.textContent = String(filteredItems.length);
+      els.blockedCount.textContent = String(filteredItems.filter((item) => item.status === "blocked").length);
+      els.dueSoonCount.textContent = String(filteredItems.filter(isDueSoon).length);
+
+      const selected = filteredItems.find((item) => item.id === state.selectedId) || filteredItems[0] || null;
+      state.selectedId = selected ? selected.id : null;
+      renderDetails(selected);
+    }
+
+    function renderWarnings() {
+      if (!DASHBOARD_WARNINGS.length) {
+        els.warningStrip.classList.remove("is-visible");
+        return;
+      }
+      els.warningText.textContent = DASHBOARD_WARNINGS.join(" ");
+      els.warningStrip.classList.add("is-visible");
+    }
+
+    function initialise() {
+      fillSelect(els.projectFilter, buildOptions(DASHBOARD_DATA, "project_id", "All projects"));
+      fillSelect(els.typeFilter, buildOptions(DASHBOARD_DATA, "type", "All types"));
+      fillSelect(els.ownerFilter, buildOptions(DASHBOARD_DATA, "owner", "All owners"));
+      fillSelect(els.priorityFilter, buildOptions(DASHBOARD_DATA, "priority", "All priorities"));
+
+      [
+        els.projectFilter,
+        els.typeFilter,
+        els.ownerFilter,
+        els.priorityFilter,
+        els.cancelledToggle
+      ].forEach((element) => element.addEventListener("change", renderBoard));
+      els.searchFilter.addEventListener("input", renderBoard);
+
+      renderWarnings();
+      renderBoard();
+    }
+
+    initialise();
+  </script>
+</body>
+</html>
