@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "deleted `projects/test-project`, removed its workspace manifest entry, and removed the dashboard seed test tied to that disposable project",
+    "date": "2026-03-22-19h02"
+  },
+  {
     "change_summary": "tightened workspace-root guidance so any ambiguity about the target project requires asking the user before answering or editing",
     "date": "2026-03-22-18h54"
   },

@@ -1,9 +1,0 @@
-folder: meetings
-summary: "Meeting material lives here. Keep raw source files in raw_notes, cleaned outputs in summaries, and maintain traceable links between the source notes and the derived summary when both exist."
-files:
-  - name: README.md
-    summary: "Explains the split between raw meeting material and cleaned summaries."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
