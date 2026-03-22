@@ -262,7 +262,10 @@ function Get-PreferredContentFiles {
         Get-ChildItem -Path $DirectoryPath -File -Recurse:$Recurse |
         Where-Object {
             $extension = $_.Extension.ToLowerInvariant()
-            $extension -eq ".md" -or $extension -eq ".json"
+            ($extension -eq ".md" -or $extension -eq ".json") -and
+            $_.Name -ne "README.md" -and
+            $_.Name -ne "local_manifest.yaml" -and
+            $_.Name -ne "project_manifest.yaml"
         }
     )
 
@@ -272,19 +275,6 @@ function Get-PreferredContentFiles {
 
     $selected = @()
     foreach ($group in ($files | Group-Object DirectoryName)) {
-        $primaryFiles = @(
-            $group.Group | Where-Object {
-                $_.Name -ne "README.md" -and
-                $_.Name -ne "local_manifest.yaml" -and
-                $_.Name -ne "project_manifest.yaml"
-            }
-        )
-
-        if ($primaryFiles.Count -gt 0) {
-            $selected += $primaryFiles
-            continue
-        }
-
         $selected += $group.Group
     }
 

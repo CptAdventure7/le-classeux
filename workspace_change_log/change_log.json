@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "reworked the shared execution dashboard so section tabs and project filtering sit at the top level, execution-only controls stay inside the execution view, and README files are excluded from dashboard documents",
+    "date": "2026-03-22-18h26"
+  },
+  {
     "change_summary": "added a root-level `workspace_change_log` folder with JSON-first guidance so workspace changes outside individual projects have their own append-only trace record",
     "date": "2026-03-22-18h11"
   }

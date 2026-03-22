@@ -65,21 +65,32 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .masthead {
-      display: grid;
-      grid-template-columns: 1.35fr 1fr;
-      gap: 18px;
+    .top-controls, .masthead {
       margin-bottom: 18px;
     }
 
-    .hero, .meta, .tab-strip, .filters, .board, .details, .doc-nav, .doc-viewer {
+    .top-controls-grid, .masthead {
+      display: grid;
+      gap: 18px;
+    }
+
+    .top-controls-grid {
+      grid-template-columns: minmax(0, 1.5fr) minmax(220px, 280px) minmax(240px, 320px);
+      align-items: end;
+    }
+
+    .masthead {
+      grid-template-columns: 1.35fr 1fr;
+    }
+
+    .hero, .meta, .top-controls, .tab-cluster, .top-controls-note, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--panel);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .hero, .meta, .tab-strip, .filters, .board, .details, .doc-nav, .doc-viewer {
+    .hero, .meta, .top-controls, .tab-cluster, .top-controls-note, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
       padding: 18px;
     }
 
@@ -145,7 +156,17 @@
       flex-wrap: wrap;
     }
 
-    .tab-strip, .filters { margin-bottom: 18px; }
+    .tab-cluster {
+      display: grid;
+      gap: 10px;
+    }
+
+    .top-controls-note p {
+      margin-bottom: 0;
+    }
+
+    .snapshot { margin-bottom: 18px; }
+    .filters { margin-bottom: 18px; }
 
     .tab-button, .doc-link {
       border: 1px solid rgba(27, 26, 23, 0.1);
@@ -187,7 +208,7 @@
 
     .filters-grid {
       display: grid;
-      grid-template-columns: repeat(5, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 14px;
       align-items: end;
     }
@@ -365,7 +386,7 @@
     }
 
     @media (max-width: 1180px) {
-      .masthead, .main, .doc-layout { grid-template-columns: 1fr; }
+      .top-controls-grid, .masthead, .main, .doc-layout { grid-template-columns: 1fr; }
       .details, .doc-nav { position: static; }
       .filters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
@@ -384,6 +405,23 @@
 </head>
 <body>
   <div class="shell">
+    <section class="top-controls">
+      <div class="top-controls-grid">
+        <div class="tab-cluster">
+          <div class="eyebrow">Sections</div>
+          <div class="tabs" id="section-tabs"></div>
+        </div>
+        <div class="filter-block">
+          <label class="filter-label" for="project-filter">Filter by project</label>
+          <select id="project-filter"></select>
+        </div>
+        <div class="top-controls-note">
+          <div class="eyebrow">Generator</div>
+          <p>Generated on <strong>__GENERATED_AT__</strong>. The project filter applies across execution items and narrative sections.</p>
+        </div>
+      </div>
+    </section>
+
     <section class="masthead">
       <div class="hero">
         <div class="eyebrow">Workspace Dashboard / __WORKSPACE_NAME__</div>
@@ -396,7 +434,22 @@
         </div>
       </div>
       <div class="meta">
-        <p>Generated on <strong>__GENERATED_AT__</strong>. Open the launcher again at any time to rebuild this view from the latest project data.</p>
+        <div class="eyebrow">Reading Mode</div>
+        <p>Use the section tabs first. Execution-only metrics and filters stay inside the execution view so the document sections remain focused on source content.</p>
+      </div>
+    </section>
+
+    <section class="tab-panel is-active" id="execution-panel">
+      <section class="snapshot">
+        <div class="snapshot-header">
+          <div>
+            <div class="eyebrow">Execution Snapshot</div>
+            <h2 style="margin-bottom: 0;">Execution Snapshot</h2>
+          </div>
+          <div class="warning-strip" id="warning-strip">
+            <div class="warning-text" id="warning-text"></div>
+          </div>
+        </div>
         <div class="stats">
           <div class="stat">
             <span class="stat-label">Projects</span>
@@ -415,20 +468,10 @@
             <span class="stat-value" id="due-soon-count">0</span>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section class="tab-strip">
-      <div class="tabs" id="section-tabs"></div>
-    </section>
-
-    <section class="tab-panel is-active" id="execution-panel">
       <section class="filters">
         <div class="filters-grid">
-          <div class="filter-block">
-            <label class="filter-label" for="project-filter">Filter by project</label>
-            <select id="project-filter"></select>
-          </div>
           <div class="filter-block">
             <label class="filter-label" for="type-filter">Filter by type</label>
             <select id="type-filter"></select>
@@ -446,14 +489,11 @@
             <input id="search-filter" type="search" placeholder="ID, title, summary">
           </div>
         </div>
-        <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr;">
+        <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr 1fr 1fr;">
           <label class="micro" style="display:flex;gap:10px;align-items:center;height:42px;">
             <input id="cancelled-toggle" type="checkbox">
             <span>Show cancelled</span>
           </label>
-          <div class="warning-strip" id="warning-strip">
-            <div class="warning-text" id="warning-text"></div>
-          </div>
         </div>
       </section>
 
@@ -698,8 +738,9 @@
       if (!section || section.type !== "documents") {
         return null;
       }
+      const documents = getVisibleDocuments(section);
       const selectedId = state.selectedDocumentIds[section.key];
-      return section.documents.find((document) => document.id === selectedId) || section.documents[0] || null;
+      return documents.find((document) => document.id === selectedId) || documents[0] || null;
     }
 
     function isDueSoon(item) {
@@ -713,6 +754,15 @@
       }
       const diffDays = Math.floor((target - today) / 86400000);
       return diffDays >= 0 && diffDays <= 7;
+    }
+
+    function buildProjectOptions() {
+      const values = [...new Set([
+        ...DASHBOARD_DATA.map((item) => item.project_id),
+        ...WORKSPACE_SECTIONS.flatMap((section) => ensureArray(section.documents).map((document) => document.project_id))
+      ].filter(Boolean))].sort((a, b) => a.localeCompare(b));
+
+      return [{ value: "", label: "All projects" }, ...values.map((value) => ({ value, label: titleCase(value) }))];
     }
 
     function buildOptions(items, key, fallbackLabel) {
@@ -730,12 +780,27 @@
       });
     }
 
+    function matchesProjectSelection(projectId) {
+      return !els.projectFilter.value || projectId === els.projectFilter.value;
+    }
+
+    function getVisibleDocuments(section) {
+      if (!section || section.type !== "documents") {
+        return [];
+      }
+      return section.documents.filter((document) => matchesProjectSelection(document.project_id));
+    }
+
+    function getProjectScopedExecutionItems() {
+      return DASHBOARD_DATA.filter((item) => matchesProjectSelection(item.project_id));
+    }
+
     function matchesFilters(item) {
       const searchValue = els.searchFilter.value.trim().toLowerCase();
       if (!els.cancelledToggle.checked && item.status === "cancelled") {
         return false;
       }
-      if (els.projectFilter.value && item.project_id !== els.projectFilter.value) {
+      if (!matchesProjectSelection(item.project_id)) {
         return false;
       }
       if (els.typeFilter.value && item.type !== els.typeFilter.value) {
@@ -913,7 +978,9 @@
         const button = document.createElement("button");
         button.type = "button";
         button.className = `tab-button${state.activeSectionKey === section.key ? " is-active" : ""}`;
-        const count = section.type === "board" ? `${DASHBOARD_DATA.length} items` : `${section.documents.length} files`;
+        const count = section.type === "board"
+          ? `${getProjectScopedExecutionItems().length} items`
+          : `${getVisibleDocuments(section).length} files`;
         button.innerHTML = `
           <span class="tab-title">${escapeHtml(section.label)}</span>
           <span class="tab-caption">${escapeHtml(count)}</span>
@@ -927,13 +994,14 @@
     }
 
     function renderDocumentLinks(section, selectedDocument) {
+      const documents = getVisibleDocuments(section);
       els.docLinks.innerHTML = "";
-      if (!section.documents.length) {
+      if (!documents.length) {
         els.docLinks.innerHTML = '<div class="empty-state">No documents found for this section.</div>';
         return;
       }
 
-      section.documents.forEach((documentRecord) => {
+      documents.forEach((documentRecord) => {
         const button = document.createElement("button");
         button.type = "button";
         button.className = `doc-link${selectedDocument && selectedDocument.id === documentRecord.id ? " is-active" : ""}`;
@@ -1024,12 +1092,13 @@
     }
 
     function initialise() {
-      fillSelect(els.projectFilter, buildOptions(DASHBOARD_DATA, "project_id", "All projects"));
+      fillSelect(els.projectFilter, buildProjectOptions());
       fillSelect(els.typeFilter, buildOptions(DASHBOARD_DATA, "type", "All types"));
       fillSelect(els.ownerFilter, buildOptions(DASHBOARD_DATA, "owner", "All owners"));
       fillSelect(els.priorityFilter, buildOptions(DASHBOARD_DATA, "priority", "All priorities"));
 
-      [els.projectFilter, els.typeFilter, els.ownerFilter, els.priorityFilter, els.cancelledToggle]
+      els.projectFilter.addEventListener("change", renderActiveSection);
+      [els.typeFilter, els.ownerFilter, els.priorityFilter, els.cancelledToggle]
         .forEach((element) => element.addEventListener("change", renderBoard));
       els.searchFilter.addEventListener("input", renderBoard);
 
@@ -1047,3 +1116,10 @@
   </script>
 </body>
 </html>
+    .snapshot-header {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: baseline;
+      margin-bottom: 14px;
+    }
