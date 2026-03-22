@@ -1,4 +1,5 @@
 import json
+import re
 import subprocess
 import tempfile
 import textwrap
@@ -178,6 +179,117 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertIn("overflow-wrap: anywhere;", html)
             self.assertIn("word-break: break-word;", html)
             self.assertIn('<p class="details-path">${item.relative_path}</p>', html)
+
+    def test_document_tab_click_populates_links_and_viewer(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard interaction test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const buttons = document.querySelectorAll(".tab-button");
+                          if (buttons[0]) {
+                            buttons[0].click();
+                          }
+
+                          setTimeout(() => {
+                            const result = {
+                              activeSection: document.getElementById("doc-section-title")?.textContent || "",
+                              documentPanelActive: document.getElementById("document-panel")?.classList.contains("is-active") || false,
+                              executionPanelActive: document.getElementById("execution-panel")?.classList.contains("is-active") || false,
+                              docLinkCount: document.querySelectorAll("#doc-links .doc-link").length,
+                              docViewerTextLength: (document.getElementById("doc-viewer-content")?.textContent || "").trim().length
+                            };
+
+                            const pre = document.createElement("pre");
+                            pre.id = "probe-results";
+                            pre.textContent = JSON.stringify(result);
+                            document.body.appendChild(pre);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(probe["activeSection"], "Current Overview")
+            self.assertTrue(probe["documentPanelActive"])
+            self.assertFalse(probe["executionPanelActive"])
+            self.assertGreater(
+                probe["docLinkCount"],
+                0,
+                msg=f"Expected document links to render after clicking Current Overview.\nProbe: {probe}",
+            )
+            self.assertGreater(
+                probe["docViewerTextLength"],
+                0,
+                msg=f"Expected document viewer content to render after clicking Current Overview.\nProbe: {probe}",
+            )
 
     def _write_workspace_fixture(self, workspace_root: Path) -> None:
         (workspace_root / "projects").mkdir(parents=True, exist_ok=True)
@@ -415,6 +527,20 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             + "\n",
             encoding="utf-8",
         )
+
+    def _find_chromium_path(self) -> Path | None:
+        candidates = [
+            Path(r"C:\Program Files\Google\Chrome\Application\chrome.exe"),
+            Path(r"C:\Program Files (x86)\Google\Chrome\Application\chrome.exe"),
+            Path(r"C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe"),
+            Path(r"C:\Program Files\Microsoft\Edge\Application\msedge.exe"),
+        ]
+
+        for candidate in candidates:
+            if candidate.exists():
+                return candidate
+
+        return None
 
 
 if __name__ == "__main__":

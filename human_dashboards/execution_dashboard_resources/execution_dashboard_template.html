@@ -933,21 +933,21 @@
         return;
       }
 
-      section.documents.forEach((document) => {
+      section.documents.forEach((documentRecord) => {
         const button = document.createElement("button");
         button.type = "button";
-        button.className = `doc-link${selectedDocument && selectedDocument.id === document.id ? " is-active" : ""}`;
+        button.className = `doc-link${selectedDocument && selectedDocument.id === documentRecord.id ? " is-active" : ""}`;
         button.innerHTML = `
           <div class="doc-link-header">
-            <span class="doc-meta">${escapeHtml(document.project_id)}</span>
-            <span class="doc-meta">${escapeHtml(document.format)}</span>
+            <span class="doc-meta">${escapeHtml(documentRecord.project_id)}</span>
+            <span class="doc-meta">${escapeHtml(documentRecord.format)}</span>
           </div>
-          <span class="doc-link-title">${escapeHtml(document.title)}</span>
-          <span class="doc-meta">${escapeHtml(document.slug)}</span>
-          <span class="doc-link-preview">${escapeHtml(document.preview || "No preview available.")}</span>
+          <span class="doc-link-title">${escapeHtml(documentRecord.title)}</span>
+          <span class="doc-meta">${escapeHtml(documentRecord.slug)}</span>
+          <span class="doc-link-preview">${escapeHtml(documentRecord.preview || "No preview available.")}</span>
         `;
         button.addEventListener("click", () => {
-          state.selectedDocumentIds[section.key] = document.id;
+          state.selectedDocumentIds[section.key] = documentRecord.id;
           renderDocumentsSection(section.key);
         });
         els.docLinks.appendChild(button);
