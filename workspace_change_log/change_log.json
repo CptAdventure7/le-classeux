@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "aligned workspace guidance and shared skills with the current project-template structure, fixed shared skill path examples, and refreshed the advertised shared-skill inventory",
+    "date": "2026-03-22-19h12"
+  },
+  {
     "change_summary": "deleted `projects/test-project`, removed its workspace manifest entry, and removed the dashboard seed test tied to that disposable project",
     "date": "2026-03-22-19h02"
   },

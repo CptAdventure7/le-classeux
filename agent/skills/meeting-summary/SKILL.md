@@ -1,6 +1,6 @@
 ---
 name: meeting-summary
-description: Convert meeting transcripts or notes into structured, traceable summaries inside the selected project's collaboration section.
+description: Convert meeting transcripts or notes into structured, traceable summaries inside the selected project's communication section.
 ---
 
 # Meeting Summary
@@ -20,9 +20,9 @@ Use this skill when the user asks to:
 
 For the selected project root:
 
-- Raw transcript inputs belong in `<project>/09_COLLABORATION/meetings/raw_notes`
-- Meeting summaries belong in `<project>/09_COLLABORATION/meetings/summaries`
-- Meeting-derived decision logs belong in `<project>/08_DECISIONS/decisions_from_meetings` when explicit decision capture is requested
+- Raw transcript inputs belong in `<project>/09_COMMUNICATION/meetings/raw_notes`
+- Meeting summaries belong in `<project>/09_COMMUNICATION/meetings/summaries`
+- Meeting-derived decisions belong in `<project>/08_DECISIONS/decisions.json` when explicit decision capture is requested; update the single canonical JSON file in place
 
 ## Required Output Sections
 
@@ -48,9 +48,10 @@ Use `Unknown` when information is missing. Do not invent facts.
 4. Extract decisions, risks, open questions, and action items.
 5. Build an exhaustive named-entity inventory.
 6. Verify all candidate entities appear in the detailed description or inventory.
-7. Write the summary into `<project>/09_COLLABORATION/meetings/summaries` with a dated filename.
-8. Normalize or preserve the source transcript under `<project>/09_COLLABORATION/meetings/raw_notes` as needed.
-9. Delete intermediary extraction files, or move them to a local disposal area only if project guidance already allows that.
+7. Write the summary into `<project>/09_COMMUNICATION/meetings/summaries` with a dated filename.
+8. If explicit decision capture is requested, create or update `<project>/08_DECISIONS/decisions.json` instead of creating per-meeting decision files or side folders.
+9. Normalize or preserve the source transcript under `<project>/09_COMMUNICATION/meetings/raw_notes` as needed.
+10. Delete intermediary extraction files, or move them to a local disposal area only if project guidance already allows that.
 
 ## Failure Modes To Avoid
 

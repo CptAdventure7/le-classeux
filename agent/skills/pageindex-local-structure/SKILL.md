@@ -33,54 +33,56 @@ Do not use this skill when you need LLM-written summaries or semantic section re
 5. When a node looks relevant, extract only that node's content or images instead of loading the full document.
 6. If the agent wants one step, use the bundle script to fetch both in a single manifest.
 
+All commands below are written from the workspace root. If you are already inside `agent/skills/pageindex-local-structure/`, you can shorten the script path back to `scripts/...`.
+
 ## Commands
 
 Markdown:
 
 ```bash
-python scripts/build_local_structure.py --markdown /path/to/file.md
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --markdown /path/to/file.md
 ```
 
 Markdown with lightweight image metadata:
 
 ```bash
-python scripts/build_local_structure.py --markdown /path/to/file.md --include-image-metadata
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --markdown /path/to/file.md --include-image-metadata
 ```
 
 Markdown with section text:
 
 ```bash
-python scripts/build_local_structure.py --markdown /path/to/file.md --include-text
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --markdown /path/to/file.md --include-text
 ```
 
 PDF:
 
 ```bash
-python scripts/build_local_structure.py --pdf /path/to/file.pdf
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --pdf /path/to/file.pdf
 ```
 
 PDF with lightweight image metadata:
 
 ```bash
-python scripts/build_local_structure.py --pdf /path/to/file.pdf --include-image-metadata
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --pdf /path/to/file.pdf --include-image-metadata
 ```
 
 DOCX:
 
 ```bash
-python scripts/build_local_structure.py --docx /path/to/file.docx
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --docx /path/to/file.docx
 ```
 
 DOCX with lightweight image metadata:
 
 ```bash
-python scripts/build_local_structure.py --docx /path/to/file.docx --include-image-metadata
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --docx /path/to/file.docx --include-image-metadata
 ```
 
 Explicit output path:
 
 ```bash
-python scripts/build_local_structure.py --pdf /path/to/file.pdf --output /path/to/output.json
+python agent/skills/pageindex-local-structure/scripts/build_local_structure.py --pdf /path/to/file.pdf --output /path/to/output.json
 ```
 
 Node extraction:
@@ -88,19 +90,19 @@ Node extraction:
 Markdown:
 
 ```bash
-python scripts/extract_node_content.py --source /path/to/file.md --node-id 0003
+python agent/skills/pageindex-local-structure/scripts/extract_node_content.py --source /path/to/file.md --node-id 0003
 ```
 
 DOCX:
 
 ```bash
-python scripts/extract_node_content.py --source /path/to/file.docx --node-id 0003
+python agent/skills/pageindex-local-structure/scripts/extract_node_content.py --source /path/to/file.docx --node-id 0003
 ```
 
 PDF:
 
 ```bash
-python scripts/extract_node_content.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003
+python agent/skills/pageindex-local-structure/scripts/extract_node_content.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003
 ```
 
 Node image extraction:
@@ -108,19 +110,19 @@ Node image extraction:
 Markdown:
 
 ```bash
-python scripts/extract_node_images.py --source /path/to/file.md --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_images.py --source /path/to/file.md --node-id 0003 --output-dir /path/to/output-images
 ```
 
 DOCX:
 
 ```bash
-python scripts/extract_node_images.py --source /path/to/file.docx --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_images.py --source /path/to/file.docx --node-id 0003 --output-dir /path/to/output-images
 ```
 
 PDF:
 
 ```bash
-python scripts/extract_node_images.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_images.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003 --output-dir /path/to/output-images
 ```
 
 One-command node bundle:
@@ -128,19 +130,19 @@ One-command node bundle:
 Markdown:
 
 ```bash
-python scripts/extract_node_bundle.py --source /path/to/file.md --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_bundle.py --source /path/to/file.md --node-id 0003 --output-dir /path/to/output-images
 ```
 
 DOCX:
 
 ```bash
-python scripts/extract_node_bundle.py --source /path/to/file.docx --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_bundle.py --source /path/to/file.docx --node-id 0003 --output-dir /path/to/output-images
 ```
 
 PDF:
 
 ```bash
-python scripts/extract_node_bundle.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003 --output-dir /path/to/output-images
+python agent/skills/pageindex-local-structure/scripts/extract_node_bundle.py --source /path/to/file.pdf --structure /path/to/file_structure.json --node-id 0003 --output-dir /path/to/output-images
 ```
 
 ## Output Shape

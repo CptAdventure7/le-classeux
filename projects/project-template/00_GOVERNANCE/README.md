@@ -1,7 +1,14 @@
-# 00 Governance
+# Governance
 
-This folder belongs to the project-template context bank.
+This folder contains the governance entrypoints for the active project template.
 
-## What Belongs Here
+## Keep Here
 
-change_log folder,  current_overview foder and this readme.md. Nothing else.
+- `change_log/` for append-only project-level traceability
+- `current_overview/` for compact current-state snapshots and routing
+- this `README.md`
+
+## Keep Elsewhere
+
+- project evidence that belongs in a narrower active section
+- duplicate summaries that should instead update `current_overview/` or the project root `README.md`

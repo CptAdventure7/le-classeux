@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "clarified governance and COTS pathing guidance in the template so folder expectations and external evidence locations match the current workspace logic",
+    "date": "2026-03-22-19h12"
+  },
+  {
     "change_summary": "updated template COTS guidance to use component-area subfolders with one canonical JSON per area and SharePoint-hosted source captures",
     "date": "2026-03-22-18h54"
   }

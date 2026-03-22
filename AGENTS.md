@@ -16,7 +16,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - Consider breaking down complex task into subtask and instantiating subagents. Those angent must inherit all your working instructions.
 - Read the root `projects_manifest.yaml` to identify the available project entrypoint.
 - If there is any ambiguity about which project a question, information request, or modification request relates to, stop and ask the user to name the project before answering, exploring deeply, or editing. Changes in the wrong project are high risk.
-- For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.
+- For project work, read `<project>/README.md` and `<project>/project_manifest.yaml` before descending further, answering or editing. If `<project>/AGENTS.md` exists, read it too.
 - Use local `README.md` files inside the selected project for folder-level scope and authoring rules.
 - Some links may point to locally synced OneDrive paths for SharePoint files. Treat those links as brittle: they may break, or they may need to be adjusted for the current Windows user profile.
 - If a OneDrive or SharePoint-linked local path does not work, do your best without it and explicitly inform the user at the end of your work.
@@ -25,6 +25,8 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
   - `general-update`: repository-wide project context refresh, canonical artefact propagation, governance log update, and standardized commit.
   - `internal-docs`: guidance for reading and writing internal engineering documents and branded internal presentation decks.
   - `meeting-summary`: convert meeting transcripts or notes into structured project meeting summaries.
+  - `pageindex-local-structure`: build a local hierarchical document index for long files and retrieve targeted nodes.
+  - `project-instantiation`: create a new project from `projects/project-template` and register it cleanly in the workspace.
   - `reference-ingestion`: ingest source documents into the project context bank and update canonical artefacts.
 - Nerver invent, base actions and answer on evidence, without guessing. Prefer project-local evidence over assumptions.
 - Finish state-changing repository work with a git commit when possible. If a commit cannot be created, say why.
@@ -44,4 +46,6 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - `agent/skills/general-update/`: repository-wide refresh workflow.
 - `agent/skills/internal-docs/`: internal engineering document and presentation guidance.
 - `agent/skills/meeting-summary/`: meeting transcript and notes summarization workflow.
+- `agent/skills/pageindex-local-structure/`: local document indexing and node-retrieval workflow.
+- `agent/skills/project-instantiation/`: project bootstrap workflow from the shared template.
 - `agent/skills/reference-ingestion/`: source document ingestion workflow.

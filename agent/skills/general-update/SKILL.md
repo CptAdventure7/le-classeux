@@ -27,7 +27,7 @@ If git metadata is unavailable, stop and report that the general update workflow
 ## Required Workflow
 
 1. Resolve the selected project root.
-2. Read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml`.
+2. Read `<project>/README.md` and `<project>/project_manifest.yaml`. If `<project>/AGENTS.md` exists, read it too.
 3. Find the previous general-update anchor commit whose subject is exactly `chore(general-update): run repository-wide general update`.
 4. Capture the pre-commit `HEAD` hash for the run.
 5. Build the candidate evidence set from:
