@@ -191,20 +191,14 @@ top_level_sections:
   - id: 99_ARCHIVE
     purpose: "Retired, superseded, or preserved historical artefacts that should remain traceable but inactive."
     children:
-      - id: snapshots
-        purpose: "Artifacts specifically related to Snapshots."
+      - id: current_overview
+        purpose: "Retired weekly overviews and superseded current-state summaries kept for traceability."
         children: []
       - id: deprecated
-        purpose: "Artifacts specifically related to Deprecated."
+        purpose: "Deprecated artefacts kept for reference."
         children: []
       - id: obsolete_decisions
-        purpose: "Artifacts specifically related to Obsolete Decisions."
-        children: []
-      - id: retired_requirements
-        purpose: "Artifacts specifically related to Retired Requirements."
-        children: []
-      - id: legacy_tests
-        purpose: "Artifacts specifically related to Legacy Tests."
+        purpose: "Obsolete or superseded decisions kept for traceability."
         children: []
 conventions:
   local_readme: Each folder contains a README.md explaining what belongs there and the local drafting, update, cross-linking, and formatting guidance.

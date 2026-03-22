@@ -1,10 +1,8 @@
 # 99 Archive
 
-This folder belongs to the project-template context bank.
+Use this folder for inactive material that still needs to stay traceable.
 
-## What Belongs Here
+Keep only `current_overview`, `deprecated`, `obsolete_decisions`, and this `README.md` here.
 
-`snapshots`, `deprecated`, `obsolete_decisions`, `retired_requirements`, `legacy_tests` folders and this readme.md. Nothing else.
-
-Live requirement records still stay in `03_REQUIREMENTS`; use `status: "Abandoned"` there for obsolete or non-relevant requirements instead of removing them into the archive.
+Do not move obsolete requirements into the archive. Keep them in `03_REQUIREMENTS` and mark them `Abandoned`.
 

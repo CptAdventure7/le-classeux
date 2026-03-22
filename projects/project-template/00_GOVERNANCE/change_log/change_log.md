@@ -1,5 +1,9 @@
 # Change Log
 
+- removed `99_ARCHIVE/retired_requirements` and `99_ARCHIVE/legacy_tests`, simplified the remaining `99_ARCHIVE` README files to short folder-level guidance, and aligned the archive manifest plus verification test with the slimmer archive structure (2026-03-21-22h40).
+
+- renamed `99_ARCHIVE/snapshots` to `99_ARCHIVE/current_overview`, updated the archive manifest and cross-links, and clarified in governance that older weekly overviews should be retired into the new archive folder (2026-03-21-22h35).
+
 - simplified all README files under `07_PROJECT_EXECUTION`, removed repeated boilerplate, kept folder guidance minimal, moved the milestone example into `milestones/README.md`, and removed the separate `milestone-template.json` sidecar template (2026-03-21-22h30).
 
 - simplified all README files under `11_OPERATIONS_AND_HANDOFF` to remove repeated boilerplate and keep only short folder-level guidance for deployment, installation, user docs, maintenance, training, support notes, and release notes (2026-03-21-22h15).
