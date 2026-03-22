@@ -15,6 +15,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - Maintain traceability when workspace-owned artefacts change outside any individual project by updating `workspace_change_log/change_log.json`.
 - Consider breaking down complex task into subtask and instantiating subagents. Those angent must inherit all your working instructions.
 - Read the root `projects_manifest.yaml` to identify the available project entrypoint.
+- If there is any ambiguity about which project a question, information request, or modification request relates to, stop and ask the user to name the project before answering, exploring deeply, or editing. Changes in the wrong project are high risk.
 - For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.
 - Use local `README.md` files inside the selected project for folder-level scope and authoring rules.
 - Some links may point to locally synced OneDrive paths for SharePoint files. Treat those links as brittle: they may break, or they may need to be adjusted for the current Windows user profile.
@@ -30,6 +31,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 
 ## Common Mistakes
 
+- Treating an ambiguous request as if the target project were obvious. If the project is not explicit, ask which project the request belongs to before proceeding.
 - Request will very rarely imply cross-project editing. Always ask before if you believe it should be done. 
 
 ## Repository Map
