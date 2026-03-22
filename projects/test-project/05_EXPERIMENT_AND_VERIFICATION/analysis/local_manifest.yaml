@@ -1,0 +1,9 @@
+folder: analysis
+summary: "Analysis artifacts live here. Keep one markdown file per analysis topic, update existing artifacts when new material belongs to the same analysis, and link each analysis to related experiments, protocols, or results when relevant."
+files:
+  - name: README.md
+    summary: "Defines the one-file-per-analysis pattern and the expected cross-links to experiments, protocols, and results."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

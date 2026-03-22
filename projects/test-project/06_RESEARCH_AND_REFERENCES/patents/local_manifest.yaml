@@ -1,0 +1,9 @@
+folder: patents
+summary: "Patent searches and prior-art notes live here. Keep one file per patent family or search topic when practical, and connect each artifact to related papers, standards, or design work when relevant."
+files:
+  - name: README.md
+    summary: "Defines the scope for patent summaries, claim notes, prior-art comparisons, and technical-area searches."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

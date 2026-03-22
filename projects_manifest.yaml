@@ -2,9 +2,14 @@ workspace_name: le-classeux
 structure_version: 1
 strategy: project_index
 projects:
-  - id: project-template
-    name: project-template
-    path: projects/project-template
-    manifest: projects/project-template/project_manifest.yaml
-    purpose: "Primary project-template context bank. Use its local README, AGENTS guide, and manifest before descending further."
-
+- id: project-template
+  name: project-template
+  path: projects/project-template
+  manifest: projects/project-template/project_manifest.yaml
+  purpose: Primary project-template context bank. Use its local README, AGENTS guide,
+    and manifest before descending further.
+- id: test-project
+  name: test project
+  path: projects/test-project
+  manifest: projects/test-project/project_manifest.yaml
+  purpose: Project context bank for testing the human dashboard implementation.

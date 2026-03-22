@@ -1,0 +1,9 @@
+folder: cots
+summary: "Commercial off-the-shelf vendor and product assessments live here. Keep vendor-specific evidence in this folder and link directly to source pages when specifications, pricing, or support commitments matter."
+files:
+  - name: README.md
+    summary: "Defines the scope for vendor-specific research, product evaluations, supplier comparisons, and downselect notes."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

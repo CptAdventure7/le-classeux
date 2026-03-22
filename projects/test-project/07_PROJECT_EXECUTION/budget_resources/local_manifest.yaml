@@ -1,0 +1,9 @@
+folder: budget_resources
+summary: "Budget planning and resource allocation artifacts live here. Use this folder for budget snapshots, capacity notes, cost assumptions tied to delivery, and resource tradeoff records linked to roadmap, procurement, or execution-item artifacts."
+files:
+  - name: README.md
+    summary: "Defines the scope for budget snapshots, staffing and capacity notes, cost assumptions, and resource tradeoff notes."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

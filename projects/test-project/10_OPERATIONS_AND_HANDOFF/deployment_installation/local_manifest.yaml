@@ -1,0 +1,9 @@
+folder: deployment_installation
+summary: "Deployment, installation, cutover, rollback, prerequisite, and setup guidance lives here. Keep release-specific cautions that affect rollout in this folder and link to user docs, training, or support notes when needed."
+files:
+  - name: README.md
+    summary: "Defines the scope for rollout plans, setup instructions, validation checks, and environment-specific deployment guidance."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

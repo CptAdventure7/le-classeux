@@ -1,0 +1,9 @@
+folder: change_requests
+summary: "Formal project change proposals live here. Use this folder for requests to add, remove, defer, or re-scope work, along with the impact summary and resulting approval or rejection record."
+files:
+  - name: README.md
+    summary: "Defines the scope for scope, schedule, and budget change requests plus linked impact and decision records."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []
