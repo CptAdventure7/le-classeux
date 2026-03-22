@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "added `local_manifest.yaml` to `07_PROJECT_EXECUTION/budget_resources` and `07_PROJECT_EXECUTION/change_requests`, and updated both local READMEs so agents review the manifest on folder entry and keep it current as files change",
+        "date":  "2026-03-22-14h45"
+    },
+    {
         "change_summary":  "added `local_manifest.yaml` to `07_PROJECT_EXECUTION/issues` and `07_PROJECT_EXECUTION/procurement`, and updated both local READMEs so agents review the manifest on folder entry and keep it current as files change",
         "date":  "2026-03-22-14h35"
     },
