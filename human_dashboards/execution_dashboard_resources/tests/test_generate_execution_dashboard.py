@@ -61,6 +61,53 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertIn("function ensureArray", html)
             self.assertIn("const DASHBOARD_DATA = normalizeItems", html)
 
+    def test_generator_emits_workspace_tabs_with_markdown_and_json_sources(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            html = output_html.read_text(encoding="utf-8")
+            self.assertIn("Current Overview", html)
+            self.assertIn("Execution Items", html)
+            self.assertIn("Project Risk Register", html)
+            self.assertIn("Foundation", html)
+            self.assertIn("Requirements", html)
+            self.assertIn("Roadmap", html)
+            self.assertIn("Change Log", html)
+            self.assertIn("project_definition", html)
+            self.assertIn("user_requirements", html)
+            self.assertIn("Template structure simplification", html)
+            self.assertIn("Deliverable map locked for review.", html)
+            self.assertIn("Critical supplier lead time could delay prototype integration.", html)
+            self.assertIn("Initial baseline captured", html)
+            self.assertIn("const WORKSPACE_SECTIONS_RAW =", html)
+            self.assertIn("function renderMarkdown", html)
+
     def test_generator_emits_detail_summary_wrap_styling(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace_root = Path(temp_dir)
@@ -155,9 +202,135 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
         project_root = workspace_root / "projects" / "project-alpha"
         execution_items = project_root / "07_PROJECT_EXECUTION" / "execution_items"
         execution_items.mkdir(parents=True, exist_ok=True)
+        (project_root / "00_GOVERNANCE" / "current_overview").mkdir(parents=True, exist_ok=True)
+        (project_root / "00_GOVERNANCE" / "change_log").mkdir(parents=True, exist_ok=True)
+        (project_root / "01_PROJECT_FOUNDATION" / "project_definition").mkdir(parents=True, exist_ok=True)
+        (project_root / "01_PROJECT_FOUNDATION" / "objectives_success_metrics").mkdir(parents=True, exist_ok=True)
+        (project_root / "03_REQUIREMENTS" / "user_requirements").mkdir(parents=True, exist_ok=True)
+        (project_root / "03_REQUIREMENTS" / "system_requirements").mkdir(parents=True, exist_ok=True)
+        (project_root / "07_PROJECT_EXECUTION" / "project_risk_register").mkdir(parents=True, exist_ok=True)
+        (project_root / "07_PROJECT_EXECUTION" / "roadmap").mkdir(parents=True, exist_ok=True)
 
         (project_root / "project_manifest.yaml").write_text(
             "project_name: project-alpha\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "00_GOVERNANCE" / "current_overview" / "README.md").write_text(
+            textwrap.dedent(
+                """
+                # Current Overview
+
+                ## Current phase
+
+                Template structure simplification
+
+                ## Active priorities
+
+                - Lock the shared dashboard information architecture.
+                - Keep the execution view read-only.
+                """
+            ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "00_GOVERNANCE" / "change_log" / "change_log.json").write_text(
+            json.dumps(
+                [
+                    {
+                        "change_summary": "Initial baseline captured",
+                        "date": "2026-03-22-16h05",
+                    }
+                ],
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "01_PROJECT_FOUNDATION" / "project_definition" / "README.md").write_text(
+            textwrap.dedent(
+                """
+                # Project Definition
+
+                The context bank keeps the workspace explainable for both humans and agents.
+                """
+            ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "01_PROJECT_FOUNDATION" / "objectives_success_metrics" / "README.md").write_text(
+            textwrap.dedent(
+                """
+                # Objectives And Success Metrics
+
+                - Deliverable map locked for review.
+                - Dashboard sections generated without manual edits.
+                """
+            ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "03_REQUIREMENTS" / "user_requirements" / "README.md").write_text(
+            textwrap.dedent(
+                """
+                # User Requirements
+
+                Humans can switch between execution tracking and narrative project documents from one dashboard.
+                """
+            ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "03_REQUIREMENTS" / "system_requirements" / "README.md").write_text(
+            textwrap.dedent(
+                """
+                # System Requirements
+
+                - Generate one static HTML file.
+                - Display Markdown and JSON sources without editing the project artefacts.
+                """
+            ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "07_PROJECT_EXECUTION" / "project_risk_register" / "project_risk_register.json").write_text(
+            json.dumps(
+                [
+                    {
+                        "id": "RSK-0001",
+                        "description": "Critical supplier lead time could delay prototype integration.",
+                        "status": "open",
+                        "owner": "Program Management",
+                    }
+                ],
+                indent=2,
+            )
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "07_PROJECT_EXECUTION" / "roadmap" / "roadmap.json").write_text(
+            json.dumps(
+                {
+                    "roadmap_title": "project-alpha Delivery Roadmap",
+                    "last_updated": "2026-03-22",
+                    "items": [
+                        {
+                            "id": "RDM-001",
+                            "title": "Shared dashboard ready",
+                            "status": "in_progress",
+                        }
+                    ],
+                },
+                indent=2,
+            )
+            + "\n",
             encoding="utf-8",
         )
 

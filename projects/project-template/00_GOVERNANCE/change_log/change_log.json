@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "expanded the shared human dashboard into a tabbed workspace atlas that now renders `current_overview`, `execution_items`, `project_risk_register`, all of `01_PROJECT_FOUNDATION`, all of `03_REQUIREMENTS`, `roadmap`, and `change_log`, while adding generator support and tests for both Markdown and JSON source artifacts",
+        "date":  "2026-03-22-15h53"
+    },
+    {
         "change_summary":  "fixed long source-file path wrapping in the shared execution dashboard detail view by adding dedicated forced-wrap styling for the source path in `human_dashboards/execution_dashboard_resources/execution_dashboard_template.html` and extending the dashboard generator tests to assert the emitted path markup and wrap rules",
         "date":  "2026-03-22-15h15"
     },

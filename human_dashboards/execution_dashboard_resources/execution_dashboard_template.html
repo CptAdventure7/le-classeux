@@ -7,34 +7,30 @@
   <style>
     :root {
       --paper: #f4efe4;
-      --paper-deep: #e2d8c2;
       --ink: #1b1a17;
       --muted: #5f5a4f;
-      --panel: rgba(255, 251, 242, 0.76);
+      --panel: rgba(255, 251, 242, 0.8);
       --line: rgba(27, 26, 23, 0.14);
       --accent: #c65d2e;
-      --accent-soft: #efc3af;
       --planned: #78806a;
       --progress: #2f5f90;
       --blocked: #a43628;
       --done: #2e7a4f;
+      --radius: 18px;
       --shadow: 0 16px 40px rgba(46, 37, 24, 0.12);
-      --radius: 20px;
     }
 
-    * {
-      box-sizing: border-box;
-    }
+    * { box-sizing: border-box; }
 
     body {
       margin: 0;
+      min-height: 100vh;
       font-family: "Georgia", "Times New Roman", serif;
       color: var(--ink);
       background:
         radial-gradient(circle at top left, rgba(198, 93, 46, 0.13), transparent 28%),
         radial-gradient(circle at top right, rgba(47, 95, 144, 0.14), transparent 24%),
         linear-gradient(180deg, #fbf7ef 0%, var(--paper) 48%, #efe7d7 100%);
-      min-height: 100vh;
     }
 
     body::before {
@@ -49,8 +45,10 @@
       mask-image: radial-gradient(circle at center, black, transparent 85%);
     }
 
+    button, input, select { font: inherit; }
+
     .shell {
-      width: min(1520px, calc(100vw - 32px));
+      width: min(1480px, calc(100vw - 32px));
       margin: 22px auto;
       padding: 22px;
       border: 1px solid var(--line);
@@ -60,27 +58,32 @@
       box-shadow: var(--shadow);
     }
 
-    .masthead {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 18px;
-      align-items: stretch;
-      margin-bottom: 18px;
-    }
-
-    .hero,
-    .meta,
-    .filters,
-    .board,
-    .details {
+    .panel {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--panel);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
+    .masthead {
+      display: grid;
+      grid-template-columns: 1.35fr 1fr;
+      gap: 18px;
+      margin-bottom: 18px;
+    }
+
+    .hero, .meta, .tab-strip, .filters, .board, .details, .doc-nav, .doc-viewer {
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      background: var(--panel);
+      box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
+    }
+
+    .hero, .meta, .tab-strip, .filters, .board, .details, .doc-nav, .doc-viewer {
+      padding: 18px;
+    }
+
     .hero {
-      padding: 24px 26px;
       position: relative;
       overflow: hidden;
     }
@@ -88,52 +91,43 @@
     .hero::after {
       content: "";
       position: absolute;
-      right: -70px;
-      top: -60px;
+      right: -60px;
+      top: -70px;
       width: 220px;
       height: 220px;
       border-radius: 50%;
       background: radial-gradient(circle, rgba(198, 93, 46, 0.28), transparent 68%);
     }
 
-    .eyebrow {
+    .eyebrow, .stat-label, .filter-label, .micro, .tag, .count-pill, .pill, .doc-meta, .json-key {
       font-family: "Consolas", "Courier New", monospace;
-      text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 12px;
-      color: var(--muted);
-      margin-bottom: 10px;
     }
+
+    .eyebrow, .stat-label, .filter-label, .json-key {
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      color: var(--muted);
+    }
+
+    .eyebrow { font-size: 12px; letter-spacing: 0.22em; margin-bottom: 10px; }
 
     h1 {
       margin: 0;
       font-size: clamp(34px, 5vw, 62px);
       line-height: 0.95;
-      font-weight: 700;
       max-width: 10ch;
     }
 
-    .hero p,
-    .meta p,
-    .details p,
-    .warning-text {
-      margin: 0;
-      color: var(--muted);
-      line-height: 1.5;
-    }
+    h2, h3, p { margin-top: 0; }
+    p { color: var(--muted); line-height: 1.6; }
 
-    .meta {
-      padding: 24px;
+    .stats, .details-grid, .doc-meta-grid {
       display: grid;
-      gap: 16px;
-      align-content: space-between;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 12px;
     }
+
+    .stats, .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .doc-meta-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 16px 0; }
 
     .stat {
       padding: 14px 16px;
@@ -142,24 +136,53 @@
       border: 1px solid rgba(27, 26, 23, 0.08);
     }
 
-    .stat-label {
-      display: block;
-      font-family: "Consolas", "Courier New", monospace;
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
+    .stat-label { display: block; font-size: 11px; margin-bottom: 8px; }
+    .stat-value { font-size: 28px; font-weight: 700; }
+
+    .tabs, .pill-row, .tag-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .tab-strip, .filters { margin-bottom: 18px; }
+
+    .tab-button, .doc-link {
+      border: 1px solid rgba(27, 26, 23, 0.1);
+      border-radius: 14px;
+      background: rgba(255, 255, 255, 0.72);
       color: var(--muted);
-      margin-bottom: 8px;
+      cursor: pointer;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
     }
 
-    .stat-value {
-      font-size: 28px;
-      font-weight: 700;
+    .tab-button:hover, .tab-button:focus-visible, .doc-link:hover, .doc-link:focus-visible, .card:hover, .card:focus-visible {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 22px rgba(34, 26, 18, 0.1);
+      outline: none;
     }
 
-    .filters {
-      padding: 18px;
-      margin-bottom: 18px;
+    .tab-button.is-active, .doc-link.is-active {
+      color: var(--ink);
+      border-color: rgba(198, 93, 46, 0.28);
+      background: linear-gradient(135deg, rgba(198, 93, 46, 0.12), rgba(47, 95, 144, 0.08));
+    }
+
+    .tab-button {
+      min-width: 160px;
+      min-height: 52px;
+      padding: 10px 14px;
+      text-align: left;
+    }
+
+    .tab-title { display: block; font-weight: 700; margin-bottom: 4px; }
+    .tab-caption { font-size: 13px; line-height: 1.35; }
+
+    .pill, .tag, .count-pill {
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(27, 26, 23, 0.06);
+      font-size: 12px;
     }
 
     .filters-grid {
@@ -169,86 +192,60 @@
       align-items: end;
     }
 
-    .filter-block {
-      display: grid;
-      gap: 8px;
-    }
+    .filter-block { display: grid; gap: 8px; }
 
-    .filter-label {
-      font-family: "Consolas", "Courier New", monospace;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--muted);
-    }
-
-    label.checkbox-line {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-family: "Consolas", "Courier New", monospace;
-      color: var(--muted);
-      height: 42px;
-    }
-
-    select,
-    input[type="search"] {
+    select, input[type="search"] {
       width: 100%;
       height: 42px;
-      border-radius: 12px;
+      padding: 0 12px;
       border: 1px solid rgba(27, 26, 23, 0.12);
+      border-radius: 12px;
       background: rgba(255, 255, 255, 0.78);
       color: var(--ink);
-      padding: 0 12px;
-      font: inherit;
     }
 
     .warning-strip {
       display: none;
-      margin-top: 14px;
       padding: 12px 14px;
       border-radius: 14px;
       border: 1px solid rgba(164, 54, 40, 0.2);
       background: rgba(164, 54, 40, 0.07);
     }
 
-    .warning-strip.is-visible {
-      display: block;
-    }
+    .warning-strip.is-visible, .tab-panel.is-active { display: block; }
+    .tab-panel { display: none; }
 
-    .main {
+    .main, .doc-layout {
       display: grid;
-      grid-template-columns: minmax(0, 1.55fr) minmax(360px, 420px);
       gap: 18px;
       align-items: start;
     }
 
-    .board {
-      padding: 18px;
-    }
+    .main { grid-template-columns: minmax(0, 1.55fr) minmax(360px, 420px); }
+    .doc-layout { grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); }
+
+    .details, .doc-nav { position: sticky; top: 22px; }
 
     .columns {
       display: grid;
       grid-template-columns: repeat(4, minmax(240px, 1fr));
       gap: 14px;
       overflow-x: auto;
-      padding-bottom: 4px;
     }
 
-    .column {
-      min-height: 480px;
-      border-radius: 18px;
-      padding: 14px;
-      background: rgba(255, 255, 255, 0.52);
+    .column, .json-entry, .json-card {
+      border-radius: 16px;
       border: 1px solid rgba(27, 26, 23, 0.08);
+      background: rgba(255, 255, 255, 0.62);
+      padding: 14px;
     }
 
-    .column-header {
+    .column { min-height: 480px; }
+    .column-header, .card-top, .card-meta, .doc-link-header {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
+      align-items: baseline;
     }
 
     .column-title {
@@ -271,17 +268,7 @@
     .status-blocked { background: var(--blocked); }
     .status-done { background: var(--done); }
 
-    .count-pill {
-      min-width: 28px;
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(27, 26, 23, 0.06);
-      font-family: "Consolas", "Courier New", monospace;
-      font-size: 12px;
-      text-align: center;
-    }
-
-    .card-stack {
+    .card-stack, .doc-links, .doc-article, .json-object, .json-array {
       display: grid;
       gap: 12px;
     }
@@ -293,72 +280,13 @@
       background: rgba(255, 255, 255, 0.86);
       padding: 14px;
       cursor: pointer;
-      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease;
       box-shadow: 0 10px 20px rgba(34, 26, 18, 0.05);
-    }
-
-    .card:hover,
-    .card:focus-visible {
-      transform: translateY(-2px);
-      box-shadow: 0 14px 24px rgba(34, 26, 18, 0.1);
-      outline: none;
     }
 
     .card[data-status="planned"] { border-left-color: var(--planned); }
     .card[data-status="in_progress"] { border-left-color: var(--progress); }
     .card[data-status="blocked"] { border-left-color: var(--blocked); }
     .card[data-status="done"] { border-left-color: var(--done); }
-
-    .card-top,
-    .card-meta {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: 12px;
-    }
-
-    .card-top {
-      margin-bottom: 8px;
-    }
-
-    .card-id,
-    .tag,
-    .micro {
-      font-family: "Consolas", "Courier New", monospace;
-      font-size: 11px;
-      letter-spacing: 0.04em;
-    }
-
-    .card-id,
-    .micro {
-      color: var(--muted);
-    }
-
-    .tag-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 10px 0 0;
-    }
-
-    .tag {
-      padding: 4px 8px;
-      border-radius: 999px;
-      background: rgba(27, 26, 23, 0.06);
-    }
-
-    .details {
-      padding: 20px;
-      position: sticky;
-      top: 22px;
-    }
-
-    .details h2 {
-      margin: 0 0 10px;
-      font-size: 28px;
-      line-height: 1.05;
-      text-wrap: balance;
-    }
 
     .details-summary {
       max-width: 34ch;
@@ -367,39 +295,66 @@
       text-wrap: pretty;
     }
 
-    .details-path {
-      font-family: "Consolas", "Courier New", monospace;
+    .details-path, .doc-path {
       font-size: 12px;
       line-height: 1.6;
       overflow-wrap: anywhere;
       word-break: break-word;
     }
 
-    .details-grid {
-      display: grid;
-      gap: 12px;
-      margin: 16px 0;
-    }
-
-    .details-section {
+    .details-section, .doc-section {
       padding-top: 14px;
       border-top: 1px solid rgba(27, 26, 23, 0.08);
     }
 
-    .details-section h3 {
-      margin: 0 0 8px;
-      font-size: 13px;
-      letter-spacing: 0.12em;
-      text-transform: uppercase;
-      font-family: "Consolas", "Courier New", monospace;
-      color: var(--muted);
+    .doc-link {
+      width: 100%;
+      padding: 12px 14px;
+      text-align: left;
     }
 
-    .details-section ul {
+    .doc-link-title {
+      display: block;
+      margin: 6px 0;
+      font-weight: 700;
+      color: var(--ink);
+    }
+
+    .doc-link-preview, .json-primitive, .doc-article li, .doc-article p {
+      color: #413c34;
+      line-height: 1.7;
+    }
+
+    .doc-article h1 { font-size: 36px; line-height: 1.02; margin: 0; }
+    .doc-article h2 { font-size: 26px; line-height: 1.08; margin: 0; }
+    .doc-article h3 { font-size: 20px; line-height: 1.15; margin: 0; }
+
+    .doc-article ul, .details-section ul {
       margin: 0;
       padding-left: 18px;
-      color: var(--muted);
     }
+
+    .doc-article code {
+      padding: 1px 5px;
+      border-radius: 6px;
+      background: rgba(198, 93, 46, 0.1);
+      color: #6d2c13;
+      font-size: 0.92em;
+    }
+
+    .doc-article pre, .json-raw {
+      margin: 0;
+      padding: 14px 16px;
+      border-radius: 16px;
+      background: rgba(27, 26, 23, 0.92);
+      color: #f8f1e5;
+      overflow-x: auto;
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 13px;
+      line-height: 1.6;
+    }
+
+    .json-key { display: block; margin-bottom: 8px; font-size: 12px; }
 
     .empty-state {
       padding: 18px;
@@ -410,18 +365,9 @@
     }
 
     @media (max-width: 1180px) {
-      .masthead,
-      .main {
-        grid-template-columns: 1fr;
-      }
-
-      .details {
-        position: static;
-      }
-
-      .filters-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-      }
+      .masthead, .main, .doc-layout { grid-template-columns: 1fr; }
+      .details, .doc-nav { position: static; }
+      .filters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 720px) {
@@ -430,14 +376,9 @@
         margin: 9px auto;
         padding: 12px;
       }
-
-      .filters-grid {
-        grid-template-columns: 1fr;
-      }
-
-      .columns {
-        grid-template-columns: 1fr;
-      }
+      .filters-grid, .doc-meta-grid { grid-template-columns: 1fr; }
+      .columns { grid-template-columns: 1fr; }
+      .tab-button { min-width: 100%; }
     }
   </style>
 </head>
@@ -447,7 +388,12 @@
       <div class="hero">
         <div class="eyebrow">Workspace Dashboard / __WORKSPACE_NAME__</div>
         <h1>Execution Radar</h1>
-        <p style="max-width: 54ch; margin-top: 14px;">A read-only kanban view generated from project execution-item JSON files. The board normalizes workflow state across projects without becoming a new source of truth.</p>
+        <p style="max-width: 54ch; margin-top: 14px;">A read-only workspace atlas that keeps execution tracking, current_overview, roadmap, change_log, and the broader project narrative in one generated view.</p>
+        <div class="pill-row">
+          <span class="pill">Current Overview</span>
+          <span class="pill">Execution Items</span>
+          <span class="pill">Change Log</span>
+        </div>
       </div>
       <div class="meta">
         <p>Generated on <strong>__GENERATED_AT__</strong>. Open the launcher again at any time to rebuild this view from the latest project data.</p>
@@ -472,51 +418,71 @@
       </div>
     </section>
 
-    <section class="filters">
-      <div class="filters-grid">
-        <div class="filter-block">
-          <label class="filter-label" for="project-filter">Filter by project</label>
-          <select id="project-filter"></select>
-        </div>
-        <div class="filter-block">
-          <label class="filter-label" for="type-filter">Filter by type</label>
-          <select id="type-filter"></select>
-        </div>
-        <div class="filter-block">
-          <label class="filter-label" for="owner-filter">Filter by owner</label>
-          <select id="owner-filter"></select>
-        </div>
-        <div class="filter-block">
-          <label class="filter-label" for="priority-filter">Filter by priority</label>
-          <select id="priority-filter"></select>
-        </div>
-        <div class="filter-block">
-          <label class="filter-label" for="search-filter">Search</label>
-          <input id="search-filter" type="search" placeholder="ID, title, summary">
-        </div>
-      </div>
-      <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr;">
-        <label class="checkbox-line">
-          <input id="cancelled-toggle" type="checkbox">
-          <span>Show cancelled</span>
-        </label>
-        <div class="warning-strip" id="warning-strip">
-          <div class="warning-text" id="warning-text"></div>
-        </div>
-      </div>
+    <section class="tab-strip">
+      <div class="tabs" id="section-tabs"></div>
     </section>
 
-    <section class="main">
-      <div class="board">
-        <div class="columns" id="columns"></div>
-      </div>
-      <aside class="details" id="details"></aside>
+    <section class="tab-panel is-active" id="execution-panel">
+      <section class="filters">
+        <div class="filters-grid">
+          <div class="filter-block">
+            <label class="filter-label" for="project-filter">Filter by project</label>
+            <select id="project-filter"></select>
+          </div>
+          <div class="filter-block">
+            <label class="filter-label" for="type-filter">Filter by type</label>
+            <select id="type-filter"></select>
+          </div>
+          <div class="filter-block">
+            <label class="filter-label" for="owner-filter">Filter by owner</label>
+            <select id="owner-filter"></select>
+          </div>
+          <div class="filter-block">
+            <label class="filter-label" for="priority-filter">Filter by priority</label>
+            <select id="priority-filter"></select>
+          </div>
+          <div class="filter-block">
+            <label class="filter-label" for="search-filter">Search</label>
+            <input id="search-filter" type="search" placeholder="ID, title, summary">
+          </div>
+        </div>
+        <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr;">
+          <label class="micro" style="display:flex;gap:10px;align-items:center;height:42px;">
+            <input id="cancelled-toggle" type="checkbox">
+            <span>Show cancelled</span>
+          </label>
+          <div class="warning-strip" id="warning-strip">
+            <div class="warning-text" id="warning-text"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="main">
+        <div class="board">
+          <div class="columns" id="columns"></div>
+        </div>
+        <aside class="details" id="details"></aside>
+      </section>
+    </section>
+
+    <section class="tab-panel" id="document-panel">
+      <section class="doc-layout">
+        <aside class="doc-nav">
+          <div class="eyebrow" id="doc-eyebrow">Section</div>
+          <h2 id="doc-section-title">Current Overview</h2>
+          <p id="doc-section-description"></p>
+          <div class="doc-links" id="doc-links"></div>
+        </aside>
+        <article class="doc-viewer">
+          <div class="doc-article" id="doc-viewer-content"></div>
+        </article>
+      </section>
     </section>
   </div>
-
   <script>
     const DASHBOARD_DATA_RAW = __DASHBOARD_DATA__;
     const DASHBOARD_WARNINGS_RAW = __DASHBOARD_WARNINGS__;
+    const WORKSPACE_SECTIONS_RAW = __WORKSPACE_SECTIONS__;
     const STATUS_COLUMNS = [
       { key: "planned", label: "Planned" },
       { key: "in_progress", label: "In Progress" },
@@ -545,10 +511,21 @@
       }));
     }
 
+    function normalizeSections(sections) {
+      return ensureArray(sections).map((section) => ({
+        ...section,
+        documents: ensureArray(section.documents)
+      }));
+    }
+
     const DASHBOARD_DATA = normalizeItems(DASHBOARD_DATA_RAW);
     const DASHBOARD_WARNINGS = ensureArray(DASHBOARD_WARNINGS_RAW);
+    const WORKSPACE_SECTIONS = normalizeSections(WORKSPACE_SECTIONS_RAW);
 
     const els = {
+      sectionTabs: document.getElementById("section-tabs"),
+      executionPanel: document.getElementById("execution-panel"),
+      documentPanel: document.getElementById("document-panel"),
       projectFilter: document.getElementById("project-filter"),
       typeFilter: document.getElementById("type-filter"),
       ownerFilter: document.getElementById("owner-filter"),
@@ -562,15 +539,167 @@
       projectCount: document.getElementById("project-count"),
       itemCount: document.getElementById("item-count"),
       blockedCount: document.getElementById("blocked-count"),
-      dueSoonCount: document.getElementById("due-soon-count")
+      dueSoonCount: document.getElementById("due-soon-count"),
+      docEyebrow: document.getElementById("doc-eyebrow"),
+      docSectionTitle: document.getElementById("doc-section-title"),
+      docSectionDescription: document.getElementById("doc-section-description"),
+      docLinks: document.getElementById("doc-links"),
+      docViewerContent: document.getElementById("doc-viewer-content")
     };
 
     const state = {
-      selectedId: DASHBOARD_DATA[0] ? DASHBOARD_DATA[0].id : null
+      activeSectionKey: "execution_items",
+      selectedId: DASHBOARD_DATA[0] ? DASHBOARD_DATA[0].id : null,
+      selectedDocumentIds: {}
     };
 
     function titleCase(value) {
       return value.replaceAll("_", " ").replace(/\b\w/g, (match) => match.toUpperCase());
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll("&", "&amp;")
+        .replaceAll("<", "&lt;")
+        .replaceAll(">", "&gt;")
+        .replaceAll('"', "&quot;")
+        .replaceAll("'", "&#39;");
+    }
+
+    function renderInlineMarkdown(text) {
+      return escapeHtml(text)
+        .replace(/`([^`]+)`/g, "<code>$1</code>")
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+    }
+
+    function renderMarkdown(source) {
+      const lines = String(source || "").replace(/\r\n/g, "\n").split("\n");
+      const blocks = [];
+      let paragraph = [];
+      let listItems = [];
+      let codeLines = [];
+      let inCode = false;
+
+      function flushParagraph() {
+        if (!paragraph.length) {
+          return;
+        }
+        blocks.push(`<p>${renderInlineMarkdown(paragraph.join(" "))}</p>`);
+        paragraph = [];
+      }
+
+      function flushList() {
+        if (!listItems.length) {
+          return;
+        }
+        blocks.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+        listItems = [];
+      }
+
+      function flushCode() {
+        if (!codeLines.length) {
+          return;
+        }
+        blocks.push(`<pre>${escapeHtml(codeLines.join("\n"))}</pre>`);
+        codeLines = [];
+      }
+
+      lines.forEach((line) => {
+        if (line.trim().startsWith("```")) {
+          flushParagraph();
+          flushList();
+          if (inCode) {
+            flushCode();
+          }
+          inCode = !inCode;
+          return;
+        }
+
+        if (inCode) {
+          codeLines.push(line);
+          return;
+        }
+
+        const heading = line.match(/^(#{1,3})\s+(.*)$/);
+        if (heading) {
+          flushParagraph();
+          flushList();
+          const level = Math.min(heading[1].length, 3);
+          blocks.push(`<h${level}>${renderInlineMarkdown(heading[2].trim())}</h${level}>`);
+          return;
+        }
+
+        const listItem = line.match(/^[-*]\s+(.*)$/);
+        if (listItem) {
+          flushParagraph();
+          listItems.push(listItem[1].trim());
+          return;
+        }
+
+        if (!line.trim()) {
+          flushParagraph();
+          flushList();
+          return;
+        }
+
+        paragraph.push(line.trim());
+      });
+
+      flushParagraph();
+      flushList();
+      flushCode();
+
+      return blocks.length ? blocks.join("") : '<div class="empty-state">No Markdown content available.</div>';
+    }
+
+    function renderJsonValue(value) {
+      if (value === null || value === undefined) {
+        return '<div class="json-primitive">null</div>';
+      }
+
+      if (Array.isArray(value)) {
+        if (!value.length) {
+          return '<div class="json-primitive">[]</div>';
+        }
+
+        const allPrimitive = value.every((entry) => entry === null || typeof entry !== "object");
+        if (allPrimitive) {
+          return `<ul>${value.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`;
+        }
+
+        return `<div class="json-array">${value.map((entry, index) => `
+          <div class="json-card">
+            <span class="json-key">Item ${index + 1}</span>
+            ${renderJsonValue(entry)}
+          </div>
+        `).join("")}</div>`;
+      }
+
+      if (typeof value === "object") {
+        const entries = Object.entries(value);
+        return entries.length
+          ? `<div class="json-object">${entries.map(([key, entryValue]) => `
+              <div class="json-entry">
+                <span class="json-key">${escapeHtml(key)}</span>
+                ${renderJsonValue(entryValue)}
+              </div>
+            `).join("")}</div>`
+          : '<div class="json-primitive">{}</div>';
+      }
+
+      return `<div class="json-primitive">${escapeHtml(value)}</div>`;
+    }
+
+    function getSection(sectionKey) {
+      return WORKSPACE_SECTIONS.find((section) => section.key === sectionKey) || null;
+    }
+
+    function getSelectedDocument(section) {
+      if (!section || section.type !== "documents") {
+        return null;
+      }
+      const selectedId = state.selectedDocumentIds[section.key];
+      return section.documents.find((document) => document.id === selectedId) || section.documents[0] || null;
     }
 
     function isDueSoon(item) {
@@ -621,14 +750,9 @@
       if (!searchValue) {
         return true;
       }
-
-      return [
-        item.id,
-        item.title,
-        item.summary,
-        item.project_id,
-        item.owner
-      ].filter(Boolean).some((value) => value.toLowerCase().includes(searchValue));
+      return [item.id, item.title, item.summary, item.project_id, item.owner]
+        .filter(Boolean)
+        .some((value) => value.toLowerCase().includes(searchValue));
     }
 
     function renderCard(item) {
@@ -638,18 +762,18 @@
       card.dataset.status = item.status;
       card.innerHTML = `
         <div class="card-top">
-          <span class="card-id">${item.id}</span>
+          <span class="micro">${item.id}</span>
           <span class="micro">${item.project_id}</span>
         </div>
-        <div style="font-size: 20px; line-height: 1.1; font-weight: 700;">${item.title}</div>
-        <p style="margin: 8px 0 0;">${item.summary || "No summary provided."}</p>
+        <div style="font-size:20px;line-height:1.1;font-weight:700;">${escapeHtml(item.title)}</div>
+        <p style="margin:8px 0 0;">${escapeHtml(item.summary || "No summary provided.")}</p>
         <div class="tag-row">
           <span class="tag">${titleCase(item.type)}</span>
-          <span class="tag">${item.owner || "Unassigned"}</span>
+          <span class="tag">${escapeHtml(item.owner || "Unassigned")}</span>
           ${item.priority ? `<span class="tag">${titleCase(item.priority)}</span>` : ""}
         </div>
-        <div class="card-meta" style="margin-top: 12px;">
-          <span class="micro">${item.target_date || "No target date"}</span>
+        <div class="card-meta" style="margin-top:12px;">
+          <span class="micro">${escapeHtml(item.target_date || "No target date")}</span>
           <span class="micro">${titleCase(item.status)}</span>
         </div>
       `;
@@ -673,23 +797,23 @@
       const focusList = item.type === "milestone" ? item.deliverables : item.definition_of_done;
       const focusLabel = item.type === "milestone" ? "Deliverables" : "Definition of Done";
       const dependencies = item.dependencies.length
-        ? `<ul>${item.dependencies.map((value) => `<li>${value}</li>`).join("")}</ul>`
+        ? `<ul>${item.dependencies.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul>`
         : `<p>No dependencies recorded.</p>`;
-      const focusSection = focusList && focusList.length
-        ? `<ul>${focusList.map((value) => `<li>${value}</li>`).join("")}</ul>`
+      const focusSection = focusList.length
+        ? `<ul>${focusList.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul>`
         : `<p>No ${focusLabel.toLowerCase()} recorded.</p>`;
       const notesSection = item.notes.length
-        ? `<ul>${item.notes.map((value) => `<li>${value}</li>`).join("")}</ul>`
+        ? `<ul>${item.notes.map((value) => `<li>${escapeHtml(value)}</li>`).join("")}</ul>`
         : `<p>No notes recorded.</p>`;
 
       els.details.innerHTML = `
-        <div class="eyebrow">Details / ${item.project_id}</div>
-        <h2>${item.title}</h2>
-        <p class="details-summary">${item.summary || "No summary provided."}</p>
+        <div class="eyebrow">Details / ${escapeHtml(item.project_id)}</div>
+        <h2>${escapeHtml(item.title)}</h2>
+        <p class="details-summary">${escapeHtml(item.summary || "No summary provided.")}</p>
         <div class="details-grid">
           <div class="stat">
             <span class="stat-label">ID</span>
-            <span class="micro">${item.id}</span>
+            <span class="micro">${escapeHtml(item.id)}</span>
           </div>
           <div class="stat">
             <span class="stat-label">Status</span>
@@ -697,17 +821,17 @@
           </div>
           <div class="stat">
             <span class="stat-label">Owner</span>
-            <span class="micro">${item.owner || "Unassigned"}</span>
+            <span class="micro">${escapeHtml(item.owner || "Unassigned")}</span>
           </div>
           <div class="stat">
             <span class="stat-label">Target Date</span>
-            <span class="micro">${item.target_date || "None"}</span>
+            <span class="micro">${escapeHtml(item.target_date || "None")}</span>
           </div>
         </div>
         ${item.problem_statement ? `
           <div class="details-section">
             <h3>Problem Statement</h3>
-            <p>${item.problem_statement}</p>
+            <p>${escapeHtml(item.problem_statement)}</p>
           </div>
         ` : ""}
         <div class="details-section">
@@ -741,7 +865,7 @@
         const stack = document.createElement("div");
         stack.className = "card-stack";
 
-        if (items.length === 0) {
+        if (!items.length) {
           const empty = document.createElement("div");
           empty.className = "empty-state";
           empty.textContent = "No items match this column.";
@@ -783,23 +907,140 @@
       els.warningStrip.classList.add("is-visible");
     }
 
+    function renderSectionTabs() {
+      els.sectionTabs.innerHTML = "";
+      WORKSPACE_SECTIONS.forEach((section) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `tab-button${state.activeSectionKey === section.key ? " is-active" : ""}`;
+        const count = section.type === "board" ? `${DASHBOARD_DATA.length} items` : `${section.documents.length} files`;
+        button.innerHTML = `
+          <span class="tab-title">${escapeHtml(section.label)}</span>
+          <span class="tab-caption">${escapeHtml(count)}</span>
+        `;
+        button.addEventListener("click", () => {
+          state.activeSectionKey = section.key;
+          renderActiveSection();
+        });
+        els.sectionTabs.appendChild(button);
+      });
+    }
+
+    function renderDocumentLinks(section, selectedDocument) {
+      els.docLinks.innerHTML = "";
+      if (!section.documents.length) {
+        els.docLinks.innerHTML = '<div class="empty-state">No documents found for this section.</div>';
+        return;
+      }
+
+      section.documents.forEach((document) => {
+        const button = document.createElement("button");
+        button.type = "button";
+        button.className = `doc-link${selectedDocument && selectedDocument.id === document.id ? " is-active" : ""}`;
+        button.innerHTML = `
+          <div class="doc-link-header">
+            <span class="doc-meta">${escapeHtml(document.project_id)}</span>
+            <span class="doc-meta">${escapeHtml(document.format)}</span>
+          </div>
+          <span class="doc-link-title">${escapeHtml(document.title)}</span>
+          <span class="doc-meta">${escapeHtml(document.slug)}</span>
+          <span class="doc-link-preview">${escapeHtml(document.preview || "No preview available.")}</span>
+        `;
+        button.addEventListener("click", () => {
+          state.selectedDocumentIds[section.key] = document.id;
+          renderDocumentsSection(section.key);
+        });
+        els.docLinks.appendChild(button);
+      });
+    }
+
+    function renderDocumentContent(document) {
+      if (!document) {
+        els.docViewerContent.innerHTML = '<div class="empty-state">No document selected.</div>';
+        return;
+      }
+
+      const contentHtml = document.format === "markdown"
+        ? renderMarkdown(document.content)
+        : renderJsonValue(document.content);
+
+      els.docViewerContent.innerHTML = `
+        <div class="eyebrow">Document / ${escapeHtml(document.project_id)}</div>
+        <h2>${escapeHtml(document.title)}</h2>
+        <p>${escapeHtml(document.preview || "No summary available.")}</p>
+        <div class="doc-meta-grid">
+          <div class="stat">
+            <span class="stat-label">Project</span>
+            <span class="micro">${escapeHtml(document.project_id)}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Format</span>
+            <span class="micro">${escapeHtml(document.format)}</span>
+          </div>
+          <div class="stat">
+            <span class="stat-label">Source</span>
+            <span class="micro">${escapeHtml(document.slug)}</span>
+          </div>
+        </div>
+        <div class="doc-section">
+          <h3>Source Path</h3>
+          <p class="doc-path">${escapeHtml(document.relative_path)}</p>
+        </div>
+        <div class="doc-section">
+          <h3>Rendered Content</h3>
+          ${contentHtml}
+        </div>
+      `;
+    }
+
+    function renderDocumentsSection(sectionKey) {
+      const section = getSection(sectionKey);
+      if (!section) {
+        return;
+      }
+
+      const selectedDocument = getSelectedDocument(section);
+      if (selectedDocument) {
+        state.selectedDocumentIds[section.key] = selectedDocument.id;
+      }
+
+      els.docEyebrow.textContent = `Section / ${section.label}`;
+      els.docSectionTitle.textContent = section.label;
+      els.docSectionDescription.textContent = section.description || "";
+      renderDocumentLinks(section, selectedDocument);
+      renderDocumentContent(selectedDocument);
+    }
+
+    function renderActiveSection() {
+      renderSectionTabs();
+      const isExecution = state.activeSectionKey === "execution_items";
+      els.executionPanel.classList.toggle("is-active", isExecution);
+      els.documentPanel.classList.toggle("is-active", !isExecution);
+      if (isExecution) {
+        renderBoard();
+        return;
+      }
+      renderDocumentsSection(state.activeSectionKey);
+    }
+
     function initialise() {
       fillSelect(els.projectFilter, buildOptions(DASHBOARD_DATA, "project_id", "All projects"));
       fillSelect(els.typeFilter, buildOptions(DASHBOARD_DATA, "type", "All types"));
       fillSelect(els.ownerFilter, buildOptions(DASHBOARD_DATA, "owner", "All owners"));
       fillSelect(els.priorityFilter, buildOptions(DASHBOARD_DATA, "priority", "All priorities"));
 
-      [
-        els.projectFilter,
-        els.typeFilter,
-        els.ownerFilter,
-        els.priorityFilter,
-        els.cancelledToggle
-      ].forEach((element) => element.addEventListener("change", renderBoard));
+      [els.projectFilter, els.typeFilter, els.ownerFilter, els.priorityFilter, els.cancelledToggle]
+        .forEach((element) => element.addEventListener("change", renderBoard));
       els.searchFilter.addEventListener("input", renderBoard);
 
+      WORKSPACE_SECTIONS.forEach((section) => {
+        if (section.type === "documents" && section.documents[0]) {
+          state.selectedDocumentIds[section.key] = section.documents[0].id;
+        }
+      });
+
       renderWarnings();
-      renderBoard();
+      renderActiveSection();
     }
 
     initialise();
