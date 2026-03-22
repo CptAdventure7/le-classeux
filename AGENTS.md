@@ -17,6 +17,10 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.
 - Use local `README.md` files inside the selected project for folder-level scope and authoring rules.
 - Use `agent/skills/` for reusable workflows that apply across projects and subagents personas.
+- The current shared skills in `agent/skills/` are:
+  - `general-update`: repository-wide project context refresh, canonical artefact propagation, governance log update, and standardized commit.
+  - `meeting-summary`: convert meeting transcripts or notes into structured project meeting summaries.
+  - `reference-ingestion`: ingest source documents into the project context bank and update canonical artefacts.
 - Nerver invent, base actions and answer on evidence, without guessing. Prefer project-local evidence over assumptions.
 - Finish state-changing repository work with a git commit when possible. If a commit cannot be created, say why.
 
@@ -30,3 +34,6 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - `human_dashboards/`: shared read-only derived views for humans, generated from project-owned source artifacts.
 - `projects_manifest.yaml`: shallow workspace manifest listing the available projects.
 - `agent/skills/`: shared workflow skills and personas.
+- `agent/skills/general-update/`: repository-wide refresh workflow.
+- `agent/skills/meeting-summary/`: meeting transcript and notes summarization workflow.
+- `agent/skills/reference-ingestion/`: source document ingestion workflow.
