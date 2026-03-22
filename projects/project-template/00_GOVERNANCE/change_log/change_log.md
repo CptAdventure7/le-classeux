@@ -1,5 +1,9 @@
 # Change Log
 
+- added a simple `07_PROJECT_EXECUTION/issues/kanban.md` reference board that lists all active issues in one human-readable table, and renamed the issue template section from `Acceptance Criteria` to `Definition of Done` in the issues README (2026-03-21-23h05).
+
+- merged `09_COLLABORATION` and `10_COMMUNICATION` into `09_COMMUNICATION`, renumbered `11_OPERATIONS_AND_HANDOFF` to `10_OPERATIONS_AND_HANDOFF`, and updated manifest plus roadmap/current-overview references to the new structure (2026-03-21-22h55).
+
 - removed `99_ARCHIVE/retired_requirements` and `99_ARCHIVE/legacy_tests`, simplified the remaining `99_ARCHIVE` README files to short folder-level guidance, and aligned the archive manifest plus verification test with the slimmer archive structure (2026-03-21-22h40).
 
 - renamed `99_ARCHIVE/snapshots` to `99_ARCHIVE/current_overview`, updated the archive manifest and cross-links, and clarified in governance that older weekly overviews should be retired into the new archive folder (2026-03-21-22h35).

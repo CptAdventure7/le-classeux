@@ -1,6 +1,6 @@
 # Issues
 
-Keep execution issues here. Use one Markdown file per issue. If you maintain a board view, keep it in `kanban.md`.
+Keep execution issues here. Use one Markdown file per issue. Keep the board view in `kanban.md`, and make sure it lists every active issue exactly once.
 
 ## Keep Here
 
@@ -26,11 +26,15 @@ Then use these sections:
 
 - `## Context`
 - `## Problem Statement`
-- `## Acceptance Criteria`
+- `## Definition of Done`
 - `## Dependencies`
 - `## Notes / Links`
 
-Keep acceptance criteria as Markdown checkboxes. Use `unknown` if the due date is not set.
+Keep the definition of done as Markdown checkboxes. Use `unknown` if the due date is not set.
+
+## Kanban View
+
+Use `kanban.md` as a simple human-readable board. Keep one row per active issue and move the row when the status changes. Archive or remove rows once the issue is closed so the board stays limited to active work.
 
 ## Example
 
@@ -52,7 +56,7 @@ Waiting on vendor documentation needed for downselect.
 ## Problem Statement
 The project cannot close the procurement review without the missing evidence.
 
-## Acceptance Criteria
+## Definition of Done
 - [ ] Required vendor documents received
 - [ ] Procurement review updated
 
