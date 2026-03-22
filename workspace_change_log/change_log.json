@@ -1,0 +1,6 @@
+[
+  {
+    "change_summary": "added a root-level `workspace_change_log` folder with JSON-first guidance so workspace changes outside individual projects have their own append-only trace record",
+    "date": "2026-03-22-18h11"
+  }
+]

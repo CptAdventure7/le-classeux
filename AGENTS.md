@@ -12,6 +12,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - Preserve project-level progressive disclosure instead of scanning the whole repository blindly. 
 - Keep shared agent resources separate from project-owned artefacts.
 - Maintain traceability when a project repository state changes by updating `<project>/00_GOVERNANCE/change_log/change_log.json`.
+- Maintain traceability when workspace-owned artefacts change outside any individual project by updating `workspace_change_log/change_log.json`.
 - Consider breaking down complex task into subtask and instantiating subagents. Those angent must inherit all your working instructions.
 - Read the root `projects_manifest.yaml` to identify the available project entrypoint.
 - For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.
@@ -35,6 +36,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - `projects/`: container of named project folders.
 - `human_dashboards/`: shared read-only derived views for humans, generated from project-owned source artifacts.
 - `projects_manifest.yaml`: shallow workspace manifest listing the available projects.
+- `workspace_change_log/`: workspace-level append-only trace log for changes outside any individual project.
 - `agent/skills/`: shared workflow skills and personas.
 - `agent/skills/general-update/`: repository-wide refresh workflow.
 - `agent/skills/meeting-summary/`: meeting transcript and notes summarization workflow.
