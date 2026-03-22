@@ -6,7 +6,7 @@ Keep budget planning and resource allocation artifacts here.
 
 - budget snapshots
 - staffing and capacity notes
-- cost assumptions tied to roadmap or work packages
+- cost assumptions tied to roadmap or execution items
 - resource tradeoff notes that affect delivery
 
 ## Example

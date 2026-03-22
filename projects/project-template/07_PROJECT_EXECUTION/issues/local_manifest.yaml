@@ -1,9 +1,0 @@
-folder: issues
-summary: "Execution issues live here. Keep one markdown file per issue, maintain any board view as a simple active-only overview, and link issues to related work packages, milestones, change requests, or procurement artifacts."
-files:
-  - name: README.md
-    summary: "Defines the issue file shape, required header fields, section order, and optional human-readable kanban view."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []

@@ -116,14 +116,8 @@ top_level_sections:
       - id: roadmap
         purpose: "Artifacts specifically related to Roadmap."
         children: []
-      - id: work_packages
-        purpose: "Artifacts specifically related to Work Packages."
-        children: []
-      - id: issues
-        purpose: "Artifacts specifically related to Issues."
-        children: []
-      - id: milestones
-        purpose: "Artifacts specifically related to Milestones."
+      - id: execution_items
+        purpose: "Unified execution tracking items. Keep one JSON file per item, using `type` to distinguish issue and milestone records."
         children: []
       - id: budget_resources
         purpose: "Artifacts specifically related to Budget Resources."

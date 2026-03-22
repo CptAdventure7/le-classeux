@@ -6,7 +6,7 @@ Keep procurement execution artifacts here.
 
 - Create one subfolder per procured item so all information for that item stays grouped together.
 - In each item folder, keep vendor outreach and bid tracking, quote comparisons, purchase timing, approval notes, and downstream links.
-- Link the item folder to any affected budget, issues, milestones, or risks instead of scattering procurement notes across multiple places.
+- Link the item folder to any affected budget, execution items, or risks instead of scattering procurement notes across multiple places.
 
 ## Example
 

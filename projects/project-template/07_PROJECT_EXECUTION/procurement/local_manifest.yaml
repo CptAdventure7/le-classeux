@@ -2,7 +2,7 @@ folder: procurement
 summary: "Procurement execution artifacts live here. Keep one subfolder per procured item so quotes, approvals, timing, outreach, and downstream project links stay grouped together."
 files:
   - name: README.md
-    summary: "Defines the one-subfolder-per-item procurement pattern and the expected links to budgets, issues, milestones, and risks."
+    summary: "Defines the one-subfolder-per-item procurement pattern and the expected links to budgets, execution items, and risks."
     original_links: []
   - name: local_manifest.yaml
     summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."

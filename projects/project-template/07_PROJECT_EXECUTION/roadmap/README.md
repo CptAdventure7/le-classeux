@@ -32,9 +32,7 @@ Use `RDM-` IDs. Keep `status` to `planned`, `in_progress`, `blocked`, or `done`.
   "roadmap_title": "project-template Delivery Roadmap",
   "last_updated": "2026-03-11",
   "source_links": [
-    "../milestones",
-    "../work_packages",
-    "../issues"
+    "../execution_items"
   ],
   "items": [
     {
@@ -46,12 +44,10 @@ Use `RDM-` IDs. Keep `status` to `planned`, `in_progress`, `blocked`, or `done`.
       "target_date": "2026-04-15",
       "summary": "Finish the initial context-bank structure and align execution artifacts.",
       "dependencies": [
-        "../milestones",
-        "../work_packages"
+        "../execution_items/EXEC-MILESTONE-001-baseline-context-bank-ready.json"
       ],
       "source_links": [
-        "../milestones",
-        "../issues"
+        "../execution_items/EXEC-ISSUE-001-execution-structure-simplification.json"
       ]
     }
   ]

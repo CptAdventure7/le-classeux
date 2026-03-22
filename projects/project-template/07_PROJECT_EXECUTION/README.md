@@ -5,9 +5,7 @@ Use this section for delivery-management artifacts: plans, work tracking, milest
 ## Folders
 
 - `roadmap`
-- `work_packages`
-- `issues`
-- `milestones`
+- `execution_items`
 - `budget_resources`
 - `procurement`
 - `project_risk_register`
