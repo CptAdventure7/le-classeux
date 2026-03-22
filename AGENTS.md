@@ -16,6 +16,8 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - Read the root `projects_manifest.yaml` to identify the available project entrypoint.
 - For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.
 - Use local `README.md` files inside the selected project for folder-level scope and authoring rules.
+- Some links may point to locally synced OneDrive paths for SharePoint files. Treat those links as brittle: they may break, or they may need to be adjusted for the current Windows user profile.
+- If a OneDrive or SharePoint-linked local path does not work, do your best without it and explicitly inform the user at the end of your work.
 - Use `agent/skills/` for reusable workflows that apply across projects and subagents personas.
 - The current shared skills in `agent/skills/` are:
   - `general-update`: repository-wide project context refresh, canonical artefact propagation, governance log update, and standardized commit.
