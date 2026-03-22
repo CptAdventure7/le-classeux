@@ -367,6 +367,14 @@
       text-wrap: pretty;
     }
 
+    .details-path {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      line-height: 1.6;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .details-grid {
       display: grid;
       gap: 12px;
@@ -716,7 +724,7 @@
         </div>
         <div class="details-section">
           <h3>Source File</h3>
-          <p>${item.relative_path}</p>
+          <p class="details-path">${item.relative_path}</p>
         </div>
       `;
     }

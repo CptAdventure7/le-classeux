@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "fixed long source-file path wrapping in the shared execution dashboard detail view by adding dedicated forced-wrap styling for the source path in `human_dashboards/execution_dashboard_resources/execution_dashboard_template.html` and extending the dashboard generator tests to assert the emitted path markup and wrap rules",
+        "date":  "2026-03-22-15h15"
+    },
+    {
         "change_summary":  "improved the shared execution dashboard detail view for execution items by widening the details column, adding dedicated summary wrap styling in `human_dashboards/execution_dashboard_resources/execution_dashboard_template.html`, and extending the dashboard generator test coverage for the rendered description markup",
         "date":  "2026-03-22-15h10"
     },
