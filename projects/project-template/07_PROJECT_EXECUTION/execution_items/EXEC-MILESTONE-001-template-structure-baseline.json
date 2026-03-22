@@ -1,0 +1,24 @@
+{
+  "id": "EXEC-MILESTONE-001",
+  "type": "milestone",
+  "title": "Template structure baseline",
+  "status": "planned",
+  "owner": "Program Management",
+  "created": "2026-03-22",
+  "target_date": "2026-03-28",
+  "completion_date": null,
+  "priority": "medium",
+  "summary": "Freeze the simplified project-template structure so downstream examples and walkthroughs use one stable baseline.",
+  "dependencies": [],
+  "linked_artifacts": [
+    "projects/project-template/project_manifest.yaml",
+    "projects/project-template/README.md"
+  ],
+  "notes": [
+    "Added as representative test data for the human dashboard."
+  ],
+  "deliverables": [
+    "Validated project-template folder map",
+    "Stable README navigation baseline"
+  ]
+}

@@ -1,0 +1,28 @@
+{
+  "id": "EXEC-ISSUE-001",
+  "type": "issue",
+  "title": "Dashboard sample data gap",
+  "status": "blocked",
+  "owner": "Systems Lead",
+  "created": "2026-03-22",
+  "target_date": "2026-03-24",
+  "completion_date": null,
+  "priority": "high",
+  "summary": "The cross-project dashboard cannot be validated end to end until the template project contains representative execution items.",
+  "dependencies": [
+    "EXEC-MILESTONE-001"
+  ],
+  "linked_artifacts": [
+    "human_dashboards/Open Execution Dashboard.cmd",
+    "human_dashboards/execution_dashboard_resources/generate_execution_dashboard.ps1"
+  ],
+  "notes": [
+    "This issue should be closed once the sample execution items are visible in the generated dashboard."
+  ],
+  "problem_statement": "Without real milestone and issue records, the dashboard only proves that the generator runs, not that the kanban view is useful.",
+  "definition_of_done": [
+    "At least one issue record exists in execution_items",
+    "At least two milestone records exist in execution_items",
+    "Generated dashboard shows the new records"
+  ]
+}

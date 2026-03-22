@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "added three representative execution-item JSON records under `07_PROJECT_EXECUTION/execution_items` so the shared dashboard has real issue and milestone data to display during testing, and refreshed the local manifest to index them",
+        "date":  "2026-03-22-14h54"
+    },
+    {
         "change_summary":  "merged `07_PROJECT_EXECUTION/work_packages`, `07_PROJECT_EXECUTION/issues`, and `07_PROJECT_EXECUTION/milestones` into a single `07_PROJECT_EXECUTION/execution_items` folder, defined a one-JSON-file-per-item contract with `type` for issue versus milestone records, added `execution_items/local_manifest.yaml`, removed the separate human-board concept, and aligned neighboring execution guidance to the unified model",
         "date":  "2026-03-22-14h33"
     },
