@@ -1,8 +1,8 @@
 # 09 Collaboration
 
-This folder belongs to the project-template context bank.
+Keep this section simple.
 
-## What Belongs Here
-
-`meetings` folder and this readme.md. Nothing else.
+- Store collaboration artifacts here.
+- Use `meetings/` for meeting material.
+- Do not add general project documents here if they fit better in another top-level section.
 
