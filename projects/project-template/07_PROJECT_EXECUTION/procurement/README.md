@@ -12,3 +12,8 @@ Keep procurement execution artifacts here.
 
 `sensor-module/` containing the vendor comparison, quotes, lead times, approval notes, open questions, and the recommended next step for that item.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

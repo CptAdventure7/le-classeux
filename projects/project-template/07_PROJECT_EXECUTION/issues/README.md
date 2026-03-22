@@ -82,3 +82,8 @@ The project cannot close the procurement review without the missing evidence.
 | `KEY-ISSUE-005` | Close resolved training material gap | `Operations` | `Low` | `Done` | `2026-03-20` |
 ```
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+
