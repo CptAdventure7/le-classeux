@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "converted `08_DECISIONS/README.md` to the same single-canonical-JSON contract used elsewhere, centered on `decisions.json`, removed the readme-only placeholder guidance, and moved the decision example schema inline into the README",
+        "date":  "2026-03-22-14h55"
+    },
+    {
         "change_summary":  "converted `07_PROJECT_EXECUTION/work_packages` to a single-canonical-JSON folder contract centered on `work_packages.json`, removed the markdown-per-package example, and clarified that the JSON file is described in the README only and not seeded during project instantiation",
         "date":  "2026-03-22-14h08"
     },
