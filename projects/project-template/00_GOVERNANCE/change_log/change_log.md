@@ -1,5 +1,7 @@
 # Change Log
 
+- merged `10_OPERATIONS_AND_HANDOFF/deployment` and `10_OPERATIONS_AND_HANDOFF/installation` into `10_OPERATIONS_AND_HANDOFF/deployment_installation`, removed `10_OPERATIONS_AND_HANDOFF/release_notes`, and aligned the manifest plus local README guidance to the slimmer handoff structure (2026-03-22-00h00).
+
 - moved the `07_PROJECT_EXECUTION/milestones` board example into the local README and removed the seeded `milestones.md` template file so the board is created only when a project actually starts tracking milestones (2026-03-21-23h12).
 
 - moved the `07_PROJECT_EXECUTION/issues` Kanban reference example into the local README and removed the separate `kanban.md` template file so the folder guidance stays self-contained (2026-03-21-23h20).

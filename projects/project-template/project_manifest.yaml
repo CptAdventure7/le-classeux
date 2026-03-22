@@ -162,13 +162,10 @@ top_level_sections:
         purpose: "Artifacts specifically related to Reporting."
         children: []
   - id: 10_OPERATIONS_AND_HANDOFF
-    purpose: "Deployment, installation, training, release, and support material for transition to operations."
+    purpose: "Deployment, installation, training, and support material for transition to operations."
     children:
-      - id: deployment
-        purpose: "Artifacts specifically related to Deployment."
-        children: []
-      - id: installation
-        purpose: "Artifacts specifically related to Installation."
+      - id: deployment_installation
+        purpose: "Artifacts specifically related to Deployment and Installation."
         children: []
       - id: user_docs
         purpose: "Artifacts specifically related to User Docs."
@@ -181,9 +178,6 @@ top_level_sections:
         children: []
       - id: support_notes
         purpose: "Artifacts specifically related to Support Notes."
-        children: []
-      - id: release_notes
-        purpose: "Artifacts specifically related to Release Notes."
         children: []
   - id: 99_ARCHIVE
     purpose: "Retired, superseded, or preserved historical artefacts that should remain traceable but inactive."
