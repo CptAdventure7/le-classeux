@@ -61,3 +61,8 @@ If there are no action items, use an empty array: `[]`.
 ## Example Filename
 
 - `2026-03-16-control-loop-preliminary-review.md`
+
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.

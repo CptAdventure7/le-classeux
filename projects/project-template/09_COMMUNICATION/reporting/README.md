@@ -14,3 +14,8 @@ Recurring project reporting artifacts live here.
 - Link to the underlying requirements, issues, tests, decisions, or meeting summaries instead of copying them into every report.
 - Prefer one evolving artifact per reporting cadence or report type when that keeps history clear.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

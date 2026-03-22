@@ -1,0 +1,9 @@
+folder: raw_notes
+summary: "Unedited meeting source notes live here. Preserve original wording and timestamps when available, and avoid polishing files in this folder into summaries."
+files:
+  - name: README.md
+    summary: "Defines the rules for preserving raw meeting notes and pairing them with any later summary."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

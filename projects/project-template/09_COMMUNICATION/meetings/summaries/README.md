@@ -7,3 +7,8 @@ Store cleaned meeting summaries here.
 - Use the `meeting-summary` skill for the summary structure and expected fields.
 - Keep filenames clear and date-based.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

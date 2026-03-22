@@ -6,3 +6,8 @@ Keep rollout plans, cutover steps, rollback notes, prerequisites, setup instruct
 - Link to user docs, training, and support notes when useful.
 - Keep product decisions and broad design rationale in their original folders instead of repeating them here.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

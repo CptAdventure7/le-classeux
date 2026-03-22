@@ -1,0 +1,9 @@
+folder: training
+summary: "Training plans and onboarding material live here. Use this folder for lesson outlines and role-based training aids, and keep troubleshooting content in support notes instead of mixing it into training artifacts."
+files:
+  - name: README.md
+    summary: "Defines the scope for onboarding material, training plans, lesson outlines, and training aids."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

@@ -1,0 +1,9 @@
+folder: standards
+summary: "Standards and compliance-reference notes live here. Keep one file per standard or tightly related standards topic, and link affected requirements, design artifacts, or verification work when relevant."
+files:
+  - name: README.md
+    summary: "Defines the scope for standard summaries, extracts, interpretation notes, and standards comparison notes."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

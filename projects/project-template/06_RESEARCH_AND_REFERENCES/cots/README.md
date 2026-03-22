@@ -16,3 +16,8 @@ Commercial off-the-shelf product and vendor assessments live here.
 - Keep vendor-specific web notes here, not in `../web_references`.
 - Link directly to source pages when claims, specs, pricing, or support commitments matter.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

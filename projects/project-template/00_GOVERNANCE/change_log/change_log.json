@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "added `local_manifest.yaml` files to `04_DESIGN_AND_IMPLEMENTATION/design_reviews`, every child folder under `06_RESEARCH_AND_REFERENCES`, every child folder under `09_COMMUNICATION` including `meetings/raw_notes` and `meetings/summaries`, and every child folder under `10_OPERATIONS_AND_HANDOFF`; each manifest now lists local files with short summaries and placeholder source links, and each local README now tells agents to review and maintain the manifest on folder entry",
+        "date":  "2026-03-22-14h05"
+    },
+    {
         "change_summary":  "migrated the governance change log from markdown bullets to change_log.json with change_summary/date entries, and aligned the related project guidance to the JSON contract",
         "date":  "2026-03-22-13h51"
     },
