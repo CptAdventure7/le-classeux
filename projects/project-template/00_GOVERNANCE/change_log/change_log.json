@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "improved the shared execution dashboard detail view for execution items by widening the details column, adding dedicated summary wrap styling in `human_dashboards/execution_dashboard_resources/execution_dashboard_template.html`, and extending the dashboard generator test coverage for the rendered description markup",
+        "date":  "2026-03-22-15h10"
+    },
+    {
         "change_summary":  "added three representative execution-item JSON records under `07_PROJECT_EXECUTION/execution_items` so the shared dashboard has real issue and milestone data to display during testing, and refreshed the local manifest to index them",
         "date":  "2026-03-22-14h54"
     },

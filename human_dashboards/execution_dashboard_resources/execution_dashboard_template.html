@@ -218,7 +218,7 @@
 
     .main {
       display: grid;
-      grid-template-columns: minmax(0, 1.65fr) 340px;
+      grid-template-columns: minmax(0, 1.55fr) minmax(360px, 420px);
       gap: 18px;
       align-items: start;
     }
@@ -357,6 +357,14 @@
       margin: 0 0 10px;
       font-size: 28px;
       line-height: 1.05;
+      text-wrap: balance;
+    }
+
+    .details-summary {
+      max-width: 34ch;
+      font-size: 17px;
+      line-height: 1.65;
+      text-wrap: pretty;
     }
 
     .details-grid {
@@ -669,7 +677,7 @@
       els.details.innerHTML = `
         <div class="eyebrow">Details / ${item.project_id}</div>
         <h2>${item.title}</h2>
-        <p>${item.summary || "No summary provided."}</p>
+        <p class="details-summary">${item.summary || "No summary provided."}</p>
         <div class="details-grid">
           <div class="stat">
             <span class="stat-label">ID</span>

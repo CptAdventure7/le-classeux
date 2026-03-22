@@ -61,6 +61,41 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertIn("function ensureArray", html)
             self.assertIn("const DASHBOARD_DATA = normalizeItems", html)
 
+    def test_generator_emits_detail_summary_wrap_styling(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            html = output_html.read_text(encoding="utf-8")
+            self.assertIn(".details-summary", html)
+            self.assertIn("text-wrap: pretty;", html)
+            self.assertIn('<p class="details-summary">', html)
+
     def _write_workspace_fixture(self, workspace_root: Path) -> None:
         (workspace_root / "projects").mkdir(parents=True, exist_ok=True)
         (workspace_root / "projects_manifest.yaml").write_text(
