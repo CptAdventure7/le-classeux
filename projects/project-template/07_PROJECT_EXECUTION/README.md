@@ -1,8 +1,15 @@
 # 07 Project Execution
 
-This folder belongs to the project-template context bank.
+Use this section for delivery-management artifacts: plans, work tracking, milestones, budget, procurement, project risks, and controlled change.
 
-## What Belongs Here
+## Folders
 
-`roadmap`, `work_packages`, `issues`, `milestones`, `budget_resources`, `procurement`, `project_risk_register`, `change_requests` folders and this readme.md. Nothing else.
+- `roadmap`
+- `work_packages`
+- `issues`
+- `milestones`
+- `budget_resources`
+- `procurement`
+- `project_risk_register`
+- `change_requests`
 
