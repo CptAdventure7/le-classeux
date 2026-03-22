@@ -1,8 +1,8 @@
 folder: cots
-summary: "Commercial off-the-shelf vendor and product assessments live here. Keep vendor-specific evidence in this folder and link directly to source pages when specifications, pricing, or support commitments matter."
+summary: "Commercial off-the-shelf component comparison artifacts live here. Use one subfolder per component area, keep one canonical JSON per area, and store original source captures in the linked SharePoint structure under 03-Design\\cots rather than in this repository."
 files:
   - name: README.md
-    summary: "Defines the scope for vendor-specific research, product evaluations, supplier comparisons, and downselect notes."
+    summary: "Defines the component-area-first COTS structure, the minimum fields required in each option record, and the rule that original source files stay in SharePoint instead of this repository."
     original_links: []
   - name: local_manifest.yaml
     summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."

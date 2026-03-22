@@ -102,7 +102,7 @@ top_level_sections:
         purpose: "Artifacts specifically related to Competitor Landscape."
         children: []
       - id: cots
-        purpose: "Commercial off-the-shelf component evaluations. Add one subfolder per candidate or vendor when needed."
+        purpose: "Commercial off-the-shelf component evaluations. Add one subfolder per component area, keep one canonical JSON per area, and describe the exact local JSON contract in that subfolder README."
         children: []
       - id: web_references
         purpose: "Artifacts specifically related to Web References."
