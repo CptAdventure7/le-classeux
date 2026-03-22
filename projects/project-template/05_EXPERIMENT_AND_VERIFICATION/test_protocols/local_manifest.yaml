@@ -1,0 +1,9 @@
+folder: test_protocols
+summary: "Test protocol artifacts live here. Keep one markdown file per protocol, update the same artifact when revisions belong to that protocol, and link each protocol to the related experiment or result."
+files:
+  - name: README.md
+    summary: "Defines the one-file-per-protocol pattern and the expected links to experiments and results."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

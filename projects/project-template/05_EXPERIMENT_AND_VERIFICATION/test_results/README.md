@@ -6,3 +6,8 @@ One markdown file per test result set.
 - Use a meaningful filename that reflects the result set.
 - Link the result to the related protocol, experiment, or analysis when relevant.
 
+## Local Manifest
+
+- Review `local_manifest.yaml` when entering this folder to quickly see whether any local files are relevant.
+- Keep `local_manifest.yaml` up to date whenever files are added, removed, renamed, or materially repurposed.
+

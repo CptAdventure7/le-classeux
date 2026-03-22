@@ -1,0 +1,9 @@
+folder: test_results
+summary: "Test result artifacts live here. Keep one markdown file per result set, update the existing artifact when the result set is the same, and link each result to related protocols, experiments, or analyses."
+files:
+  - name: README.md
+    summary: "Defines the one-file-per-result-set pattern and the expected links to protocols, experiments, and analyses."
+    original_links: []
+  - name: local_manifest.yaml
+    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
+    original_links: []

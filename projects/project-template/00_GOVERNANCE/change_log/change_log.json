@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "added `local_manifest.yaml` files to every child folder under `05_EXPERIMENT_AND_VERIFICATION`, and updated each local README so agents review the manifest on folder entry and keep it current as files change",
+        "date":  "2026-03-22-14h20"
+    },
+    {
         "change_summary":  "added `local_manifest.yaml` files to `04_DESIGN_AND_IMPLEMENTATION/design_reviews`, every child folder under `06_RESEARCH_AND_REFERENCES`, every child folder under `09_COMMUNICATION` including `meetings/raw_notes` and `meetings/summaries`, and every child folder under `10_OPERATIONS_AND_HANDOFF`; each manifest now lists local files with short summaries and placeholder source links, and each local README now tells agents to review and maintain the manifest on folder entry",
         "date":  "2026-03-22-14h05"
     },
