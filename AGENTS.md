@@ -11,7 +11,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 
 - Preserve project-level progressive disclosure instead of scanning the whole repository blindly. 
 - Keep shared agent resources separate from project-owned artefacts.
-- Maintain traceability when a project repository state changes by updating `<project>/00_GOVERNANCE/change_log/change_log.md`.
+- Maintain traceability when a project repository state changes by updating `<project>/00_GOVERNANCE/change_log/change_log.json`.
 - Consider breaking down complex task into subtask and instantiating subagents. Those angent must inherit all your working instructions.
 - Read the root `projects_manifest.yaml` to identify the available project entrypoint.
 - For project work, read `<project>/README.md`, `<project>/AGENTS.md`, and `<project>/project_manifest.yaml` before descending further, answering or editing.

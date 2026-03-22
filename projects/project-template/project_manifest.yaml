@@ -193,7 +193,7 @@ top_level_sections:
         children: []
 conventions:
   local_readme: Each folder contains a README.md explaining what belongs there and the local drafting, update, cross-linking, and formatting guidance.
-  change_log_file: Each `change_log` folder keeps a single append-only `change_log.md` file with the newest entry first.
+  change_log_file: Each `change_log` folder keeps a single append-only `change_log.json` file with the newest entry first.
   requirement_traceability: Requirements should link to source, design allocation, validation, and decision history.
 
 

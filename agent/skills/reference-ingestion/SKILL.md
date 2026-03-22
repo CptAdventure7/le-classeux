@@ -42,7 +42,7 @@ The workflow must:
 10. Ask whether the document should be mapped for future consultation.
 11. If approved, invoke the page-index workflow and write the paired JSON file next to the summary.
 12. Delete temporary extraction artefacts before finishing.
-13. Update `<project>/00_GOVERNANCE/change_log/change_log.md` when the ingestion changes repository state or guidance.
+13. Update `<project>/00_GOVERNANCE/change_log/change_log.json` when the ingestion changes repository state or guidance.
 14. Verify links, filenames, source traceability, and topic placement.
 
 ## Naming Convention

@@ -14,7 +14,7 @@ Subsystem-level requirements grouped by technical ownership boundary live here.
 - Use IDs with the `PRJ-<three-letter subsystem acronym>-` prefix, where the acronym is unique within the project.
 - Requirement `status` must be one of `Accepted`, `Preliminary`, or `Abandoned`.
 - Obsolete or non-relevant requirements must remain in the live subsystem JSON file and be retagged as `Abandoned`; do not delete them from the active record.
-- If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.md`.
+- If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.json`.
 - `compliance_status` must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
 - Link each subsystem requirement to its parent system requirement and to downstream design, interface, validation, and decision evidence.
 - Create a new subsystem file only when the ownership boundary is clear and stable.

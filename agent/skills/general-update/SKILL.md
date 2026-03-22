@@ -38,7 +38,7 @@ If git metadata is unavailable, stop and report that the general update workflow
 7. Review all active top-level project sections for downstream impact, even if many conclude with no change.
 8. Update the nearest canonical artefacts first.
 9. Add explicit upstream, peer, and downstream links where the new context changes interpretation.
-10. Record repository-level changes in `<project>/00_GOVERNANCE/change_log/change_log.md`.
+10. Record repository-level changes in `<project>/00_GOVERNANCE/change_log/change_log.json`.
 11. Verify links, identifiers, and traceability after edits.
 12. Commit with the exact standardized message below.
 

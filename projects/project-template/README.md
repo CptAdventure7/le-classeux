@@ -29,5 +29,5 @@
 
 - Update the existing artefact when possible instead of creating duplicate summaries.
 - Keep links between upstream context, related requirements or decisions, and downstream evidence.
-- Record every repository change in `00_GOVERNANCE/change_log/change_log.md`, keeping the newest entry at the top.
+- Record every repository change in `00_GOVERNANCE/change_log/change_log.json`, keeping the newest entry at the top of the JSON array.
 - When current state changes materially, refresh the `Current Overview Summary` section in this README alongside the relevant governance snapshot so the root-level entrypoint stays accurate.

@@ -13,7 +13,7 @@ System-level requirements allocated from user needs, use cases, and constraints 
 - Use IDs with the `PRJ-REQ-` prefix.
 - Requirement `status` must be one of `Accepted`, `Preliminary`, or `Abandoned`.
 - Obsolete or non-relevant requirements must remain in `requirements.json` and be retagged as `Abandoned`; do not delete them from the live record.
-- If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.md`.
+- If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.json`.
 - `compliance_status` must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
 - Link each requirement to upstream user needs or constraints and to downstream design, validation, and decision evidence.
 - If a subsystem requirement changes allocation or ownership, update this folder accordingly.
