@@ -1,6 +1,6 @@
 # Issues
 
-Keep execution issues here. Use one Markdown file per issue. Keep the board view in `kanban.md`, and make sure it lists every active issue exactly once.
+Keep execution issues here. Use one Markdown file per issue. If you maintain a board view, keep it simple and make sure it lists every active issue exactly once.
 
 ## Keep Here
 
@@ -34,7 +34,7 @@ Keep the definition of done as Markdown checkboxes. Use `unknown` if the due dat
 
 ## Kanban View
 
-Use `kanban.md` as a simple human-readable board. Keep one row per active issue and move the row when the status changes. Archive or remove rows once the issue is closed so the board stays limited to active work.
+If you maintain a board view, keep it human-readable. Keep one row per active issue and move the row when the status changes. Archive or remove rows once the issue is closed so the board stays limited to active work.
 
 ## Example
 
@@ -66,5 +66,19 @@ The project cannot close the procurement review without the missing evidence.
 
 ## Notes / Links
 - Escalated in weekly sync.
+```
+
+## Kanban Reference Example
+
+```md
+# Issue Board
+
+| ID | Title | Owner | Priority | Status | Due |
+| --- | --- | --- | --- | --- | --- |
+| `KEY-ISSUE-001` | Vendor evidence gap | `Program Management` | `High` | `Blocked` | `unknown` |
+| `KEY-ISSUE-002` | Prototype test fixture ready | `Verification Lead` | `Medium` | `In Progress` | `2026-03-28` |
+| `KEY-ISSUE-003` | Supplier quote comparison complete | `Procurement` | `Medium` | `Ready` | `2026-03-30` |
+| `KEY-ISSUE-004` | Review open change request scope impact | `Systems Team` | `High` | `To Do` | `2026-03-25` |
+| `KEY-ISSUE-005` | Close resolved training material gap | `Operations` | `Low` | `Done` | `2026-03-20` |
 ```
 
