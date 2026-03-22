@@ -1,0 +1,25 @@
+{
+  "id": "EXEC-ISSUE-001",
+  "type": "issue",
+  "title": "Dashboard seed validation",
+  "status": "in_progress",
+  "owner": "Dashboard Maintainer",
+  "created": "2026-03-22",
+  "target_date": "2026-03-22",
+  "completion_date": null,
+  "priority": "medium",
+  "summary": "Track dummy artifact coverage for the human dashboard.",
+  "dependencies": [],
+  "linked_artifacts": [
+    "projects/test-project/07_PROJECT_EXECUTION/roadmap/roadmap.json",
+    "projects/test-project/08_DECISIONS/decisions.json"
+  ],
+  "notes": [
+    "Created as part of dashboard fixture seeding."
+  ],
+  "problem_statement": "The dashboard needs one artifact in every leaf folder to exercise section coverage.",
+  "definition_of_done": [
+    "Each leaf content folder contains one dummy artifact",
+    "Indexed folders list the new files in local_manifest.yaml"
+  ]
+}

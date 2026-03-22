@@ -5,15 +5,23 @@
 ## Current Overview Summary
 
 - Last updated: `2026-03-22`
-- Current phase: `Instantiation`
+- Current phase: `Dashboard seed data`
 
-`test project` is a newly instantiated evidence-first project context bank. Project context bank for testing the human dashboard implementation.
+`test project` now contains one short dummy artifact in every leaf content folder so the human dashboard can exercise section routing, Markdown rendering, and canonical JSON views without relying on real project history.
+
+### Canonical Next Reads
+
+- [Weekly dashboard seed overview](00_GOVERNANCE/current_overview/2026-03-22-dashboard-seed-overview.md)
+- [Execution seed issue](07_PROJECT_EXECUTION/execution_items/EXEC-ISSUE-001-dashboard-seed-validation.json)
+- [Roadmap seed](07_PROJECT_EXECUTION/roadmap/roadmap.json)
+- [Project risk seed](07_PROJECT_EXECUTION/project_risk_register/project_risk_register.json)
+- [Decision log seed](08_DECISIONS/decisions.json)
 
 ### Active Watchpoints
 
-- replace template-era examples and placeholder language with project-specific evidence before adding downstream artefacts
-- keep `00_GOVERNANCE/change_log/change_log.json` as the first durable memory record and update it with every repository change
-- create execution items only when real delivery work exists; do not carry template sample data into live project tracking
+- keep all seeded artifacts clearly labeled as dummy data
+- update local manifests whenever seeded files move or are removed
+- avoid relying on archive content unless the dashboard is explicitly testing archived sections
 
 ## How To Work In This Project
 

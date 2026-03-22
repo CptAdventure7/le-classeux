@@ -1,9 +1,16 @@
 folder: papers
-summary: "Research paper notes and literature summaries live here. Prefer one file per paper or tightly scoped literature topic, and capture the key takeaway, project relevance, and the source citation or link."
+summary: Research paper notes and literature summaries live here. Prefer one file
+  per paper or tightly scoped literature topic, and capture the key takeaway, project
+  relevance, and the source citation or link.
 files:
-  - name: README.md
-    summary: "Defines the scope for paper summaries, literature notes, and citation-backed background research."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for paper summaries, literature notes, and citation-backed
+    background research.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-paper-note.md
+  summary: Dummy paper note for dashboard coverage.
+  original_links: []

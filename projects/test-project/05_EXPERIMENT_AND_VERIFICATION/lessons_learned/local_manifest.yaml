@@ -1,9 +1,16 @@
 folder: lessons_learned
-summary: "Reusable project takeaways live here. Prefer one markdown file per lesson or theme, expand the existing artifact when the lesson is the same, and link back to the related experiment, protocol, result, or analysis."
+summary: Reusable project takeaways live here. Prefer one markdown file per lesson
+  or theme, expand the existing artifact when the lesson is the same, and link back
+  to the related experiment, protocol, result, or analysis.
 files:
-  - name: README.md
-    summary: "Defines the scope for reusable lessons learned and the expected links back to supporting evidence."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for reusable lessons learned and the expected links back
+    to supporting evidence.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-lessons.md
+  summary: Dummy lessons learned note for dashboard fixtures.
+  original_links: []

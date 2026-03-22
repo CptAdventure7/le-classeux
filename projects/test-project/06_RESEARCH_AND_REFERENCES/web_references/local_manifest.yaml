@@ -1,9 +1,16 @@
 folder: web_references
-summary: "General web research and background reference notes live here. Keep vendor-specific assessments in COTS, and use this folder for broader web evidence that is not tied to a single vendor."
+summary: General web research and background reference notes live here. Keep vendor-specific
+  assessments in COTS, and use this folder for broader web evidence that is not tied
+  to a single vendor.
 files:
-  - name: README.md
-    summary: "Defines the scope for background web sources, domain context, and general reference links."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for background web sources, domain context, and general
+    reference links.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-web-note.md
+  summary: Dummy web reference note for dashboard coverage.
+  original_links: []

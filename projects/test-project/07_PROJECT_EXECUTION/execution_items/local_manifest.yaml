@@ -10,3 +10,6 @@ files:
   summary: Folder-local file index for quick triage, with short summaries and any
     known links to original source files.
   original_links: []
+- name: EXEC-ISSUE-001-dashboard-seed-validation.json
+  summary: Dummy execution issue used to track dashboard seed coverage.
+  original_links: []

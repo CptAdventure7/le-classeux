@@ -1,0 +1,22 @@
+{
+  "roadmap_title": "test project Dashboard Seed Roadmap",
+  "last_updated": "2026-03-22",
+  "source_links": [
+    "../execution_items/EXEC-ISSUE-001-dashboard-seed-validation.json"
+  ],
+  "items": [
+    {
+      "id": "RDM-001",
+      "title": "Dashboard seed data ready",
+      "phase": "Validation",
+      "status": "done",
+      "owner": "Dashboard Maintainer",
+      "target_date": "2026-03-22",
+      "summary": "Seed every leaf folder with one dummy artifact.",
+      "dependencies": [],
+      "source_links": [
+        "../change_requests/2026-03-22-dashboard-seed-change-request.md"
+      ]
+    }
+  ]
+}

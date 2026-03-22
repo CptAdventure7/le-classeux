@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "seeded dashboard dummy artifacts across leaf content folders and refreshed local manifests",
+    "date": "2026-03-22-16h09"
+  },
+  {
     "change_summary": "instantiated `projects/test-project` from `projects/project-template` and registered it in `projects_manifest.yaml`",
     "date": "2026-03-22-16h00"
   }

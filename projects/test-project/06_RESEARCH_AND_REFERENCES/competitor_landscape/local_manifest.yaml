@@ -1,9 +1,16 @@
 folder: competitor_landscape
-summary: "Competitor research and market-comparison notes live here. Use focused files per competitor or comparison topic, and link to supporting papers, standards, patents, or web sources instead of duplicating them."
+summary: Competitor research and market-comparison notes live here. Use focused files
+  per competitor or comparison topic, and link to supporting papers, standards, patents,
+  or web sources instead of duplicating them.
 files:
-  - name: README.md
-    summary: "Defines the scope for competitor profiles, feature or pricing comparisons, and market-position summaries."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for competitor profiles, feature or pricing comparisons,
+    and market-position summaries.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-competitor-note.md
+  summary: Dummy competitor note for dashboard coverage.
+  original_links: []

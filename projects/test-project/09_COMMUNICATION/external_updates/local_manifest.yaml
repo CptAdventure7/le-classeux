@@ -1,9 +1,16 @@
 folder: external_updates
-summary: "External-facing project updates live here. Keep outward-facing communication concise, link to supporting source material, and maintain one canonical external version instead of scattered drafts."
+summary: External-facing project updates live here. Keep outward-facing communication
+  concise, link to supporting source material, and maintain one canonical external
+  version instead of scattered drafts.
 files:
-  - name: README.md
-    summary: "Defines the scope for customer, partner, release, and other external progress updates."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for customer, partner, release, and other external progress
+    updates.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-external-update.md
+  summary: Dummy external update for dashboard coverage.
+  original_links: []

@@ -1,9 +1,16 @@
 folder: maintenance
-summary: "Maintenance procedures live here. Use this folder for recurring service guidance, inspection schedules, and long-term upkeep, and link to support notes when known problems or fixes are relevant."
+summary: Maintenance procedures live here. Use this folder for recurring service guidance,
+  inspection schedules, and long-term upkeep, and link to support notes when known
+  problems or fixes are relevant.
 files:
-  - name: README.md
-    summary: "Defines the scope for service procedures, inspection schedules, routine upkeep, and long-term care guidance."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for service procedures, inspection schedules, routine
+    upkeep, and long-term care guidance.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-maintenance-note.md
+  summary: Dummy maintenance note for dashboard coverage.
+  original_links: []

@@ -1,0 +1,24 @@
+[
+  {
+    "id": "DEC-001",
+    "title": "Use dummy artifacts for dashboard coverage",
+    "date": "2026-03-22",
+    "status": "accepted",
+    "decision": "Populate each leaf content folder in test-project with one short artifact in the folder's expected format.",
+    "context": "The human dashboard needs consistent sample content across the full project tree.",
+    "rationale": "A single seeded project is easier to inspect than many ad hoc fixtures.",
+    "impact": [
+      "Markdown and JSON rendering paths can be checked from one project.",
+      "Archive and communication sections have explicit placeholder coverage."
+    ],
+    "alternatives_considered": [
+      "Manual spot checks in a subset of folders"
+    ],
+    "decision_maker": "Dashboard Maintainer",
+    "related_links": [
+      "projects/test-project/00_GOVERNANCE/current_overview/2026-03-22-dashboard-seed-overview.md",
+      "projects/test-project/07_PROJECT_EXECUTION/roadmap/roadmap.json"
+    ],
+    "notes": "Dummy content must remain clearly labeled and disposable."
+  }
+]

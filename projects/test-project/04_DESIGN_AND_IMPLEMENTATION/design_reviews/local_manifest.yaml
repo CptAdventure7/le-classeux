@@ -1,9 +1,16 @@
 folder: design_reviews
-summary: "Design review records live here. Keep one markdown artifact per review, use date-based filenames, and link to reviewed design, requirement, risk, code, or decision artifacts instead of copying large sections."
+summary: Design review records live here. Keep one markdown artifact per review, use
+  date-based filenames, and link to reviewed design, requirement, risk, code, or decision
+  artifacts instead of copying large sections.
 files:
-  - name: README.md
-    summary: "Explains the one-review-per-file convention, required review sections, and the JSON action-items structure."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Explains the one-review-per-file convention, required review sections,
+    and the JSON action-items structure.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-review.md
+  summary: Dummy design review record for dashboard seed coverage.
+  original_links: []

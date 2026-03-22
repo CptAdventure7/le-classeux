@@ -1,9 +1,15 @@
 folder: user_docs
-summary: "User-facing guides and reference material live here. Write for end users, and link to training or deployment material when readers need those adjacent steps."
+summary: User-facing guides and reference material live here. Write for end users,
+  and link to training or deployment material when readers need those adjacent steps.
 files:
-  - name: README.md
-    summary: "Defines the scope for user guides, quick starts, workflows, and user reference material."
-    original_links: []
-  - name: local_manifest.yaml
-    summary: "Folder-local file index for quick triage, with short summaries and any known links to original source files."
-    original_links: []
+- name: README.md
+  summary: Defines the scope for user guides, quick starts, workflows, and user reference
+    material.
+  original_links: []
+- name: local_manifest.yaml
+  summary: Folder-local file index for quick triage, with short summaries and any
+    known links to original source files.
+  original_links: []
+- name: 2026-03-22-dashboard-seed-user-doc.md
+  summary: Dummy user doc for dashboard coverage.
+  original_links: []

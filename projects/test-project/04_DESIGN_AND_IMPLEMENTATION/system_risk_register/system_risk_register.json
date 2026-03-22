@@ -1,0 +1,46 @@
+{
+  "schema_version": "1.0",
+  "notes": [
+    "Dummy system risk register used for dashboard testing."
+  ],
+  "risks": [
+    {
+      "id": "SRSK-0001",
+      "hazard_category": "UI",
+      "function_or_subsystem_affected": [
+        "Human Dashboard"
+      ],
+      "failure_mode": "Section cards omit seeded artifacts.",
+      "potential_causes": [
+        "Folder scan misses Markdown or JSON fixtures"
+      ],
+      "potential_harm_effects": [
+        "Incomplete validation result"
+      ],
+      "severity": 2,
+      "occurrence": 2,
+      "possible_control_measures": [
+        "Add fixture coverage tests"
+      ],
+      "applied_control_measures": [
+        "Seed one artifact per leaf folder"
+      ],
+      "traceability_to_requirement": [
+        "REQ-DASH-001"
+      ],
+      "control_measure_type": "by_design",
+      "new_risk_introduced_by_control_measure": "no",
+      "residual_risk_severity": 1,
+      "residual_risk_occurrence": 1,
+      "date_of_last_review": "2026-03-22",
+      "status": "mitigated",
+      "owner": "Dashboard Maintainer",
+      "comments": [
+        "2026-03-22: Dummy risk added for dashboard coverage."
+      ],
+      "links": [
+        "projects/test-project/04_DESIGN_AND_IMPLEMENTATION/design/2026-03-22-dashboard-design-dummy.md"
+      ]
+    }
+  ]
+}
