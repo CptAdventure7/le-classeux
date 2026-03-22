@@ -499,14 +499,38 @@
   </div>
 
   <script>
-    const DASHBOARD_DATA = __DASHBOARD_DATA__;
-    const DASHBOARD_WARNINGS = __DASHBOARD_WARNINGS__;
+    const DASHBOARD_DATA_RAW = __DASHBOARD_DATA__;
+    const DASHBOARD_WARNINGS_RAW = __DASHBOARD_WARNINGS__;
     const STATUS_COLUMNS = [
       { key: "planned", label: "Planned" },
       { key: "in_progress", label: "In Progress" },
       { key: "blocked", label: "Blocked" },
       { key: "done", label: "Done" }
     ];
+
+    function ensureArray(value) {
+      if (Array.isArray(value)) {
+        return value;
+      }
+      if (value === null || value === undefined || value === "") {
+        return [];
+      }
+      return [value];
+    }
+
+    function normalizeItems(items) {
+      return ensureArray(items).map((item) => ({
+        ...item,
+        dependencies: ensureArray(item.dependencies),
+        linked_artifacts: ensureArray(item.linked_artifacts),
+        notes: ensureArray(item.notes),
+        definition_of_done: ensureArray(item.definition_of_done),
+        deliverables: ensureArray(item.deliverables)
+      }));
+    }
+
+    const DASHBOARD_DATA = normalizeItems(DASHBOARD_DATA_RAW);
+    const DASHBOARD_WARNINGS = ensureArray(DASHBOARD_WARNINGS_RAW);
 
     const els = {
       projectFilter: document.getElementById("project-filter"),

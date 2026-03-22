@@ -57,6 +57,9 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertIn("Done", html)
             self.assertIn("Filter by project", html)
             self.assertIn("project-alpha", html)
+            self.assertIn("const DASHBOARD_WARNINGS_RAW = [];", html)
+            self.assertIn("function ensureArray", html)
+            self.assertIn("const DASHBOARD_DATA = normalizeItems", html)
 
     def _write_workspace_fixture(self, workspace_root: Path) -> None:
         (workspace_root / "projects").mkdir(parents=True, exist_ok=True)

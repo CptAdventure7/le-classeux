@@ -5,6 +5,7 @@ param(
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = "Stop"
+Add-Type -AssemblyName System.Web.Extensions
 
 function Strip-YamlScalar {
     param([string]$Value)
@@ -103,15 +104,21 @@ function Normalize-Token {
 function ConvertTo-List {
     param($Value)
 
+    $list = New-Object System.Collections.ArrayList
+
     if ($null -eq $Value) {
-        return @()
+        return $list
     }
 
     if ($Value -is [System.Array]) {
-        return @($Value)
+        foreach ($entry in $Value) {
+            [void]$list.Add($entry)
+        }
+        return $list
     }
 
-    return @($Value)
+    [void]$list.Add($Value)
+    return $list
 }
 
 function Get-OptionalPropertyValue {
@@ -126,6 +133,54 @@ function Get-OptionalPropertyValue {
     }
 
     return $property.Value
+}
+
+function ConvertTo-JavaScriptLiteral {
+    param($Value)
+
+    if ($Value -is [System.Collections.IEnumerable] -and -not ($Value -is [string])) {
+        $items = foreach ($item in $Value) {
+            ConvertTo-JavaScriptLiteral $item
+        }
+        return "[" + ($items -join ",") + "]"
+    }
+
+    if ($null -eq $Value) {
+        return "null"
+    }
+
+    if ($Value -is [string]) {
+        return (ConvertTo-Json -Compress -InputObject $Value)
+    }
+
+    if ($Value -is [bool]) {
+        return $Value.ToString().ToLowerInvariant()
+    }
+
+    if ($Value -is [ValueType]) {
+        return (ConvertTo-Json -Compress -InputObject $Value)
+    }
+
+    if ($Value -is [System.Collections.IDictionary]) {
+        $pairs = foreach ($key in $Value.Keys) {
+            $encodedKey = ConvertTo-Json -Compress -InputObject ([string]$key)
+            $encodedValue = ConvertTo-JavaScriptLiteral $Value[$key]
+            "${encodedKey}:$encodedValue"
+        }
+        return "{" + ($pairs -join ",") + "}"
+    }
+
+    $properties = $Value.PSObject.Properties | Where-Object { $_.MemberType -eq "NoteProperty" }
+    if ($properties.Count -gt 0) {
+        $pairs = foreach ($property in $properties) {
+            $encodedKey = ConvertTo-Json -Compress -InputObject $property.Name
+            $encodedValue = ConvertTo-JavaScriptLiteral $property.Value
+            "${encodedKey}:$encodedValue"
+        }
+        return "{" + ($pairs -join ",") + "}"
+    }
+
+    return (ConvertTo-Json -Compress -InputObject ([string]$Value))
 }
 
 function New-ExecutionItemRecord {
@@ -226,8 +281,8 @@ $sortedItems =
         @{ Expression = { $_.id } }
 
 $template = Get-Content -Raw $templatePath
-$dashboardDataJson = $sortedItems | ConvertTo-Json -Depth 8
-$warningsJson = $warnings | ConvertTo-Json -Depth 4
+$dashboardDataJson = ConvertTo-JavaScriptLiteral ([object[]]$sortedItems)
+$warningsJson = ConvertTo-JavaScriptLiteral ([object[]]$warnings)
 $generatedAt = (Get-Date).ToString("yyyy-MM-dd HH:mm")
 
 $renderedHtml = $template.Replace("__DASHBOARD_DATA__", $dashboardDataJson)
