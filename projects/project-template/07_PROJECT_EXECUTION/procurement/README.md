@@ -4,12 +4,11 @@ Keep procurement execution artifacts here.
 
 ## Keep Here
 
-- vendor outreach and bid tracking
-- quote comparisons
-- purchase timing and approval notes
-- links to budget, issues, and milestones affected by procurement
+- Create one subfolder per procured item so all information for that item stays grouped together.
+- In each item folder, keep vendor outreach and bid tracking, quote comparisons, purchase timing, approval notes, and downstream links.
+- Link the item folder to any affected budget, issues, milestones, or risks instead of scattering procurement notes across multiple places.
 
 ## Example
 
-`2026-04-sensor-vendor-downselect.md` comparing vendors, lead times, cost, open questions, and the recommended next step.
+`sensor-module/` containing the vendor comparison, quotes, lead times, approval notes, open questions, and the recommended next step for that item.
 

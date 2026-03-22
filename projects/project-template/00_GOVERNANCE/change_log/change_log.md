@@ -1,5 +1,7 @@
 # Change Log
 
+- clarified `07_PROJECT_EXECUTION/procurement/README.md` so procurement records follow a one-folder-per-item pattern, with each item folder regrouping quotes, evaluations, approvals, and related execution links (2026-03-21-23h15).
+
 - integrated the `07_PROJECT_EXECUTION/milestones/milestones.md` board guidance into `07_PROJECT_EXECUTION/milestones/README.md` and removed the inline milestone JSON example so the README is guidance-only (2026-03-21-23h09).
 
 - added a simple `07_PROJECT_EXECUTION/issues/kanban.md` reference board that lists all active issues in one human-readable table, and renamed the issue template section from `Acceptance Criteria` to `Definition of Done` in the issues README (2026-03-21-23h05).
