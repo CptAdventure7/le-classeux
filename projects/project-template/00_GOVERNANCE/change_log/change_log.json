@@ -1,5 +1,9 @@
 ﻿[
     {
+        "change_summary":  "converted `07_PROJECT_EXECUTION/work_packages` to a single-canonical-JSON folder contract centered on `work_packages.json`, removed the markdown-per-package example, and clarified that the JSON file is described in the README only and not seeded during project instantiation",
+        "date":  "2026-03-22-14h08"
+    },
+    {
         "change_summary":  "added `local_manifest.yaml` to `07_PROJECT_EXECUTION/budget_resources` and `07_PROJECT_EXECUTION/change_requests`, and updated both local READMEs so agents review the manifest on folder entry and keep it current as files change",
         "date":  "2026-03-22-14h45"
     },
