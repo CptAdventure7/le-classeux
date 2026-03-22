@@ -8,7 +8,7 @@ External references and prior-art material live here.
 - `standards`: standards notes, extracts, and compliance-relevant reference material
 - `patents`: patent searches, claim summaries, and prior-art notes
 - `competitor_landscape`: competitor research and market comparisons
-- `cots`: vendor-specific COTS assessments and downselect material
+- `cots`: component-area COTS assessments, structured option comparisons, and downselect material
 - `web_references`: general web research that is not vendor-specific
 - `presentations`: external slide decks or presentation notes used as references
 

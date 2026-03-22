@@ -112,8 +112,8 @@ top_level_sections:
     purpose: Artifacts specifically related to Competitor Landscape.
     children: []
   - id: cots
-    purpose: Commercial off-the-shelf component evaluations. Add one subfolder per
-      candidate or vendor when needed.
+    purpose: Commercial off-the-shelf component evaluations. Prefer one subfolder
+      per component area, with deeper candidate or vendor folders when needed.
     children: []
   - id: web_references
     purpose: Artifacts specifically related to Web References.
