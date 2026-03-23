@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "updated the shared internal-docs skill so requirement guidance now matches the template contract for verification-prefixed fields, early-phase TBD verification values, and dated append-only reference plus follow-up fields",
+    "date": "2026-03-23-08h56"
+  },
+  {
     "change_summary": "aligned workspace guidance and shared skills with the current project-template structure, fixed shared skill path examples, and refreshed the advertised shared-skill inventory",
     "date": "2026-03-22-19h12"
   },

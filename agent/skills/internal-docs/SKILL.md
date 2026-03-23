@@ -17,7 +17,7 @@ To write in internal documents:
 
 1. **Identify the communication type** from the request, the document name or a quick glance at its content
 2. **Load the appropriate guideline file** from the `examples/` directory:
-    - `examples/requirements.md` - For Requirements, stakeholder needs.
+    - `examples/requirements.md` - For Requirements, stakeholder needs, and the current requirement-field conventions.
     - `examples/project-risks.md` - For Project risks.
     - `examples/improvement-list.md` - For improvement list over the course of a developement.
     - `examples/presentation-pptx.md` - For INO or Luqia PPTX presentation outputs.
