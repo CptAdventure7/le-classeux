@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "expanded the root README with a short human guide covering repository intent, common action types, and a simple usage workflow",
+    "date": "2026-03-23-08h59"
+  },
+  {
     "change_summary": "updated the shared internal-docs skill so requirement guidance now matches the template contract for verification-prefixed fields, early-phase TBD verification values, and dated append-only reference plus follow-up fields",
     "date": "2026-03-23-08h56"
   },
