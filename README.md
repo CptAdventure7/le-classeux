@@ -12,7 +12,7 @@ Use this repo as the project's engineering memory alongside day-to-day developme
 ### Example workflow
 
 ```mermaid
-flowchart LR
+flowchart TB
     accTitle: Engineering Memory Workflow
     accDescr: This workflow shows how a systems engineer can use the repository from project creation through source ingestion, context refresh, assisted outputs, and continuous improvement.
 
@@ -22,7 +22,17 @@ flowchart LR
     query["🧠 Query assistant or generate docs"]
     improve["📊 Use overview and dashboards"]
 
-    instantiate --> ingest --> refresh --> query --> improve
+    subgraph top_row[" "]
+        direction LR
+        instantiate --> ingest --> refresh
+    end
+
+    subgraph bottom_row[" "]
+        direction RL
+        improve --> query
+    end
+
+    refresh --> query
 ```
 
 1. **Instantiate the project** from the template, then customize the structure only where the project needs it.

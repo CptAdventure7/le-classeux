@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "adjusted the root README workflow diagram into a two-row snake layout so the Mermaid flow reads more clearly in narrow markdown rendering",
+    "date": "2026-03-23-09h15"
+  },
+  {
     "change_summary": "reworked the root README example workflow into a dedicated markdown section with a visual flow and short step-by-step guidance",
     "date": "2026-03-23-09h11"
   },
