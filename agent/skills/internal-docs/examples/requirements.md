@@ -10,13 +10,10 @@ You are being asked either extract or edit information in a requirement document
 - Place the extracted jsonl files in a doc/requirements folder. 
 - For "Group 1-4" columns: define your grouping names by editing row 3 headers, then mark rows with "x" only (no text) where the grouping applies.
 - Requirement status values must be one of: `Accepted`, `Preliminary`, `Abandoned`.
-- Use `verification_compliance_status` instead of legacy conformity/compliance field names.
-- Use `verification_justification_or_comment` instead of `justification_or_comment`.
-- keep verification fields as `TBD` in early project phases: `verification_method`, `verification_summary`, `verification_compliance_status`, `verification_report_reference`, and `verification_justification_or_comment`.
-- Do not use verification fields for early allocation or planning notes. Put those in parent-link fields, realization difficulty, or follow-up comments until verification work actually starts.
-- `reference` must be an append-only dated source list using `YYYY-MM-DD | source | <path or citation>`.
-- `follow_up_comments` must be an append-only dated list of comments, open questions, or changes using `YYYY-MM-DD | <comment_type> | <note>`.
-- Need status values must be one of: `Need`, `Would like`, `Abandoned`.
+- Status of conformity values must be one of: `TBD`, `Compliant`, `Non-compliant`.
+- Requirement and need status values must be one of: `Accepted`, `Preliminary`, `Abandoned`.
+- Before the project enters a verification phase, keep verification or validation method and summary fields populated with draft planning statements when the intended approach is already known. Keep formal verification-status, report-reference, and verification-justification fields at `TBD` until real evidence exists.
+- For dated source references or dated comment trails, append new entries on a new line inside the same cell instead of running them into one paragraph.
 
 ## Workflow
 
