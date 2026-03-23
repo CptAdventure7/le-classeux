@@ -32,6 +32,18 @@ class RequirementsExampleGuidanceTest(unittest.TestCase):
             "`follow_up_comments` must be an append-only dated list of comments, open questions, or changes",
             text,
         )
+        self.assertIn(
+            "Do not expose internal repository structure, repository paths, or JSON pointers in the front-facing Excel reference section for system or subsystem requirements.",
+            text,
+        )
+        self.assertIn(
+            "Use a client document, a SharePoint document, or `TBD` in that Excel reference section.",
+            text,
+        )
+        self.assertIn(
+            "Keep repository-only traceability in the repo field or local repository artefacts instead.",
+            text,
+        )
 
 
 if __name__ == "__main__":

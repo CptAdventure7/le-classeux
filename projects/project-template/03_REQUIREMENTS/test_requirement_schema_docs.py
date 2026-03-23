@@ -58,6 +58,30 @@ class RequirementSchemaDocsTest(unittest.TestCase):
                 msg=f"Expected dated follow-up example in {readme_path}",
             )
 
+    def test_system_and_subsystem_docs_hide_internal_repo_references_from_front_facing_excel(self) -> None:
+        readme_paths = [
+            REQUIREMENTS_DIR / "system_requirements" / "README.md",
+            REQUIREMENTS_DIR / "subsystem_requirements" / "README.md",
+        ]
+
+        for readme_path in readme_paths:
+            text = readme_path.read_text(encoding="utf-8")
+            self.assertIn(
+                "Do not copy internal repository paths, JSON pointers, or working-file references into any front-facing Excel reference cell.",
+                text,
+                msg=f"Expected front-facing Excel reference hygiene guidance in {readme_path}",
+            )
+            self.assertIn(
+                "Use a client document reference, a SharePoint document reference, or `TBD` in the Excel reference section.",
+                text,
+                msg=f"Expected external-only Excel reference guidance in {readme_path}",
+            )
+            self.assertIn(
+                "Keep the full repository traceability in the repo-managed `reference` field.",
+                text,
+                msg=f"Expected repo-side traceability guidance in {readme_path}",
+            )
+
 
 if __name__ == "__main__":
     unittest.main()

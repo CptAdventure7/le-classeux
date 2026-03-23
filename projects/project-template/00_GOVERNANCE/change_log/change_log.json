@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "clarified the system and subsystem requirement template guidance so repo-managed references keep full internal traceability while front-facing Excel reference cells only expose client or SharePoint sources, or `TBD` when no external source exists",
+    "date": "2026-03-23-10h45"
+  },
+  {
     "change_summary": "tightened the requirement template contract so verification-specific fields stay TBD until verification work begins, legacy compliance field names were renamed, and references plus follow-up notes are now dated append-only lists",
     "date": "2026-03-23-08h51"
   },

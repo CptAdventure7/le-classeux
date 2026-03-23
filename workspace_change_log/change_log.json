@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "updated the shared internal-docs skill so requirement-document guidance now blocks internal repository references from front-facing Excel cells for system and subsystem requirements while preserving repo-side traceability guidance",
+    "date": "2026-03-23-10h45"
+  },
+  {
     "change_summary": "adjusted the root README workflow diagram into a two-row snake layout so the Mermaid flow reads more clearly in narrow markdown rendering",
     "date": "2026-03-23-09h15"
   },

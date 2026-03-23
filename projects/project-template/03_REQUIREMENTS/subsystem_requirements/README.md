@@ -19,6 +19,9 @@ Subsystem-level requirements grouped by technical ownership boundary live here.
 - `verification_compliance_status` must stay `TBD` until verification work is underway. During verification, it must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
 - Put early-phase allocation notes, open questions, and change context in `need_number_or_parent_requirement`, `difficulty_of_realization`, and `follow_up_comments` instead of filling verification fields too early.
 - `reference` must be an append-only array of dated source entries using `YYYY-MM-DD | source | <path or citation>`.
+- Keep the full repository traceability in the repo-managed `reference` field.
+- Do not copy internal repository paths, JSON pointers, or working-file references into any front-facing Excel reference cell.
+- Use a client document reference, a SharePoint document reference, or `TBD` in the Excel reference section.
 - `follow_up_comments` must be an append-only array of dated comments, open questions, or change notes using `YYYY-MM-DD | <comment_type> | <note>`.
 - Link each subsystem requirement to its parent system requirement and to downstream design, interface, validation, and decision evidence.
 - Create a new subsystem file only when the ownership boundary is clear and stable.
