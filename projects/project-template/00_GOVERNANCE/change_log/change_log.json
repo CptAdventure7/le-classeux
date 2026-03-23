@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "tightened the requirement template contract so verification-specific fields stay TBD until verification work begins, legacy compliance field names were renamed, and references plus follow-up notes are now dated append-only lists",
+    "date": "2026-03-23-08h51"
+  },
+  {
     "change_summary": "clarified governance and COTS pathing guidance in the template so folder expectations and external evidence locations match the current workspace logic",
     "date": "2026-03-22-19h12"
   },
