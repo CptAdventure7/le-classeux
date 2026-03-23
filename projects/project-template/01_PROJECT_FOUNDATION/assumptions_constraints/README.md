@@ -41,9 +41,26 @@ Each array item must include:
 Recommended fields:
 - `id`: stable identifier
 - `type`: `assumption` or `constraint`
-- `status`: such as `active`, `validated`, `invalidated`, or `retired`
+- `status`: choose from the allowed values below instead of inventing ad hoc labels
 - `notes`: short clarification if needed
 - `related_links`: links to upstream or downstream artifacts
+
+## Allowed Status Values
+
+Use status values that match the entry `type`.
+
+- For `assumption`: `active`, `validated`, `invalidated`, or `retired`
+- For `constraint`: `active`, `lifted`, or `retired`
+
+Status intent:
+- `active`: currently in force and still shaping the project baseline
+- `validated`: an assumption that has been confirmed by evidence
+- `invalidated`: an assumption that has been disproved by evidence
+- `lifted`: a constraint that no longer applies
+- `retired`: kept only for traceability or housekeeping, not because evidence directly validated or disproved it
+
+Do not use `validated` or `invalidated` for constraints.
+Do not use `lifted` for assumptions.
 
 ## Example
 

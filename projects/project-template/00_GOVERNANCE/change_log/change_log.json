@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "tightened the assumptions-and-constraints template guidance so allowed statuses are type-specific: assumptions use active, validated, invalidated, or retired, while constraints use active, lifted, or retired",
+    "date": "2026-03-23-15h12"
+  },
+  {
     "change_summary": "tightened the execution-item template guidance so statuses are limited to planned, in_progress, blocked, done, abandonned, and backlog, with done items expected to record completion dates for active versus inactive dashboard grouping",
     "date": "2026-03-23-13h48"
   },
