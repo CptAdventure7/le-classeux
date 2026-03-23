@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "updated the roadmap template guidance so future projects can represent both current contracted scope and clearly labeled long-term vision phases, with explicit TBD markers for uncontracted horizons",
+    "date": "2026-03-23-15h30"
+  },
+  {
     "change_summary": "clarified the system and subsystem requirement template guidance so repo-managed references keep full internal traceability while front-facing Excel reference cells only expose client or SharePoint sources, or `TBD` when no external source exists",
     "date": "2026-03-23-10h45"
   },

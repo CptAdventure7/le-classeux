@@ -2,6 +2,8 @@
 
 Keep the project roadmap here. `roadmap.json` is the canonical artifact.
 
+The roadmap may span both the current contracted effort and clearly labeled longer-term vision phases. When it does, each item summary must distinguish committed scope from follow-on opportunity or strategic intent.
+
 ## Roadmap Shape
 
 The roadmap object should contain:
@@ -24,6 +26,7 @@ Each item should include:
 - `source_links`
 
 Use `RDM-` IDs. Keep `status` to `planned`, `in_progress`, `blocked`, or `done`.
+Use `YYYY-MM-DD` target dates for committed checkpoints and a clear `TBD - <context>` marker only when the item is an uncontracted vision phase.
 
 ## Example
 
