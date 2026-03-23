@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "rewrote the root README example workflow to describe the full engineering-memory cycle from project instantiation through ingestion, general updates, assisted outputs, and overview-driven maintenance",
+    "date": "2026-03-23-09h09"
+  },
+  {
     "change_summary": "refined the root README human guide so it now explains how a systems engineer uses the workspace during development and maintenance",
     "date": "2026-03-23-09h04"
   },
