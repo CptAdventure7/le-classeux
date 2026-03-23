@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "refined the root README human guide so it now explains how a systems engineer uses the workspace during development and maintenance",
+    "date": "2026-03-23-09h04"
+  },
+  {
     "change_summary": "expanded the root README with a short human guide covering repository intent, common action types, and a simple usage workflow",
     "date": "2026-03-23-08h59"
   },

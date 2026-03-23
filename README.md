@@ -4,8 +4,8 @@ This repository is the workspace root for one or more project context banks, sha
 
 ## Human Guide
 
-Use this repo as a structured workspace for project knowledge and execution history.
+Use this repo as the project's engineering memory alongside day-to-day development.
 
-- Intent: keep project context traceable, current, and easy for both humans and agents to retrieve.
-- Action types: read project context, update project artefacts, add evidence, and keep change logs current.
-- Example workflow: open `projects_manifest.yaml`, pick the project you need, read that project's `README.md` and `project_manifest.yaml`, then work in the narrowest relevant folder and record the change in the right change log.
+- Intent: keep requirements, design rationale, decisions, verification evidence, and execution status in one traceable place.
+- Action types: consult the project context before work, update the relevant artefacts as the design evolves, and keep summaries and change logs current during maintenance.
+- Example workflow: select the project from `projects_manifest.yaml`, read its overview and manifest, do the engineering work, then come back to update the affected requirement, design, verification, or decision artefacts and append the right change log entry.
