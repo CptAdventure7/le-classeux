@@ -8,4 +8,25 @@ Use this repo as the project's engineering memory alongside day-to-day developme
 
 - Intent: keep requirements, design rationale, decisions, verification evidence, and execution status in one traceable place.
 - Action types: consult the project context before work, update the relevant artefacts as the design evolves, and keep summaries and change logs current during maintenance.
-- Example workflow: instantiate a new project from the template, customize it if needed, ingest source documents to build the initial knowledge base, run general updates to connect requirements, decisions, design, and evidence, then query the memory-augmented assistant or ask it to produce internal documentation; use the overview and dashboards to spot gaps, improve information quality, and publish easy-to-read updates.
+
+### Example workflow
+
+```mermaid
+flowchart LR
+    accTitle: Engineering Memory Workflow
+    accDescr: This workflow shows how a systems engineer can use the repository from project creation through source ingestion, context refresh, assisted outputs, and continuous improvement.
+
+    instantiate["📋 Instantiate project"]
+    ingest["📥 Ingest sources"]
+    refresh["🔄 Run general update"]
+    query["🧠 Query assistant or generate docs"]
+    improve["📊 Use overview and dashboards"]
+
+    instantiate --> ingest --> refresh --> query --> improve
+```
+
+1. **Instantiate the project** from the template, then customize the structure only where the project needs it.
+2. **Ingest source information** such as notes, references, specs, or external documents to build the initial project memory.
+3. **Run general updates** to connect requirements, design choices, decisions, risks, and verification artefacts.
+4. **Query the assistant** against this repository memory, or ask it to produce internal documentation from the linked artefacts.
+5. **Use the overview and dashboards** to spot gaps, improve information quality, and publish accessible status updates.

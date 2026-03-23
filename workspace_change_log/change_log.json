@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "reworked the root README example workflow into a dedicated markdown section with a visual flow and short step-by-step guidance",
+    "date": "2026-03-23-09h11"
+  },
+  {
     "change_summary": "rewrote the root README example workflow to describe the full engineering-memory cycle from project instantiation through ingestion, general updates, assisted outputs, and overview-driven maintenance",
     "date": "2026-03-23-09h09"
   },
