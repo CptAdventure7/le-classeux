@@ -34,6 +34,17 @@ Each execution item file should use these shared keys:
 - `linked_artifacts`
 - `notes`
 
+Allowed `status` values are:
+
+- `planned`
+- `in_progress`
+- `blocked`
+- `done`
+- `abandonned`
+- `backlog`
+
+Use `backlog` for ideas or deferred work that is not active yet. Use `abandonned` for work that was explicitly dropped but must stay traceable. When an item moves to `done`, fill `completion_date` so dashboards can separate recent completions from older inactive ones.
+
 Type-specific keys:
 
 - `issue`: `problem_statement`, `definition_of_done`

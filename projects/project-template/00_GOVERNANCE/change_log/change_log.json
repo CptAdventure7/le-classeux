@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "tightened the execution-item template guidance so statuses are limited to planned, in_progress, blocked, done, abandonned, and backlog, with done items expected to record completion dates for active versus inactive dashboard grouping",
+    "date": "2026-03-23-13h48"
+  },
+  {
     "change_summary": "updated the roadmap template guidance so future projects can represent both current contracted scope and clearly labeled long-term vision phases, with explicit TBD markers for uncontracted horizons",
     "date": "2026-03-23-15h30"
   },
