@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "simplified the project-template root README so it stays a short entrypoint focused on broad navigation and maintenance guidance, leaving detailed instructions to folder-level READMEs and shared skills",
+    "date": "2026-03-25-10h00"
+  },
+  {
     "change_summary": "retargeted the project README to the shared root-level `project-navigation` skill and kept the runtime scan cache aligned after removing the project-local copy of that skill",
     "date": "2026-03-25-13h19"
   },
