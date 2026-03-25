@@ -277,8 +277,10 @@ function Get-PreferredContentFiles {
         Where-Object {
             $extension = $_.Extension.ToLowerInvariant()
             $isIngestionSummary = $extension -eq ".md" -and $_.BaseName.ToLowerInvariant().EndsWith("-ingestion-summary")
+            $isRuntimeScanSummary = $_.Name -ieq "runtime_scan_summary.json"
             ($extension -eq ".md" -or $extension -eq ".json") -and
             -not $isIngestionSummary -and
+            -not $isRuntimeScanSummary -and
             $_.Name -ne "README.md" -and
             $_.Name -ne "local_manifest.yaml" -and
             $_.Name -ne "project_manifest.yaml"

@@ -248,6 +248,8 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertNotIn("These README-only notes should stay out of the dashboard.", html)
             self.assertNotIn("Legacy Requirements Ingestion Summary", html)
             self.assertNotIn("This ingestion summary should stay out of the dashboard.", html)
+            self.assertNotIn("Runtime Scan Summary", html)
+            self.assertNotIn("Runtime scan cache content should stay out of the dashboard.", html)
 
     def test_generator_emits_detail_summary_wrap_styling(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
@@ -3140,6 +3142,24 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 - Display Markdown and JSON sources without editing the project artefacts.
             """
             ).strip()
+            + "\n",
+            encoding="utf-8",
+        )
+
+        (project_root / "00_GOVERNANCE" / "current_overview" / "runtime_scan_summary.json").write_text(
+            json.dumps(
+                {
+                    "generated_at": "2026-03-22T16:10:00Z",
+                    "summary": "Runtime scan cache content should stay out of the dashboard.",
+                    "sections": [
+                        {
+                            "key": "foundation",
+                            "file_count": 2,
+                        }
+                    ],
+                },
+                indent=2,
+            )
             + "\n",
             encoding="utf-8",
         )
