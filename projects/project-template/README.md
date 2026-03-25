@@ -11,7 +11,7 @@
 ## How To Navigate
 
 - Start with `project_manifest.yaml` for the authoritative top-level structure.
-- Use the shared `project-navigation` skill at `../../agent/skills/project-navigation/SKILL.md` when you need low-token routing into the project.
+- By default, use the shared `project-navigation` skill at `../../agent/skills/project-navigation/SKILL.md` when you need low-token routing into the project.
 - Move to the narrowest relevant folder before reading deeper artefacts.
 - Read that folder's local `README.md` before creating or editing files there.
 - Prefer active sections over `99_ARCHIVE` unless you need historical traceability.
