@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "updated the requirement template guidance so canonical system and user requirement filenames are `system_requirement.json` and `user_requirements.json`",
+    "date": "2026-03-25-08h35"
+  },
+  {
     "change_summary": "tightened the assumptions-and-constraints template guidance so allowed statuses are type-specific: assumptions use active, validated, invalidated, or retired, while constraints use active, lifted, or retired",
     "date": "2026-03-23-15h12"
   },

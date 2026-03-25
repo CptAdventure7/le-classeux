@@ -49,7 +49,7 @@ Example filename: `sensor_stack_requirements.json`
   "difficulty_of_realization": "TBD",
   "compliance_follow_up": "TBD",
   "reference": [
-    "2026-03-23 | source | 03_REQUIREMENTS/system_requirements/requirements.json#PRJ-REQ-12"
+    "2026-03-23 | source | 03_REQUIREMENTS/system_requirements/system_requirement.json#PRJ-REQ-12"
   ],
   "date_of_last_update": "2026-03-23",
   "follow_up_comments": [

@@ -4,15 +4,15 @@ User-facing needs, jobs-to-be-done, and externally visible acceptance statements
 
 ## Canonical Artifact
 
-- Keep one top-level `requirements.json` file in this folder when real content exists.
+- Keep one top-level `user_requirements.json` file in this folder when real content exists.
 - Do not keep placeholder JSON files. The example schema belongs in this README until the project has actual requirements to record.
-- `requirements.json` must be a top-level JSON array where each object is one requirement.
+- `user_requirements.json` must be a top-level JSON array where each object is one requirement.
 
 ## Authoring Rules
 
 - Use IDs with the `PRJ-UN-` prefix.
 - Requirement `status` must be one of `Accepted`, `Preliminary`, or `Abandoned`.
-- Obsolete or non-relevant requirements must remain in `requirements.json` and be retagged as `Abandoned`; do not delete them from the live record.
+- Obsolete or non-relevant requirements must remain in `user_requirements.json` and be retagged as `Abandoned`; do not delete them from the live record.
 - If a requirement is already tagged `Accepted`, do not modify it unless there is explicit user confirmation recorded in `00_GOVERNANCE/change_log/change_log.json`.
 - Keep `verification_method`, `verification_summary`, `verification_compliance_status`, `verification_report_reference`, and `verification_justification_or_comment` at `TBD` during early project phases. Only populate them once the requirement enters an active verification phase.
 - `verification_compliance_status` must stay `TBD` until verification work is underway. During verification, it must be one of `Undetermined`, `Compliant`, or `Non-compliant`.
