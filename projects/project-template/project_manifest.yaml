@@ -21,6 +21,7 @@ runtime_scan:
     - project_manifest.yaml
     - local_manifest.yaml
     - .gitkeep
+    - runtime_scan_summary.json
   ignore_section_ids:
     - 99_ARCHIVE
 top_level_sections:

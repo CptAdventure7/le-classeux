@@ -21,6 +21,7 @@
 ## How To Work In This Project
 
 - Start with the `Current Overview Summary` section in this README for the compact current-state summary and recommended next reads.
+- For low-token routing, use the local `project-navigation` skill at `agent/skills/project-navigation/SKILL.md` before opening many section folders.
 - Then check `project_manifest.yaml` for the authoritative folder map.
 - After that, move to the narrowest relevant folder and read that folder's local `README.md` before opening deeper artefacts.
 - Prefer active working sections over `99_ARCHIVE`, and use archived material only for historical traceability.

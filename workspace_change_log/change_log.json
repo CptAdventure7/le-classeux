@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "removed the shared runtime scan script and tests after relocating the resource into the project-template local `project-navigation` skill",
+    "date": "2026-03-25-13h11"
+  },
+  {
     "change_summary": "added a shared PowerShell runtime scan summary generator plus tests so selected projects can cache low-token top-level section activity and freshness metadata beside their manifests",
     "date": "2026-03-25-12h56"
   },

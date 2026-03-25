@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at":  "2026-03-25T12:52:34Z",
+    "generated_at":  "2026-03-25T13:10:18Z",
     "cache_path":  "00_GOVERNANCE/current_overview/runtime_scan_summary.json",
     "refresh_after_hours":  24,
     "max_depth":  3,
@@ -9,7 +9,7 @@
                          "folder":  "00_GOVERNANCE",
                          "state":  "has_content",
                          "meaningful_file_count":  1,
-                         "latest_update":  "2026-03-25T12:36:05Z"
+                         "latest_update":  "2026-03-25T12:53:16Z"
                      },
                      {
                          "folder":  "01_PROJECT_FOUNDATION",
