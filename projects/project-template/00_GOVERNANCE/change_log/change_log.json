@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "expanded the project-template runtime scan to cover all active top-level sections from `00_GOVERNANCE` through `10_OPERATIONS_AND_HANDOFF`, removing the redundant `99_ARCHIVE` inclusion from the manifest-driven scan scope",
+    "date": "2026-03-25-13h33"
+  },
+  {
     "change_summary": "updated the simplified project-template root README so it explicitly points readers to the shared `project-navigation` skill for low-token routing",
     "date": "2026-03-25-11h16"
   },

@@ -1,5 +1,5 @@
 ﻿{
-    "generated_at":  "2026-03-25T13:10:18Z",
+    "generated_at":  "2026-03-25T17:33:10Z",
     "cache_path":  "00_GOVERNANCE/current_overview/runtime_scan_summary.json",
     "refresh_after_hours":  24,
     "max_depth":  3,
@@ -9,10 +9,16 @@
                          "folder":  "00_GOVERNANCE",
                          "state":  "has_content",
                          "meaningful_file_count":  1,
-                         "latest_update":  "2026-03-25T12:53:16Z"
+                         "latest_update":  "2026-03-25T17:32:49Z"
                      },
                      {
                          "folder":  "01_PROJECT_FOUNDATION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "02_SYSTEM_DEFINITION",
                          "state":  "default_empty",
                          "meaningful_file_count":  0,
                          "latest_update":  null
@@ -24,7 +30,43 @@
                          "latest_update":  null
                      },
                      {
+                         "folder":  "04_DESIGN_AND_IMPLEMENTATION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "05_EXPERIMENT_AND_VERIFICATION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "06_RESEARCH_AND_REFERENCES",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
                          "folder":  "07_PROJECT_EXECUTION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "08_DECISIONS",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "09_COMMUNICATION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "10_OPERATIONS_AND_HANDOFF",
                          "state":  "default_empty",
                          "meaningful_file_count":  0,
                          "latest_update":  null
