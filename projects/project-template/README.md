@@ -4,14 +4,16 @@
 
 ## Current Overview Summary
 
-- Last updated: `2026-03-22`
-- Current phase: `Template / structure simplification`
+- Last updated: `2026-03-25`
+- Current phase: `Template / low-token routing refinement`
 
-`project-template` is a context-bank scaffold optimized for traceable project memory. The current focus is simplifying the execution-tracking model so agents and humans use one JSON-based `execution_items` folder for issues and milestones instead of three overlapping execution structures.
+`project-template` is a context-bank scaffold optimized for traceable project memory. The current focus is keeping routing cheap for simple projects by pairing the manifest with a cached metadata-only `runtime_scan_summary.json` so agents can skip scaffold-only top-level sections without opening empty branches.
 
 ### Active Watchpoints
 
 - keep root-level routing concise so agents do not spend tokens on repeated folder boilerplate
+- keep the runtime scan cache metadata-only, top-level only, and bounded to the manifest-opted sections with a 24-hour refresh window
+- keep `99_ARCHIVE` out of the normal runtime scan baseline unless the query is explicitly historical
 - keep `05_EXPERIMENT_AND_VERIFICATION` on a simple one-file-per-analysis, experiment, protocol, or result pattern
 - keep `07_PROJECT_EXECUTION` centered on one canonical execution-item pattern with a folder-local manifest and no parallel board concepts
 - update this section whenever the active overview, priorities, or best next reads change

@@ -2,6 +2,27 @@ project_name: project-template
 project_slug: project-template
 structure_version: 2
 strategy: progressive_disclosure
+runtime_scan:
+  enabled: true
+  cache_relative_path: 00_GOVERNANCE/current_overview/runtime_scan_summary.json
+  refresh_after_hours: 24
+  max_depth: 3
+  include_sections:
+    - 00_GOVERNANCE
+    - 01_PROJECT_FOUNDATION
+    - 03_REQUIREMENTS
+    - 07_PROJECT_EXECUTION
+    - 99_ARCHIVE
+  meaningful_extensions:
+    - .md
+    - .json
+  ignore_files:
+    - README.md
+    - project_manifest.yaml
+    - local_manifest.yaml
+    - .gitkeep
+  ignore_section_ids:
+    - 99_ARCHIVE
 top_level_sections:
   - id: 00_GOVERNANCE
     purpose: "Program-level control documents, current state, and project memory."

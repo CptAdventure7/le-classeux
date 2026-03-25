@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "added a manifest-driven runtime scan contract, documented the cached `runtime_scan_summary.json` routing aid, refreshed the template root summary, and generated the first low-token section scan cache for the project template",
+    "date": "2026-03-25-12h56"
+  },
+  {
     "change_summary": "updated the requirement template guidance so canonical system and user requirement filenames are `system_requirement.json` and `user_requirements.json`",
     "date": "2026-03-25-08h35"
   },

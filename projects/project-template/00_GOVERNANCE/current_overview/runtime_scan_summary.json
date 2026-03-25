@@ -1,0 +1,34 @@
+﻿{
+    "generated_at":  "2026-03-25T12:52:34Z",
+    "cache_path":  "00_GOVERNANCE/current_overview/runtime_scan_summary.json",
+    "refresh_after_hours":  24,
+    "max_depth":  3,
+    "mode":  "normal",
+    "sections":  [
+                     {
+                         "folder":  "00_GOVERNANCE",
+                         "state":  "has_content",
+                         "meaningful_file_count":  1,
+                         "latest_update":  "2026-03-25T12:36:05Z"
+                     },
+                     {
+                         "folder":  "01_PROJECT_FOUNDATION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "03_REQUIREMENTS",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     },
+                     {
+                         "folder":  "07_PROJECT_EXECUTION",
+                         "state":  "default_empty",
+                         "meaningful_file_count":  0,
+                         "latest_update":  null
+                     }
+                 ]
+}
+

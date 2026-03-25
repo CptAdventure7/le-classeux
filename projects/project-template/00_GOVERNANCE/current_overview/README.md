@@ -7,6 +7,7 @@ This folder belongs to the project-template context bank.
 Weekly rolling snapshots of current project health, current-state summaries, active priorities, and navigation pointers for new readers.
 
 This folder also owns the compact LLM-facing recap published as the `Current Overview Summary` section in [`../../README.md`](../../README.md). That root-level section is the low-token entrypoint for agents and should be updated whenever the active weekly snapshot changes materially.
+This folder also stores `runtime_scan_summary.json`, a metadata-only scan cache that summarizes which opted-in top-level sections appear populated without opening their contents. Keep it refreshed on demand or when it is older than 24 hours.
 
 Each snapshot is the quick report for "where things stand now" and should help a reader answer:
 - what happened recently that matters
@@ -30,6 +31,7 @@ Lifecycle expectations:
 - keep the active weekly snapshots here while they remain operationally relevant
 - after about two months, retire older weekly overviews to [99_ARCHIVE/current_overview](../../99_ARCHIVE/current_overview/README.md)
 - preserve traceability by linking each snapshot to the upstream evidence it summarizes
+- Do not treat `99_ARCHIVE` as active scan scope in normal routing. It is history-only and should enter the agent path only for explicit historical or traceability queries.
 
 ## What Does Not Belong Here
 
@@ -39,6 +41,7 @@ Lifecycle expectations:
 - Long-form meeting notes, raw logs, or detailed plans that should remain in their canonical folders.
 - Timeless reference material that belongs in requirements, decisions, risks, or workflows instead of a time-bounded snapshot.
 - Detailed evidence dumps inside the root-level summary section; keep that artifact short and route readers to canonical sources instead.
+- Manual interpretations of folder fullness inside `runtime_scan_summary.json`; that cache is for cheap metadata-only scan results, not human judgement.
 
 ## Cross-Links To Maintain
 
@@ -46,6 +49,7 @@ Lifecycle expectations:
 - Link to downstream evidence, implementation, or decision records affected by changes here.
 - Link to the concrete sources behind the snapshot when available, especially issues, milestones, decisions, meeting summaries, risk registers, and internal updates.
 - Review adjacent folders when a change affects related material: `00_GOVERNANCE/change_log`, `07_PROJECT_EXECUTION`, `08_DECISIONS`, `09_COMMUNICATION`, `10_OPERATIONS_AND_HANDOFF`.
+- When `runtime_scan_summary.json` is refreshed, keep its configuration aligned with `project_manifest.yaml` and avoid adding `99_ARCHIVE` back into normal-mode scan scope.
 
 ## Drafting Rules
 
@@ -57,6 +61,7 @@ Lifecycle expectations:
 - When a snapshot ages past roughly two months, retire older weekly overviews to `99_ARCHIVE/current_overview` instead of leaving this folder crowded with stale current-state reports.
 - After updating the active weekly snapshot, refresh the `Current Overview Summary` section in [`../../README.md`](../../README.md) in the same change if the project state, priorities, canonical next reads, or archive-avoidance guidance changed.
 - Keep the root-level summary intentionally smaller than the weekly snapshot: prefer a 150-300 word limit, a few bullets, and direct links to the most useful next files instead of repeating narrative detail.
+- Treat `runtime_scan_summary.json` as a mechanical routing aid. It should stay metadata-only, cheap to regenerate on Windows, and limited to the manifest-opted top-level sections with a maximum recursive scan depth of 3.
 
 ## Update Rules
 

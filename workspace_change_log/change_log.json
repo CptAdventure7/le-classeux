@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "added a shared PowerShell runtime scan summary generator plus tests so selected projects can cache low-token top-level section activity and freshness metadata beside their manifests",
+    "date": "2026-03-25-12h56"
+  },
+  {
     "change_summary": "updated the shared internal-docs skill so requirement-document guidance now blocks internal repository references from front-facing Excel cells for system and subsystem requirements while preserving repo-side traceability guidance",
     "date": "2026-03-23-10h45"
   },
