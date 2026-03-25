@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "updated the simplified project-template root README so it explicitly points readers to the shared `project-navigation` skill for low-token routing",
+    "date": "2026-03-25-11h16"
+  },
+  {
     "change_summary": "simplified the project-template root README so it stays a short entrypoint focused on broad navigation and maintenance guidance, leaving detailed instructions to folder-level READMEs and shared skills",
     "date": "2026-03-25-10h00"
   },
