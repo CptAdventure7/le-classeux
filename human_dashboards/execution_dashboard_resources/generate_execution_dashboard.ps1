@@ -101,6 +101,20 @@ function Normalize-Token {
     return ($Value.Trim().ToLowerInvariant() -replace '[\s-]+', '_')
 }
 
+function Normalize-ExecutionStatus {
+    param([string]$Value)
+
+    $normalized = Normalize-Token $Value
+    switch ($normalized) {
+        "at_risk" { return "blocked" }
+        "overdue" { return "blocked" }
+        "abandoned" { return "abandonned" }
+        "cancelled" { return "abandonned" }
+        "canceled" { return "abandonned" }
+        default { return $normalized }
+    }
+}
+
 function ConvertTo-List {
     param($Value)
 
@@ -262,7 +276,9 @@ function Get-PreferredContentFiles {
         Get-ChildItem -Path $DirectoryPath -File -Recurse:$Recurse |
         Where-Object {
             $extension = $_.Extension.ToLowerInvariant()
+            $isIngestionSummary = $extension -eq ".md" -and $_.BaseName.ToLowerInvariant().EndsWith("-ingestion-summary")
             ($extension -eq ".md" -or $extension -eq ".json") -and
+            -not $isIngestionSummary -and
             $_.Name -ne "README.md" -and
             $_.Name -ne "local_manifest.yaml" -and
             $_.Name -ne "project_manifest.yaml"
@@ -289,7 +305,7 @@ function New-ExecutionItemRecord {
         $RawItem
     )
 
-    $status = Normalize-Token $RawItem.status
+    $status = Normalize-ExecutionStatus $RawItem.status
     $priority = Normalize-Token $RawItem.priority
     $type = Normalize-Token $RawItem.type
 
@@ -344,8 +360,8 @@ function New-DocumentRecord {
     }
 }
 
-$statusOrder = @("planned", "in_progress", "blocked", "done")
-$validStatuses = @($statusOrder + @("cancelled"))
+$statusOrder = @("planned", "in_progress", "blocked", "done", "backlog", "abandonned")
+$validStatuses = @($statusOrder)
 $validTypes = @("issue", "milestone")
 $validPriorities = @("low", "medium", "high", "critical")
 $documentSectionDefinitions = @(

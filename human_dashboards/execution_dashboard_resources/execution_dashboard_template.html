@@ -16,6 +16,8 @@
       --progress: #2f5f90;
       --blocked: #a43628;
       --done: #2e7a4f;
+      --backlog: #7b756a;
+      --abandonned: #8c8477;
       --radius: 18px;
       --shadow: 0 16px 40px rgba(46, 37, 24, 0.12);
     }
@@ -65,32 +67,32 @@
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .top-controls, .masthead {
-      margin-bottom: 18px;
-    }
-
-    .top-controls-grid, .masthead {
+    .top-controls {
       display: grid;
-      gap: 18px;
+      gap: 16px;
+      margin-bottom: 18px;
+      position: relative;
     }
 
-    .top-controls-grid {
-      grid-template-columns: minmax(0, 1.5fr) minmax(220px, 280px) minmax(240px, 320px);
-      align-items: end;
+    .top-controls-header {
+      min-width: 0;
     }
 
-    .masthead {
-      grid-template-columns: 1.35fr 1fr;
+    .top-controls-filter-row {
+      display: flex;
+      justify-content: flex-start;
+      gap: 10px;
+      flex-wrap: wrap;
     }
 
-    .hero, .meta, .top-controls, .tab-cluster, .top-controls-note, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
+    .hero, .meta, .top-controls, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
       border: 1px solid var(--line);
       border-radius: var(--radius);
       background: var(--panel);
       box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4);
     }
 
-    .hero, .meta, .top-controls, .tab-cluster, .top-controls-note, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
+    .hero, .meta, .top-controls, .snapshot, .filters, .board, .details, .doc-nav, .doc-viewer {
       padding: 18px;
     }
 
@@ -132,12 +134,12 @@
     h2, h3, p { margin-top: 0; }
     p { color: var(--muted); line-height: 1.6; }
 
-    .stats, .details-grid, .doc-meta-grid {
+    .stats, .doc-meta-grid {
       display: grid;
       gap: 12px;
     }
 
-    .stats, .details-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .doc-meta-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 16px 0; }
 
     .stat {
@@ -151,21 +153,99 @@
     .stat-value { font-size: 28px; font-weight: 700; }
 
     .tabs, .pill-row, .tag-row {
-      display: flex;
       gap: 10px;
+    }
+
+    .tabs {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      width: 100%;
+    }
+
+    .pill-row, .tag-row {
+      display: flex;
       flex-wrap: wrap;
     }
 
     .tab-cluster {
       display: grid;
       gap: 10px;
+      min-width: 0;
+    }
+
+    .project-filter-block {
+      width: min(320px, 100%);
+    }
+
+    .search-filter-block {
+      width: min(420px, 100%);
+    }
+
+    .top-controls-note {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      font-size: 13px;
+      line-height: 1.4;
+      color: var(--muted);
+      text-align: right;
+      white-space: nowrap;
+    }
+
+    .top-controls-note strong {
+      color: var(--ink);
     }
 
     .top-controls-note p {
-      margin-bottom: 0;
+      margin: 0;
     }
 
     .snapshot { margin-bottom: 18px; }
+    .snapshot-compact {
+      padding: 14px 16px;
+    }
+    .snapshot-strip {
+      display: grid;
+      grid-template-columns: minmax(180px, 220px) minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+    }
+    .snapshot-summary {
+      display: grid;
+      gap: 4px;
+      align-content: start;
+    }
+    .snapshot-summary .eyebrow {
+      margin-bottom: 2px;
+    }
+    .snapshot-title {
+      margin: 0;
+      font-size: clamp(20px, 2vw, 24px);
+      line-height: 1.02;
+    }
+    .snapshot-secondary {
+      display: grid;
+      gap: 10px;
+      min-width: 0;
+    }
+    .snapshot-metrics {
+      display: grid;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
+    }
+    .snapshot-metrics .stat {
+      min-width: 0;
+      padding: 10px 12px;
+      border-radius: 14px;
+    }
+    .snapshot-metrics .stat-label {
+      margin-bottom: 6px;
+      font-size: 10px;
+    }
+    .snapshot-metrics .stat-value {
+      font-size: clamp(20px, 2.2vw, 24px);
+      line-height: 1;
+    }
     .filters { margin-bottom: 18px; }
 
     .tab-button, .doc-link {
@@ -208,12 +288,16 @@
 
     .filters-grid {
       display: grid;
-      grid-template-columns: repeat(4, minmax(0, 1fr));
-      gap: 14px;
+      grid-template-columns: repeat(5, minmax(0, 1fr));
+      gap: 10px;
       align-items: end;
     }
 
-    .filter-block { display: grid; gap: 8px; }
+    .filter-block {
+      display: grid;
+      gap: 6px;
+      min-width: 0;
+    }
 
     select, input[type="search"] {
       width: 100%;
@@ -227,8 +311,8 @@
 
     .warning-strip {
       display: none;
-      padding: 12px 14px;
-      border-radius: 14px;
+      padding: 10px 12px;
+      border-radius: 12px;
       border: 1px solid rgba(164, 54, 40, 0.2);
       background: rgba(164, 54, 40, 0.07);
     }
@@ -236,16 +320,22 @@
     .warning-strip.is-visible, .tab-panel.is-active { display: block; }
     .tab-panel { display: none; }
 
-    .main, .doc-layout {
+    .execution-flow, .doc-layout {
       display: grid;
       gap: 18px;
       align-items: start;
     }
 
-    .main { grid-template-columns: minmax(0, 1.55fr) minmax(360px, 420px); }
     .doc-layout { grid-template-columns: minmax(260px, 320px) minmax(0, 1fr); }
 
-    .details, .doc-nav { position: sticky; top: 22px; }
+    .doc-nav { position: sticky; top: 22px; }
+    .doc-nav, .doc-viewer, .doc-link { min-width: 0; }
+
+    .execution-details {
+      height: clamp(280px, 36vh, 420px);
+      overflow-y: auto;
+      scrollbar-gutter: stable;
+    }
 
     .columns {
       display: grid;
@@ -254,7 +344,7 @@
       overflow-x: auto;
     }
 
-    .column, .json-entry, .json-card {
+    .column, .json-entry, .json-card, .json-row-details {
       border-radius: 16px;
       border: 1px solid rgba(27, 26, 23, 0.08);
       background: rgba(255, 255, 255, 0.62);
@@ -267,6 +357,12 @@
       justify-content: space-between;
       gap: 12px;
       align-items: baseline;
+    }
+
+    .doc-link-header {
+      align-items: flex-start;
+      flex-wrap: wrap;
+      min-width: 0;
     }
 
     .column-title {
@@ -288,10 +384,18 @@
     .status-in_progress { background: var(--progress); }
     .status-blocked { background: var(--blocked); }
     .status-done { background: var(--done); }
+    .status-backlog { background: var(--backlog); }
+    .status-abandonned { background: var(--abandonned); }
 
-    .card-stack, .doc-links, .doc-article, .json-object, .json-array {
+    .card-stack, .doc-links, .doc-article, .json-object, .json-array, .json-collection-table, .json-row-panel {
       display: grid;
       gap: 12px;
+    }
+
+    .doc-links {
+      max-height: min(62vh, 760px);
+      overflow-y: auto;
+      padding-right: 4px;
     }
 
     .card {
@@ -302,18 +406,60 @@
       padding: 14px;
       cursor: pointer;
       box-shadow: 0 10px 20px rgba(34, 26, 18, 0.05);
+      text-align: left;
     }
 
     .card[data-status="planned"] { border-left-color: var(--planned); }
     .card[data-status="in_progress"] { border-left-color: var(--progress); }
     .card[data-status="blocked"] { border-left-color: var(--blocked); }
     .card[data-status="done"] { border-left-color: var(--done); }
+    .card[data-status="backlog"] { border-left-color: var(--backlog); }
+    .card[data-status="abandonned"] { border-left-color: var(--abandonned); }
+
+    .card-summary {
+      margin: 8px 0 0;
+      text-align: left;
+    }
 
     .details-summary {
       max-width: 34ch;
       font-size: 17px;
       line-height: 1.65;
       text-wrap: pretty;
+    }
+
+    .details-meta-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin: 0 0 18px;
+    }
+
+    .detail-meta-item {
+      min-width: 0;
+      flex: 1 1 140px;
+      display: inline-flex;
+      align-items: baseline;
+      gap: 6px;
+      padding: 7px 10px;
+      border-radius: 999px;
+      border: 1px solid rgba(27, 26, 23, 0.1);
+      background: rgba(255, 255, 255, 0.72);
+    }
+
+    .detail-meta-item .stat-label {
+      margin-bottom: 0;
+      font-size: 10px;
+      letter-spacing: 0.08em;
+    }
+
+    .detail-meta-item .micro {
+      color: var(--ink);
+      font-size: 13px;
+      line-height: 1.25;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
     .details-path, .doc-path {
@@ -330,20 +476,165 @@
 
     .doc-link {
       width: 100%;
-      padding: 12px 14px;
+      padding: 10px 12px;
       text-align: left;
     }
 
     .doc-link-title {
       display: block;
-      margin: 6px 0;
+      margin: 4px 0;
       font-weight: 700;
       color: var(--ink);
+      line-height: 1.35;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
     }
 
     .doc-link-preview, .json-primitive, .doc-article li, .doc-article p {
       color: #413c34;
       line-height: 1.7;
+    }
+
+    .doc-link-title, .doc-link-preview, .doc-meta {
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .doc-link-preview {
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 2;
+      overflow: hidden;
+      line-height: 1.45;
+      font-size: 14px;
+    }
+
+    .json-entry, .json-card, .json-row-summary, .json-row-panel, .json-key, .json-primitive, .json-column-label, .json-row-index, .json-cell {
+      min-width: 0;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .json-inline-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      min-width: 0;
+      margin: 0;
+      padding: 0;
+      list-style: none;
+    }
+
+    .json-inline-list li {
+      min-width: 0;
+      max-width: 100%;
+      margin: 0;
+      padding: 4px 8px;
+      border-radius: 999px;
+      background: rgba(27, 26, 23, 0.06);
+      font-size: 12px;
+      line-height: 1.35;
+      white-space: normal;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .json-object {
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    }
+
+    .json-entry {
+      padding: 12px;
+    }
+
+    .json-entry-complex {
+      grid-column: 1 / -1;
+    }
+
+    .json-entry > .json-key {
+      margin-bottom: 6px;
+    }
+
+    .json-collection-table {
+      gap: 10px;
+    }
+
+    .json-collection-head, .json-row-summary {
+      display: grid;
+      grid-template-columns: 52px repeat(var(--json-column-count, 1), minmax(0, 1fr)) 84px;
+      gap: 10px;
+      align-items: start;
+    }
+
+    .json-collection-table.no-row-index .json-collection-head,
+    .json-collection-table.no-row-index .json-row-summary {
+      grid-template-columns: repeat(var(--json-column-count, 1), minmax(0, 1fr)) 84px;
+    }
+
+    .json-collection-head {
+      padding: 0 12px;
+    }
+
+    .json-column-label {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .json-column-action {
+      text-align: right;
+    }
+
+    .json-row-details {
+      padding: 0;
+      overflow: hidden;
+      background: rgba(255, 255, 255, 0.7);
+    }
+
+    .json-row-summary {
+      padding: 12px 14px;
+      cursor: pointer;
+      list-style: none;
+    }
+
+    .json-row-summary::-webkit-details-marker {
+      display: none;
+    }
+
+    .json-row-details[open] .json-row-summary {
+      border-bottom: 1px solid rgba(27, 26, 23, 0.08);
+      background: rgba(198, 93, 46, 0.05);
+    }
+
+    .json-row-index, .json-cell-action {
+      font-family: "Consolas", "Courier New", monospace;
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .json-cell {
+      min-width: 0;
+      color: #413c34;
+      line-height: 1.45;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
+    .json-cell-action {
+      text-align: right;
+      color: var(--accent);
+    }
+
+    .json-row-panel {
+      padding: 12px 14px 14px;
+      background: rgba(255, 255, 255, 0.38);
     }
 
     .doc-article h1 { font-size: 36px; line-height: 1.02; margin: 0; }
@@ -361,6 +652,14 @@
       background: rgba(198, 93, 46, 0.1);
       color: #6d2c13;
       font-size: 0.92em;
+    }
+
+    .doc-article mark {
+      padding: 0 0.18em;
+      border-radius: 0.22em;
+      background: rgba(198, 93, 46, 0.22);
+      color: inherit;
+      box-shadow: inset 0 -1px 0 rgba(198, 93, 46, 0.35);
     }
 
     .doc-article pre, .json-raw {
@@ -386,9 +685,17 @@
     }
 
     @media (max-width: 1180px) {
-      .top-controls-grid, .masthead, .main, .doc-layout { grid-template-columns: 1fr; }
-      .details, .doc-nav { position: static; }
+      .doc-layout { grid-template-columns: 1fr; }
+      .doc-nav { position: static; }
       .filters-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .doc-links { max-height: none; }
+      .snapshot-strip { grid-template-columns: 1fr; }
+      .snapshot-metrics { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+      .top-controls-note {
+        position: static;
+        text-align: left;
+        white-space: normal;
+      }
     }
 
     @media (max-width: 720px) {
@@ -399,79 +706,89 @@
       }
       .filters-grid, .doc-meta-grid { grid-template-columns: 1fr; }
       .columns { grid-template-columns: 1fr; }
+      .tabs { grid-template-columns: 1fr; }
       .tab-button { min-width: 100%; }
+      .execution-details { height: 320px; }
+      .snapshot-compact { padding: 12px; }
+      .snapshot-metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .detail-meta-item { flex-basis: calc(50% - 8px); }
+      .json-collection-head { display: none; }
+      .json-row-summary {
+        grid-template-columns: 1fr;
+      }
+      .json-cell-action {
+        text-align: left;
+      }
     }
   </style>
 </head>
 <body>
   <div class="shell">
     <section class="top-controls">
-      <div class="top-controls-grid">
+      <div class="top-controls-header">
         <div class="tab-cluster">
           <div class="eyebrow">Sections</div>
           <div class="tabs" id="section-tabs"></div>
         </div>
-        <div class="filter-block">
+        <div class="top-controls-note">
+          Generated on <strong>__GENERATED_AT__</strong>.
+        </div>
+      </div>
+      <div class="top-controls-filter-row">
+        <div class="filter-block project-filter-block">
           <label class="filter-label" for="project-filter">Filter by project</label>
           <select id="project-filter"></select>
         </div>
-        <div class="top-controls-note">
-          <div class="eyebrow">Generator</div>
-          <p>Generated on <strong>__GENERATED_AT__</strong>. The project filter applies across execution items and narrative sections.</p>
+        <div class="filter-block search-filter-block">
+          <label class="filter-label" for="search-filter">Search</label>
+          <input id="search-filter" type="search" placeholder="Execution items or section content">
         </div>
-      </div>
-    </section>
-
-    <section class="masthead">
-      <div class="hero">
-        <div class="eyebrow">Workspace Dashboard / __WORKSPACE_NAME__</div>
-        <h1>Execution Radar</h1>
-        <p style="max-width: 54ch; margin-top: 14px;">A read-only workspace atlas that keeps execution tracking, current_overview, roadmap, change_log, and the broader project narrative in one generated view.</p>
-        <div class="pill-row">
-          <span class="pill">Current Overview</span>
-          <span class="pill">Execution Items</span>
-          <span class="pill">Change Log</span>
-        </div>
-      </div>
-      <div class="meta">
-        <div class="eyebrow">Reading Mode</div>
-        <p>Use the section tabs first. Execution-only metrics and filters stay inside the execution view so the document sections remain focused on source content.</p>
       </div>
     </section>
 
     <section class="tab-panel is-active" id="execution-panel">
-      <section class="snapshot">
-        <div class="snapshot-header">
-          <div>
+      <section class="snapshot snapshot-compact">
+        <div class="snapshot-strip">
+          <div class="snapshot-summary">
             <div class="eyebrow">Execution Snapshot</div>
-            <h2 style="margin-bottom: 0;">Execution Snapshot</h2>
+            <h2 class="snapshot-title">Execution Snapshot</h2>
           </div>
-          <div class="warning-strip" id="warning-strip">
-            <div class="warning-text" id="warning-text"></div>
-          </div>
-        </div>
-        <div class="stats">
-          <div class="stat">
-            <span class="stat-label">Projects</span>
-            <span class="stat-value" id="project-count">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Visible Items</span>
-            <span class="stat-value" id="item-count">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Blocked</span>
-            <span class="stat-value" id="blocked-count">0</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Due Soon</span>
-            <span class="stat-value" id="due-soon-count">0</span>
+          <div class="snapshot-secondary">
+            <div class="warning-strip" id="warning-strip">
+              <div class="warning-text" id="warning-text"></div>
+            </div>
+            <div class="stats snapshot-metrics">
+              <div class="stat">
+                <span class="stat-label">Projects</span>
+                <span class="stat-value" id="project-count">0</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Visible Items</span>
+                <span class="stat-value" id="item-count">0</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Blocked</span>
+                <span class="stat-value" id="blocked-count">0</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Due Within 7 Days</span>
+                <span class="stat-value" id="due-soon-count">0</span>
+              </div>
+              <div class="stat">
+                <span class="stat-label">Overdue</span>
+                <span class="stat-value" id="overdue-count">0</span>
+              </div>
+            </div>
           </div>
         </div>
       </section>
 
       <section class="filters">
         <div class="filters-grid">
+          <div class="filter-block">
+            <label class="filter-label" for="status-filter">Filter by status</label>
+            <select id="status-filter"></select>
+          </div>
           <div class="filter-block">
             <label class="filter-label" for="type-filter">Filter by type</label>
             <select id="type-filter"></select>
@@ -484,24 +801,14 @@
             <label class="filter-label" for="priority-filter">Filter by priority</label>
             <select id="priority-filter"></select>
           </div>
-          <div class="filter-block">
-            <label class="filter-label" for="search-filter">Search</label>
-            <input id="search-filter" type="search" placeholder="ID, title, summary">
-          </div>
-        </div>
-        <div class="filters-grid" style="margin-top: 12px; grid-template-columns: 220px 1fr 1fr 1fr;">
-          <label class="micro" style="display:flex;gap:10px;align-items:center;height:42px;">
-            <input id="cancelled-toggle" type="checkbox">
-            <span>Show cancelled</span>
-          </label>
         </div>
       </section>
 
-      <section class="main">
+      <section class="execution-flow">
+        <aside class="details execution-details" id="details"></aside>
         <div class="board">
           <div class="columns" id="columns"></div>
         </div>
-        <aside class="details" id="details"></aside>
       </section>
     </section>
 
@@ -523,12 +830,19 @@
     const DASHBOARD_DATA_RAW = __DASHBOARD_DATA__;
     const DASHBOARD_WARNINGS_RAW = __DASHBOARD_WARNINGS__;
     const WORKSPACE_SECTIONS_RAW = __WORKSPACE_SECTIONS__;
-    const STATUS_COLUMNS = [
-      { key: "planned", label: "Planned" },
-      { key: "in_progress", label: "In Progress" },
-      { key: "blocked", label: "Blocked" },
-      { key: "done", label: "Done" }
-    ];
+    const STATUS_GROUPS = {
+      active: [
+        { key: "planned", label: "Planned" },
+        { key: "in_progress", label: "In Progress" },
+        { key: "blocked", label: "Blocked" },
+        { key: "done", label: "Done" }
+      ],
+      inactive: [
+        { key: "backlog", label: "Backlog" },
+        { key: "abandonned", label: "Abandonned" },
+        { key: "done", label: "Done" }
+      ]
+    };
 
     function ensureArray(value) {
       if (Array.isArray(value)) {
@@ -567,11 +881,11 @@
       executionPanel: document.getElementById("execution-panel"),
       documentPanel: document.getElementById("document-panel"),
       projectFilter: document.getElementById("project-filter"),
+      statusFilter: document.getElementById("status-filter"),
       typeFilter: document.getElementById("type-filter"),
       ownerFilter: document.getElementById("owner-filter"),
       priorityFilter: document.getElementById("priority-filter"),
       searchFilter: document.getElementById("search-filter"),
-      cancelledToggle: document.getElementById("cancelled-toggle"),
       columns: document.getElementById("columns"),
       details: document.getElementById("details"),
       warningStrip: document.getElementById("warning-strip"),
@@ -580,6 +894,7 @@
       itemCount: document.getElementById("item-count"),
       blockedCount: document.getElementById("blocked-count"),
       dueSoonCount: document.getElementById("due-soon-count"),
+      overdueCount: document.getElementById("overdue-count"),
       docEyebrow: document.getElementById("doc-eyebrow"),
       docSectionTitle: document.getElementById("doc-section-title"),
       docSectionDescription: document.getElementById("doc-section-description"),
@@ -610,6 +925,118 @@
       return escapeHtml(text)
         .replace(/`([^`]+)`/g, "<code>$1</code>")
         .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+    }
+
+    function getSearchValue() {
+      return els.searchFilter.value.trim().toLowerCase();
+    }
+
+    function collectSearchText(value, parts = []) {
+      if (value === null || value === undefined) {
+        return parts;
+      }
+
+      if (Array.isArray(value)) {
+        value.forEach((entry) => collectSearchText(entry, parts));
+        return parts;
+      }
+
+      if (typeof value === "object") {
+        Object.entries(value).forEach(([key, entryValue]) => {
+          parts.push(String(key));
+          collectSearchText(entryValue, parts);
+        });
+        return parts;
+      }
+
+      parts.push(String(value));
+      return parts;
+    }
+
+    function getDocumentSearchText(document) {
+      return collectSearchText([
+        document.title,
+        document.preview,
+        document.relative_path,
+        document.content
+      ]).join(" ").toLowerCase();
+    }
+
+    function jsonValueMatchesSearch(value, searchValue) {
+      if (!searchValue) {
+        return true;
+      }
+      return collectSearchText(value).join(" ").toLowerCase().includes(searchValue);
+    }
+
+    function documentMatchesSearch(document) {
+      const searchValue = getSearchValue();
+      if (!searchValue) {
+        return true;
+      }
+      return getDocumentSearchText(document).includes(searchValue);
+    }
+
+    function highlightTextNode(node, searchValue) {
+      if (!node || !node.nodeValue) {
+        return;
+      }
+
+      const text = node.nodeValue;
+      const lowerText = text.toLowerCase();
+      const matchIndex = lowerText.indexOf(searchValue);
+      if (matchIndex === -1) {
+        return;
+      }
+
+      const fragment = document.createDocumentFragment();
+      let start = 0;
+      let index = matchIndex;
+
+      while (index !== -1) {
+        if (index > start) {
+          fragment.appendChild(document.createTextNode(text.slice(start, index)));
+        }
+
+        const mark = document.createElement("mark");
+        mark.textContent = text.slice(index, index + searchValue.length);
+        fragment.appendChild(mark);
+
+        start = index + searchValue.length;
+        index = lowerText.indexOf(searchValue, start);
+      }
+
+      if (start < text.length) {
+        fragment.appendChild(document.createTextNode(text.slice(start)));
+      }
+
+      node.parentNode.replaceChild(fragment, node);
+    }
+
+    function highlightVisibleTextMatches(container, searchValue) {
+      if (!container || !searchValue) {
+        return;
+      }
+
+      const walker = document.createTreeWalker(container, NodeFilter.SHOW_TEXT, {
+        acceptNode(node) {
+          const parentName = node.parentElement ? node.parentElement.tagName : "";
+          if (!node.nodeValue || !node.nodeValue.trim()) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          if (["CODE", "PRE", "MARK", "SCRIPT", "STYLE"].includes(parentName)) {
+            return NodeFilter.FILTER_REJECT;
+          }
+          return NodeFilter.FILTER_ACCEPT;
+        }
+      });
+
+      const textNodes = [];
+      while (walker.nextNode()) {
+        textNodes.push(walker.currentNode);
+      }
+
+      textNodes.forEach((node) => highlightTextNode(node, searchValue));
     }
 
     function renderMarkdown(source) {
@@ -692,39 +1119,237 @@
       return blocks.length ? blocks.join("") : '<div class="empty-state">No Markdown content available.</div>';
     }
 
-    function renderJsonValue(value) {
+    function isJsonObject(value) {
+      return Boolean(value) && !Array.isArray(value) && typeof value === "object";
+    }
+
+    function isPrimitiveJsonValue(value) {
+      return value === null || value === undefined || typeof value !== "object";
+    }
+
+    function isStructuredJsonValue(value) {
+      return Array.isArray(value) || isJsonObject(value);
+    }
+
+    function summarizeJsonValue(value) {
+      if (value === null || value === undefined || value === "") {
+        return "-";
+      }
+
+      if (Array.isArray(value)) {
+        if (!value.length) {
+          return "[]";
+        }
+
+        const primitiveValues = value.every(isPrimitiveJsonValue);
+        if (primitiveValues) {
+          const preview = value.slice(0, 3).map((entry) => String(entry)).join(", ");
+          return value.length > 3 ? `${preview} +${value.length - 3}` : preview;
+        }
+
+        return `${value.length} entries`;
+      }
+
+      if (isJsonObject(value)) {
+        const recordLabel = value.id || value.title || value.name || value.key;
+        if (recordLabel !== undefined && recordLabel !== null && recordLabel !== "") {
+          return String(recordLabel);
+        }
+        return `${Object.keys(value).length} fields`;
+      }
+
+      return String(value);
+    }
+
+    function getJsonScanColumns(entries) {
+      const priority = [
+        "id",
+        "title",
+        "name",
+        "description",
+        "change_summary",
+        "status",
+        "owner",
+        "summary",
+        "target_date",
+        "date",
+        "last_updated"
+      ];
+      const frequency = new Map();
+
+      entries.forEach((entry) => {
+        if (!isJsonObject(entry)) {
+          return;
+        }
+
+        Object.keys(entry).forEach((key) => {
+          frequency.set(key, (frequency.get(key) || 0) + 1);
+        });
+      });
+
+      return [...frequency.entries()]
+        .filter(([key]) => !["notes", "linked_artifacts", "dependencies"].includes(key))
+        .sort((left, right) => {
+          const [leftKey, leftCount] = left;
+          const [rightKey, rightCount] = right;
+          const leftPriority = priority.indexOf(leftKey);
+          const rightPriority = priority.indexOf(rightKey);
+
+          if (leftPriority !== -1 || rightPriority !== -1) {
+            if (leftPriority === -1) {
+              return 1;
+            }
+            if (rightPriority === -1) {
+              return -1;
+            }
+            if (leftPriority !== rightPriority) {
+              return leftPriority - rightPriority;
+            }
+          }
+
+          if (leftCount !== rightCount) {
+            return rightCount - leftCount;
+          }
+
+          return leftKey.localeCompare(rightKey);
+        })
+        .slice(0, 4)
+        .map(([key]) => key);
+    }
+
+    function isGlossaryCollection(entries) {
+      return entries.length > 0 && entries.every((entry) =>
+        isJsonObject(entry) &&
+        Object.prototype.hasOwnProperty.call(entry, "term") &&
+        Object.prototype.hasOwnProperty.call(entry, "definition")
+      );
+    }
+
+    function isStakeholderCollection(entries) {
+      return entries.length > 0 && entries.every((entry) =>
+        isJsonObject(entry) &&
+        Object.prototype.hasOwnProperty.call(entry, "id") &&
+        Object.prototype.hasOwnProperty.call(entry, "name") &&
+        Object.prototype.hasOwnProperty.call(entry, "affiliation") &&
+        Object.prototype.hasOwnProperty.call(entry, "role")
+      );
+    }
+
+    function getJsonCollectionConfig(entries) {
+      if (isGlossaryCollection(entries)) {
+        return {
+          columns: ["id", "term", "definition"],
+          showRowIndex: false,
+          actionLabel: "Inspect"
+        };
+      }
+
+      if (isStakeholderCollection(entries)) {
+        return {
+          columns: ["id", "name", "affiliation", "role"],
+          showRowIndex: false,
+          actionLabel: "Inspect"
+        };
+      }
+
+      return {
+        columns: getJsonScanColumns(entries),
+        showRowIndex: true,
+        actionLabel: "Inspect"
+      };
+    }
+
+    function renderPrimitiveList(values) {
+      return `<ul class="json-inline-list">${values.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`;
+    }
+
+    function renderJsonObjectEntries(value, options = {}) {
+      const { depth = 0, searchValue = "" } = options;
+      const entries = Object.entries(value)
+        .filter(([key, entryValue]) => depth !== 0 || !searchValue || jsonValueMatchesSearch([key, entryValue], searchValue));
+      return entries.length
+        ? `<div class="json-object">${entries.map(([key, entryValue]) => `
+            <div class="json-entry${isStructuredJsonValue(entryValue) ? " json-entry-complex" : ""}">
+              <span class="json-key">${escapeHtml(key)}</span>
+              ${renderJsonValue(entryValue, { depth: depth + 1, searchValue })}
+            </div>
+          `).join("")}</div>`
+        : '<div class="json-primitive">{}</div>';
+    }
+
+    function renderJsonCompactCollection(entries, options = {}) {
+      const { columns, showRowIndex, actionLabel } = getJsonCollectionConfig(entries);
+      const cellsTemplate = columns.length
+        ? columns.map((key) => `<span class="json-column-label">${escapeHtml(titleCase(key))}</span>`).join("")
+        : '<span class="json-column-label">Value</span>';
+      const columnCount = columns.length || 1;
+      const tableClass = showRowIndex ? "json-collection-table" : "json-collection-table no-row-index";
+      const rowHeader = showRowIndex ? '<span class="json-column-label">Row</span>' : "";
+
+      return `
+        <div class="${tableClass}" style="--json-column-count:${columnCount}">
+          <div class="json-collection-head">
+            ${rowHeader}
+            ${cellsTemplate}
+            <span class="json-column-label json-column-action">${escapeHtml(actionLabel)}</span>
+          </div>
+          ${entries.map((entry, index) => {
+            const summaryCells = columns.length
+              ? columns.map((key) => `<span class="json-cell">${escapeHtml(summarizeJsonValue(entry[key]))}</span>`).join("")
+              : `<span class="json-cell">${escapeHtml(summarizeJsonValue(entry))}</span>`;
+            const detailContent = isJsonObject(entry)
+              ? renderJsonObjectEntries(entry, { depth: options.depth + 1, searchValue: options.searchValue })
+              : renderJsonValue(entry, { depth: options.depth + 1, searchValue: options.searchValue });
+            return `
+              <details class="json-row-details">
+                <summary class="json-row-summary">
+                  ${showRowIndex ? `<span class="json-row-index">${index + 1}</span>` : ""}
+                  ${summaryCells}
+                  <span class="json-cell json-cell-action">${escapeHtml(actionLabel)}</span>
+                </summary>
+                <div class="json-row-panel">
+                  ${detailContent}
+                </div>
+              </details>
+            `;
+          }).join("")}
+        </div>
+      `;
+    }
+
+    function renderJsonValue(value, options = {}) {
+      const { depth = 0, searchValue = "" } = options;
       if (value === null || value === undefined) {
         return '<div class="json-primitive">null</div>';
       }
 
       if (Array.isArray(value)) {
-        if (!value.length) {
+        const visibleItems = depth === 0 && searchValue
+          ? value.filter((entry) => jsonValueMatchesSearch(entry, searchValue))
+          : value;
+        if (!visibleItems.length) {
           return '<div class="json-primitive">[]</div>';
         }
 
-        const allPrimitive = value.every((entry) => entry === null || typeof entry !== "object");
+        const allPrimitive = visibleItems.every((entry) => entry === null || typeof entry !== "object");
         if (allPrimitive) {
-          return `<ul>${value.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`;
+          return renderPrimitiveList(visibleItems);
         }
 
-        return `<div class="json-array">${value.map((entry, index) => `
+        if (visibleItems.every((entry) => isJsonObject(entry))) {
+          return renderJsonCompactCollection(visibleItems, { depth, searchValue });
+        }
+
+        return `<div class="json-array">${visibleItems.map((entry, index) => `
           <div class="json-card">
             <span class="json-key">Item ${index + 1}</span>
-            ${renderJsonValue(entry)}
+            ${renderJsonValue(entry, { depth: depth + 1, searchValue })}
           </div>
         `).join("")}</div>`;
       }
 
       if (typeof value === "object") {
-        const entries = Object.entries(value);
-        return entries.length
-          ? `<div class="json-object">${entries.map(([key, entryValue]) => `
-              <div class="json-entry">
-                <span class="json-key">${escapeHtml(key)}</span>
-                ${renderJsonValue(entryValue)}
-              </div>
-            `).join("")}</div>`
-          : '<div class="json-primitive">{}</div>';
+        return renderJsonObjectEntries(value, { depth, searchValue });
       }
 
       return `<div class="json-primitive">${escapeHtml(value)}</div>`;
@@ -743,17 +1368,77 @@
       return documents.find((document) => document.id === selectedId) || documents[0] || null;
     }
 
+    function parseDateValue(value) {
+      if (!value) {
+        return null;
+      }
+      const parsed = new Date(`${value}T00:00:00`);
+      return Number.isNaN(parsed.valueOf()) ? null : parsed;
+    }
+
+    function isRecentlyDone(item) {
+      if (item.status !== "done") {
+        return false;
+      }
+
+      const completedAt = parseDateValue(item.completion_date) || parseDateValue(item.target_date);
+      if (!completedAt) {
+        return true;
+      }
+
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const diffDays = Math.floor((today - completedAt) / 86400000);
+      return diffDays <= 14;
+    }
+
+    function getLifecycleGroup(item) {
+      if (item.status === "planned" || item.status === "in_progress" || item.status === "blocked") {
+        return "active";
+      }
+      if (item.status === "backlog" || item.status === "abandonned") {
+        return "inactive";
+      }
+      if (item.status === "done") {
+        return isRecentlyDone(item) ? "active" : "inactive";
+      }
+      return "";
+    }
+
+    function getSelectedStatusGroup() {
+      return els.statusFilter.value || "active";
+    }
+
+    function getVisibleStatusColumns() {
+      return STATUS_GROUPS[getSelectedStatusGroup()] || STATUS_GROUPS.active;
+    }
+
     function isDueSoon(item) {
-      if (!item.target_date || item.status === "done" || item.status === "cancelled") {
+      if (!item.target_date || item.status === "done" || item.status === "backlog" || item.status === "abandonned") {
         return false;
       }
       const today = new Date();
-      const target = new Date(item.target_date + "T00:00:00");
-      if (Number.isNaN(target.valueOf())) {
+      today.setHours(0, 0, 0, 0);
+      const target = parseDateValue(item.target_date);
+      if (!target) {
         return false;
       }
       const diffDays = Math.floor((target - today) / 86400000);
       return diffDays >= 0 && diffDays <= 7;
+    }
+
+    function isOverdue(item) {
+      if (!item.target_date || item.status === "done" || item.status === "backlog" || item.status === "abandonned") {
+        return false;
+      }
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+      const target = parseDateValue(item.target_date);
+      if (!target) {
+        return false;
+      }
+      const diffDays = Math.floor((target - today) / 86400000);
+      return diffDays < 0;
     }
 
     function buildProjectOptions() {
@@ -788,16 +1473,23 @@
       if (!section || section.type !== "documents") {
         return [];
       }
-      return section.documents.filter((document) => matchesProjectSelection(document.project_id));
+      return section.documents.filter((document) =>
+        matchesProjectSelection(document.project_id) &&
+        documentMatchesSearch(document)
+      );
     }
 
     function getProjectScopedExecutionItems() {
       return DASHBOARD_DATA.filter((item) => matchesProjectSelection(item.project_id));
     }
 
+    function getVisibleExecutionItems() {
+      return getProjectScopedExecutionItems().filter((item) => getLifecycleGroup(item) === getSelectedStatusGroup());
+    }
+
     function matchesFilters(item) {
-      const searchValue = els.searchFilter.value.trim().toLowerCase();
-      if (!els.cancelledToggle.checked && item.status === "cancelled") {
+      const searchValue = getSearchValue();
+      if (getLifecycleGroup(item) !== getSelectedStatusGroup()) {
         return false;
       }
       if (!matchesProjectSelection(item.project_id)) {
@@ -831,7 +1523,7 @@
           <span class="micro">${item.project_id}</span>
         </div>
         <div style="font-size:20px;line-height:1.1;font-weight:700;">${escapeHtml(item.title)}</div>
-        <p style="margin:8px 0 0;">${escapeHtml(item.summary || "No summary provided.")}</p>
+        <p class="card-summary">${escapeHtml(item.summary || "No summary provided.")}</p>
         <div class="tag-row">
           <span class="tag">${titleCase(item.type)}</span>
           <span class="tag">${escapeHtml(item.owner || "Unassigned")}</span>
@@ -875,20 +1567,20 @@
         <div class="eyebrow">Details / ${escapeHtml(item.project_id)}</div>
         <h2>${escapeHtml(item.title)}</h2>
         <p class="details-summary">${escapeHtml(item.summary || "No summary provided.")}</p>
-        <div class="details-grid">
-          <div class="stat">
+        <div class="details-meta-list" aria-label="Execution item metadata">
+          <div class="detail-meta-item">
             <span class="stat-label">ID</span>
             <span class="micro">${escapeHtml(item.id)}</span>
           </div>
-          <div class="stat">
+          <div class="detail-meta-item">
             <span class="stat-label">Status</span>
             <span class="micro">${titleCase(item.status)}</span>
           </div>
-          <div class="stat">
+          <div class="detail-meta-item">
             <span class="stat-label">Owner</span>
             <span class="micro">${escapeHtml(item.owner || "Unassigned")}</span>
           </div>
-          <div class="stat">
+          <div class="detail-meta-item">
             <span class="stat-label">Target Date</span>
             <span class="micro">${escapeHtml(item.target_date || "None")}</span>
           </div>
@@ -920,9 +1612,11 @@
 
     function renderBoard() {
       const filteredItems = DASHBOARD_DATA.filter(matchesFilters);
+      const visibleColumns = getVisibleStatusColumns();
       els.columns.innerHTML = "";
+      els.columns.style.gridTemplateColumns = `repeat(${visibleColumns.length}, minmax(240px, 1fr))`;
 
-      STATUS_COLUMNS.forEach((column) => {
+      visibleColumns.forEach((column) => {
         const items = filteredItems.filter((item) => item.status === column.key);
         const columnNode = document.createElement("section");
         columnNode.className = "column";
@@ -957,6 +1651,7 @@
       els.itemCount.textContent = String(filteredItems.length);
       els.blockedCount.textContent = String(filteredItems.filter((item) => item.status === "blocked").length);
       els.dueSoonCount.textContent = String(filteredItems.filter(isDueSoon).length);
+      els.overdueCount.textContent = String(filteredItems.filter(isOverdue).length);
 
       const selected = filteredItems.find((item) => item.id === state.selectedId) || filteredItems[0] || null;
       state.selectedId = selected ? selected.id : null;
@@ -979,7 +1674,7 @@
         button.type = "button";
         button.className = `tab-button${state.activeSectionKey === section.key ? " is-active" : ""}`;
         const count = section.type === "board"
-          ? `${getProjectScopedExecutionItems().length} items`
+          ? `${getVisibleExecutionItems().length} items`
           : `${getVisibleDocuments(section).length} files`;
         button.innerHTML = `
           <span class="tab-title">${escapeHtml(section.label)}</span>
@@ -1008,11 +1703,8 @@
         button.innerHTML = `
           <div class="doc-link-header">
             <span class="doc-meta">${escapeHtml(documentRecord.project_id)}</span>
-            <span class="doc-meta">${escapeHtml(documentRecord.format)}</span>
           </div>
           <span class="doc-link-title">${escapeHtml(documentRecord.title)}</span>
-          <span class="doc-meta">${escapeHtml(documentRecord.slug)}</span>
-          <span class="doc-link-preview">${escapeHtml(documentRecord.preview || "No preview available.")}</span>
         `;
         button.addEventListener("click", () => {
           state.selectedDocumentIds[section.key] = documentRecord.id;
@@ -1028,37 +1720,20 @@
         return;
       }
 
+      const searchValue = getSearchValue();
       const contentHtml = document.format === "markdown"
         ? renderMarkdown(document.content)
-        : renderJsonValue(document.content);
+        : renderJsonValue(document.content, { depth: 0, searchValue });
 
       els.docViewerContent.innerHTML = `
         <div class="eyebrow">Document / ${escapeHtml(document.project_id)}</div>
         <h2>${escapeHtml(document.title)}</h2>
-        <p>${escapeHtml(document.preview || "No summary available.")}</p>
-        <div class="doc-meta-grid">
-          <div class="stat">
-            <span class="stat-label">Project</span>
-            <span class="micro">${escapeHtml(document.project_id)}</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Format</span>
-            <span class="micro">${escapeHtml(document.format)}</span>
-          </div>
-          <div class="stat">
-            <span class="stat-label">Source</span>
-            <span class="micro">${escapeHtml(document.slug)}</span>
-          </div>
-        </div>
-        <div class="doc-section">
-          <h3>Source Path</h3>
-          <p class="doc-path">${escapeHtml(document.relative_path)}</p>
-        </div>
-        <div class="doc-section">
-          <h3>Rendered Content</h3>
-          ${contentHtml}
-        </div>
+        ${contentHtml}
       `;
+
+      if (searchValue) {
+        highlightVisibleTextMatches(els.docViewerContent, searchValue);
+      }
     }
 
     function renderDocumentsSection(sectionKey) {
@@ -1093,14 +1768,23 @@
 
     function initialise() {
       fillSelect(els.projectFilter, buildProjectOptions());
+      fillSelect(els.statusFilter, [
+        { value: "active", label: "Active" },
+        { value: "inactive", label: "Inactive" }
+      ]);
       fillSelect(els.typeFilter, buildOptions(DASHBOARD_DATA, "type", "All types"));
       fillSelect(els.ownerFilter, buildOptions(DASHBOARD_DATA, "owner", "All owners"));
       fillSelect(els.priorityFilter, buildOptions(DASHBOARD_DATA, "priority", "All priorities"));
+      els.statusFilter.value = "active";
 
       els.projectFilter.addEventListener("change", renderActiveSection);
-      [els.typeFilter, els.ownerFilter, els.priorityFilter, els.cancelledToggle]
+      els.statusFilter.addEventListener("change", () => {
+        renderSectionTabs();
+        renderBoard();
+      });
+      [els.typeFilter, els.ownerFilter, els.priorityFilter]
         .forEach((element) => element.addEventListener("change", renderBoard));
-      els.searchFilter.addEventListener("input", renderBoard);
+      els.searchFilter.addEventListener("input", renderActiveSection);
 
       WORKSPACE_SECTIONS.forEach((section) => {
         if (section.type === "documents" && section.documents[0]) {
@@ -1116,10 +1800,3 @@
   </script>
 </body>
 </html>
-    .snapshot-header {
-      display: flex;
-      justify-content: space-between;
-      gap: 16px;
-      align-items: baseline;
-      margin-bottom: 14px;
-    }
