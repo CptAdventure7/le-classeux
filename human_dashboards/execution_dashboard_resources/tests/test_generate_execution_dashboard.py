@@ -1315,6 +1315,206 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 msg=f"Expected stakeholder row summary to show id, name, affiliation, role, and inspect only.\nProbe: {probe}",
             )
 
+    def test_requirement_general_view_uses_id_statement_status_date_of_last_update_and_inspect_for_all_requirement_types(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard requirement-view test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+
+            (workspace_root / "projects" / "project-alpha" / "03_REQUIREMENTS" / "user_requirements" / "user_requirements.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "USR-001",
+                            "statement": "Provide a compact read-only dashboard requirement scan.",
+                            "status": "Preliminary",
+                            "date_of_last_update": "2026-03-24",
+                            "priority": "High",
+                        }
+                    ],
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            (workspace_root / "projects" / "project-alpha" / "03_REQUIREMENTS" / "system_requirements" / "system_requirement.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "SYS-001",
+                            "statement": "Render requirements in a compact table.",
+                            "status": "Approved",
+                            "date_of_last_update": "2026-03-23",
+                            "verification_method": "Inspection",
+                        }
+                    ],
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            subsystem_dir = workspace_root / "projects" / "project-alpha" / "03_REQUIREMENTS" / "subsystem_requirements"
+            subsystem_dir.mkdir(parents=True, exist_ok=True)
+            (subsystem_dir / "camera_requirements.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "SUB-001",
+                            "statement": "Keep the row summary focused on the operator-facing fields.",
+                            "status": "Draft",
+                            "date_of_last_update": "2026-03-22",
+                            "owner": "Optics",
+                        }
+                    ],
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-requirements-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const requirementsTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Requirements"));
+                          if (requirementsTab) {
+                            requirementsTab.click();
+                          }
+
+                          const targetDocuments = ["User Requirements", "System Requirement", "Camera Requirements"];
+                          const results = {};
+
+                          targetDocuments.forEach((targetDocument) => {
+                            const documentLink = [...document.querySelectorAll("#doc-links .doc-link")]
+                              .find((element) => element.textContent.includes(targetDocument));
+                            if (documentLink) {
+                              documentLink.click();
+                              results[targetDocument] = {
+                                headerLabels: [...document.querySelectorAll(".json-collection-head .json-column-label")]
+                                  .map((element) => element.textContent.trim()),
+                                firstSummaryCells: [...document.querySelectorAll(".json-row-summary > *")]
+                                  .map((element) => element.textContent.trim()),
+                              };
+                            }
+                          });
+
+                          const pre = document.createElement("pre");
+                          pre.id = "probe-results";
+                          pre.textContent = JSON.stringify(results);
+                          document.body.appendChild(pre);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            expected_headers = ["ID", "Statement", "Status", "Date of last update", "Inspect"]
+            expected_rows = {
+                "User Requirements": [
+                    "USR-001",
+                    "Provide a compact read-only dashboard requirement scan.",
+                    "Preliminary",
+                    "2026-03-24",
+                    "Inspect",
+                ],
+                "System Requirement": [
+                    "SYS-001",
+                    "Render requirements in a compact table.",
+                    "Approved",
+                    "2026-03-23",
+                    "Inspect",
+                ],
+                "Camera Requirements": [
+                    "SUB-001",
+                    "Keep the row summary focused on the operator-facing fields.",
+                    "Draft",
+                    "2026-03-22",
+                    "Inspect",
+                ],
+            }
+
+            for document_name, expected_row in expected_rows.items():
+                self.assertIn(
+                    document_name,
+                    probe,
+                    msg=f"Expected probe results for {document_name}.\nProbe: {probe}",
+                )
+                self.assertEqual(
+                    probe[document_name]["headerLabels"],
+                    expected_headers,
+                    msg=f"Expected requirement headers to stay focused for {document_name}.\nProbe: {probe}",
+                )
+                self.assertEqual(
+                    probe[document_name]["firstSummaryCells"],
+                    expected_row,
+                    msg=f"Expected requirement row summary to stay focused for {document_name}.\nProbe: {probe}",
+                )
+
     def test_generator_wraps_long_path_tokens_inside_json_inline_lists(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace_root = Path(temp_dir)

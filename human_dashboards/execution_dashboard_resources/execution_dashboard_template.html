@@ -1235,10 +1235,34 @@
       );
     }
 
+    function isRequirementCollection(entries) {
+      return entries.length > 0 && entries.every((entry) =>
+        isJsonObject(entry) &&
+        Object.prototype.hasOwnProperty.call(entry, "id") &&
+        Object.prototype.hasOwnProperty.call(entry, "statement") &&
+        Object.prototype.hasOwnProperty.call(entry, "status") &&
+        Object.prototype.hasOwnProperty.call(entry, "date_of_last_update")
+      );
+    }
+
     function getJsonCollectionConfig(entries) {
       if (isGlossaryCollection(entries)) {
         return {
           columns: ["id", "term", "definition"],
+          showRowIndex: false,
+          actionLabel: "Inspect"
+        };
+      }
+
+      if (isRequirementCollection(entries)) {
+        return {
+          columns: ["id", "statement", "status", "date_of_last_update"],
+          labels: {
+            id: "ID",
+            statement: "Statement",
+            status: "Status",
+            date_of_last_update: "Date of last update"
+          },
           showRowIndex: false,
           actionLabel: "Inspect"
         };
@@ -1278,9 +1302,9 @@
     }
 
     function renderJsonCompactCollection(entries, options = {}) {
-      const { columns, showRowIndex, actionLabel } = getJsonCollectionConfig(entries);
+      const { columns, labels = {}, showRowIndex, actionLabel } = getJsonCollectionConfig(entries);
       const cellsTemplate = columns.length
-        ? columns.map((key) => `<span class="json-column-label">${escapeHtml(titleCase(key))}</span>`).join("")
+        ? columns.map((key) => `<span class="json-column-label">${escapeHtml(labels[key] || titleCase(key))}</span>`).join("")
         : '<span class="json-column-label">Value</span>';
       const columnCount = columns.length || 1;
       const tableClass = showRowIndex ? "json-collection-table" : "json-collection-table no-row-index";
