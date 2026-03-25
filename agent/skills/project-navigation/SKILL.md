@@ -7,7 +7,7 @@ description: Use when routing inside a project-template-derived context bank and
 
 ## Overview
 
-Use this local skill to navigate a project-template-derived context bank cheaply. Read the project root `README.md`, then `project_manifest.yaml`, then refresh or reuse the cached `runtime_scan_summary.json` with the bundled PowerShell script before descending into section folders.
+Use this shared skill to navigate a project-template-derived context bank cheaply. Read the project root `README.md`, then `project_manifest.yaml`, then refresh or reuse the cached `runtime_scan_summary.json` with the bundled PowerShell script before descending into section folders.
 
 ## When to Use
 
@@ -17,14 +17,13 @@ Use this local skill to navigate a project-template-derived context bank cheaply
 
 ## Implementation
 
-- Skill path: `projects/<project>/agent/skills/project-navigation/SKILL.md`
-- Generator script: `projects/<project>/agent/skills/project-navigation/scripts/generate_runtime_scan_summary.ps1`
+- Generator script: `agent/skills/project-navigation/scripts/generate_runtime_scan_summary.ps1`
 - Cache artifact: `00_GOVERNANCE/current_overview/runtime_scan_summary.json`
 
 Run the script with the selected project root:
 
 ```powershell
-powershell -NoProfile -ExecutionPolicy Bypass -File .\agent\skills\project-navigation\scripts\generate_runtime_scan_summary.ps1 -ProjectRoot .
+powershell -NoProfile -ExecutionPolicy Bypass -File .\agent\skills\project-navigation\scripts\generate_runtime_scan_summary.ps1 -ProjectRoot .\projects\<project-name>
 ```
 
 Use `-ForceRefresh` when you need a new cache immediately. Otherwise the script reuses the cache until it is more than 24 hours old.

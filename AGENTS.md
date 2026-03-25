@@ -26,6 +26,7 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
   - `internal-docs`: guidance for reading and writing internal engineering documents and branded internal presentation decks.
   - `meeting-summary`: convert meeting transcripts or notes into structured project meeting summaries.
   - `pageindex-local-structure`: build a local hierarchical document index for long files and retrieve targeted nodes.
+  - `project-navigation`: low-token project routing aid that pairs `project_manifest.yaml` with a cached top-level section scan summary.
   - `project-instantiation`: create a new project from `projects/project-template` and register it cleanly in the workspace.
   - `reference-ingestion`: ingest source documents into the project context bank and update canonical artefacts.
 - Nerver invent, base actions and answer on evidence, without guessing. Prefer project-local evidence over assumptions.
@@ -47,5 +48,6 @@ You are a masterful agent orchestrator. Except for a very simple task or query, 
 - `agent/skills/internal-docs/`: internal engineering document and presentation guidance.
 - `agent/skills/meeting-summary/`: meeting transcript and notes summarization workflow.
 - `agent/skills/pageindex-local-structure/`: local document indexing and node-retrieval workflow.
+- `agent/skills/project-navigation/`: low-token project navigation workflow with the cached runtime scan summary generator.
 - `agent/skills/project-instantiation/`: project bootstrap workflow from the shared template.
 - `agent/skills/reference-ingestion/`: source document ingestion workflow.

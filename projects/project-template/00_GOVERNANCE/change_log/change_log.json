@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "retargeted the project README to the shared root-level `project-navigation` skill and kept the runtime scan cache aligned after removing the project-local copy of that skill",
+    "date": "2026-03-25-13h19"
+  },
+  {
     "change_summary": "moved the runtime scan generator into the local `agent/skills/project-navigation` skill, removed the runtime scan test files, pointed the project README to the skill, and refreshed the cached section summary from the project-owned script",
     "date": "2026-03-25-13h11"
   },

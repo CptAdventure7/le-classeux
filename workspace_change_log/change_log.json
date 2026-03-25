@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "added the shared root-level `project-navigation` skill and moved the runtime scan generator there so projects can reference one common navigation workflow",
+    "date": "2026-03-25-13h19"
+  },
+  {
     "change_summary": "removed the shared runtime scan script and tests after relocating the resource into the project-template local `project-navigation` skill",
     "date": "2026-03-25-13h11"
   },
