@@ -1,5 +1,9 @@
 [
   {
+    "change_summary": "tightened the shared `reference-ingestion` skill so ingestion leaves only `.md` summaries and optional `.json` page-index artifacts in the repository and explicitly forbids retaining source Word or PDF files as repo outputs",
+    "date": "2026-03-26-09h56"
+  },
+  {
     "change_summary": "added the shared root-level `project-navigation` skill and moved the runtime scan generator there so projects can reference one common navigation workflow",
     "date": "2026-03-25-13h19"
   },
