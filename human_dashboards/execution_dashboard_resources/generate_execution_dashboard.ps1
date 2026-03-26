@@ -480,12 +480,41 @@ foreach ($sectionDefinition in $documentSectionDefinitions) {
         }
     }
 
-    $sortedDocuments =
-        $documents |
-        Sort-Object `
-            @{ Expression = { $_.project_id } }, `
-            @{ Expression = { $_.relative_path } }, `
-            @{ Expression = { $_.title } }
+    if ($sectionDefinition.key -eq "current_overview") {
+        $sortedDocuments =
+            $documents |
+            Sort-Object `
+                @{ Expression = {
+                        $fileStem = [System.IO.Path]::GetFileNameWithoutExtension($_.relative_path.Replace('/', '\'))
+                        if ($fileStem -match '^(\d{4}-\d{2}-\d{2})') {
+                            return $matches[1]
+                        }
+                        return ""
+                    }; Descending = $true }, `
+                @{ Expression = { $_.project_id } }, `
+                @{ Expression = { $_.relative_path } }, `
+                @{ Expression = { $_.title } }
+    } elseif ($sectionDefinition.key -eq "foundation") {
+        $sortedDocuments =
+            $documents |
+            Sort-Object `
+                @{ Expression = {
+                        if ($_.relative_path -match '/01_PROJECT_FOUNDATION/project_definition/') {
+                            return 0
+                        }
+                        return 1
+                    } }, `
+                @{ Expression = { $_.project_id } }, `
+                @{ Expression = { $_.relative_path } }, `
+                @{ Expression = { $_.title } }
+    } else {
+        $sortedDocuments =
+            $documents |
+            Sort-Object `
+                @{ Expression = { $_.project_id } }, `
+                @{ Expression = { $_.relative_path } }, `
+                @{ Expression = { $_.title } }
+    }
 
     $workspaceSections += [pscustomobject]@{
         key = $sectionDefinition.key

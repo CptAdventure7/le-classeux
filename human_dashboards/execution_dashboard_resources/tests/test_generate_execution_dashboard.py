@@ -112,6 +112,42 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
             self.assertIn("const WORKSPACE_SECTIONS_RAW =", html)
             self.assertIn("function renderMarkdown", html)
 
+    def test_generator_emits_internal_document_navigation_helpers(self) -> None:
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            html = output_html.read_text(encoding="utf-8")
+            self.assertIn("function resolveDashboardLinkTarget", html)
+            self.assertIn("function serializeDashboardHash", html)
+            self.assertIn("function applyDashboardHashNavigation", html)
+            self.assertIn("data-dashboard-link", html)
+
     def test_generator_places_sections_full_width_with_generator_note_top_right_and_project_filter_below(self) -> None:
         with tempfile.TemporaryDirectory() as temp_dir:
             workspace_root = Path(temp_dir)
@@ -162,7 +198,7 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 ),
             )
             execution_panel_match = re.search(
-                r'<section class="tab-panel is-active" id="execution-panel">(.*?)</section>\s*<section class="tab-panel" id="document-panel">',
+                r'<section class="tab-panel" id="execution-panel">(.*?)</section>\s*<section class="tab-panel is-active" id="document-panel">',
                 html,
                 re.DOTALL,
             )
@@ -456,6 +492,604 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 msg=f"Expected JSON rows to start collapsed.\nProbe: {probe}",
             )
 
+    def test_markdown_link_to_json_item_opens_the_target_row_in_dashboard(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard interaction test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-json-link-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const overviewLink = [...document.querySelectorAll("#doc-viewer-content a")]
+                            .find((element) => element.textContent.includes("RSK-0001"));
+
+                          if (overviewLink) {
+                            overviewLink.click();
+                          }
+
+                          setTimeout(() => {
+                            const activeTab = document.querySelector(".tab-button.is-active .tab-title")?.textContent?.trim() || "";
+                            const sectionTitle = document.getElementById("doc-section-title")?.textContent?.trim() || "";
+                            const targetedRow = document.querySelector('.json-row-details[data-json-record-id="RSK-0001"]');
+                            const targetedSummary = targetedRow?.querySelector(".json-row-summary")?.textContent?.replace(/\\s+/g, " ").trim() || "";
+                            const isOpen = Boolean(targetedRow?.hasAttribute("open"));
+                            const pre = document.createElement("pre");
+                            pre.id = "probe-results";
+                            pre.textContent = JSON.stringify({ activeTab, sectionTitle, targetedSummary, isOpen });
+                            document.body.appendChild(pre);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(
+                probe["activeTab"],
+                "Project Risk Register",
+                msg=f"Expected clicking the Markdown link to activate the linked JSON section.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["sectionTitle"],
+                "Project Risk Register",
+                msg=f"Expected the linked JSON document section to be opened.\nProbe: {probe}",
+            )
+            self.assertIn(
+                "RSK-0001",
+                probe["targetedSummary"],
+                msg=f"Expected the linked JSON row to be selected.\nProbe: {probe}",
+            )
+            self.assertTrue(
+                probe["isOpen"],
+                msg=f"Expected the linked JSON row to be expanded after navigation.\nProbe: {probe}",
+            )
+
+    def test_unresolved_internal_markdown_link_opens_overlay_with_copyable_repo_path(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard unresolved-link test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            (
+                workspace_root
+                / "projects"
+                / "project-alpha"
+                / "00_GOVERNANCE"
+                / "current_overview"
+                / "2026-03-26-missing-link-fallback.md"
+            ).write_text(
+                textwrap.dedent(
+                    """
+                    # Missing Link Fallback
+
+                    The dashboard should soften unresolved internal links.
+
+                    Check the handoff note: [Vision Reframe](../../09_COMMUNICATION/internal_updates/2026-03-23-roadmap-vision-reframe.md)
+                    """
+                ).strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-unresolved-link-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const fallbackDocLink = [...document.querySelectorAll("#doc-links .doc-link")]
+                            .find((element) => element.textContent.includes("Missing Link Fallback"));
+                          if (fallbackDocLink) {
+                            fallbackDocLink.click();
+                          }
+
+                          setTimeout(() => {
+                            const unresolvedLink = [...document.querySelectorAll("#doc-viewer-content a")]
+                              .find((element) => element.textContent.includes("Vision Reframe"));
+                            const beforeHref = window.location.href;
+                            if (unresolvedLink) {
+                              unresolvedLink.click();
+                            }
+
+                            setTimeout(() => {
+                              const overlay = document.querySelector("[data-unresolved-link-overlay]");
+                              const pathElement = overlay?.querySelector("[data-unresolved-link-path]");
+                              const copyButton = overlay?.querySelector("[data-unresolved-link-copy]");
+                              const pre = document.createElement("pre");
+                              pre.id = "probe-results";
+                              pre.textContent = JSON.stringify({
+                                hasUnresolvedClass: unresolvedLink?.classList.contains("unresolved-dashboard-link") || false,
+                                unresolvedPath: unresolvedLink?.getAttribute("data-unresolved-path") || "",
+                                hrefAfterClick: window.location.href,
+                                hrefChanged: window.location.href !== beforeHref,
+                                overlayVisible: overlay?.getAttribute("data-state") === "open",
+                                overlayPath: pathElement?.textContent?.trim() || "",
+                                copyButtonLabel: copyButton?.getAttribute("aria-label") || copyButton?.textContent?.trim() || ""
+                              });
+                              document.body.appendChild(pre);
+                            }, 0);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertTrue(
+                probe["hasUnresolvedClass"],
+                msg=f"Expected unresolved internal links to be visually marked.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["unresolvedPath"],
+                "projects/project-alpha/09_COMMUNICATION/internal_updates/2026-03-23-roadmap-vision-reframe.md",
+                msg=f"Expected unresolved internal links to expose the repo-relative path.\nProbe: {probe}",
+            )
+            self.assertFalse(
+                probe["hrefChanged"],
+                msg=f"Expected unresolved internal links to stay in the dashboard.\nProbe: {probe}",
+            )
+            self.assertTrue(
+                probe["overlayVisible"],
+                msg=f"Expected unresolved internal links to open the fallback overlay.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["overlayPath"],
+                "projects/project-alpha/09_COMMUNICATION/internal_updates/2026-03-23-roadmap-vision-reframe.md",
+                msg=f"Expected the fallback overlay to show the repo-relative path.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["copyButtonLabel"],
+                "Copy path",
+                msg=f"Expected a copy-path action inside the fallback overlay.\nProbe: {probe}",
+            )
+
+    def test_unresolved_link_overlay_copy_button_shows_visible_label_and_click_feedback(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard unresolved-link copy-button test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            (
+                workspace_root
+                / "projects"
+                / "project-alpha"
+                / "00_GOVERNANCE"
+                / "current_overview"
+                / "2026-03-26-missing-link-copy-state.md"
+            ).write_text(
+                textwrap.dedent(
+                    """
+                    # Missing Link Copy State
+
+                    Trigger the fallback overlay from [Vision Reframe](../../09_COMMUNICATION/internal_updates/2026-03-23-roadmap-vision-reframe.md).
+                    """
+                ).strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-unresolved-link-copy-button-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const fallbackDocLink = [...document.querySelectorAll("#doc-links .doc-link")]
+                            .find((element) => element.textContent.includes("Missing Link Copy State"));
+                          if (fallbackDocLink) {
+                            fallbackDocLink.click();
+                          }
+
+                          setTimeout(() => {
+                            const unresolvedLink = [...document.querySelectorAll("#doc-viewer-content a")]
+                              .find((element) => element.textContent.includes("Vision Reframe"));
+                            if (unresolvedLink) {
+                              unresolvedLink.click();
+                            }
+
+                            setTimeout(() => {
+                              const overlay = document.querySelector("[data-unresolved-link-overlay]");
+                              const copyButton = overlay?.querySelector("[data-unresolved-link-copy]");
+                              const copiedValues = [];
+                              Object.defineProperty(navigator, "clipboard", {
+                                configurable: true,
+                                value: {
+                                  writeText(value) {
+                                    copiedValues.push(String(value || ""));
+                                    return Promise.resolve();
+                                  }
+                                }
+                              });
+
+                              if (copyButton) {
+                                copyButton.click();
+                              }
+
+                              setTimeout(() => {
+                                const pre = document.createElement("pre");
+                                pre.id = "probe-results";
+                                pre.textContent = JSON.stringify({
+                                  copyButtonText: copyButton?.innerText?.replace(/\\s+/g, " ").trim() || "",
+                                  copyButtonState: copyButton?.getAttribute("data-copy-state") || "",
+                                  copiedValue: copiedValues[0] || ""
+                                });
+                                document.body.appendChild(pre);
+                              }, 0);
+                            }, 0);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(
+                probe["copyButtonText"],
+                "Copy path",
+                msg=f"Expected the copy button to show a visible text label.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["copyButtonState"],
+                "copied",
+                msg=f"Expected the copy button to enter its copied state after click.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["copiedValue"],
+                "projects/project-alpha/09_COMMUNICATION/internal_updates/2026-03-23-roadmap-vision-reframe.md",
+                msg=f"Expected the copy button to copy the unresolved repo path.\nProbe: {probe}",
+            )
+
+    def test_browser_back_restores_previous_dashboard_document_and_scroll_position(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard history test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            (
+                workspace_root
+                / "projects"
+                / "project-alpha"
+                / "00_GOVERNANCE"
+                / "current_overview"
+                / "2026-03-25-history-navigation.md"
+            ).write_text(
+                textwrap.dedent(
+                    """
+                    # History Navigation
+
+                    This overview exists to validate browser back navigation.
+
+                    """
+                )
+                + "\n\n".join(
+                    f"Paragraph {index}: keep this section long enough to require scrolling."
+                    for index in range(1, 80)
+                )
+                + textwrap.dedent(
+                    """
+
+                    Follow the risk link here: [RSK-0001](../../07_PROJECT_EXECUTION/project_risk_register/project_risk_register.json#RSK-0001)
+                    """
+                ),
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-history-back-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          setTimeout(() => {
+                            const overviewLink = [...document.querySelectorAll("#doc-viewer-content a")]
+                              .find((element) => element.textContent.includes("RSK-0001"));
+
+                            window.scrollTo(0, document.body.scrollHeight);
+                            const scrollBefore = window.scrollY;
+
+                            if (overviewLink) {
+                              overviewLink.click();
+                            }
+
+                            setTimeout(() => {
+                              history.back();
+
+                              setTimeout(() => {
+                                const activeTab = document.querySelector(".tab-button.is-active .tab-title")?.textContent?.trim() || "";
+                                const sectionTitle = document.getElementById("doc-section-title")?.textContent?.trim() || "";
+                                const viewerTitle = document.querySelector("#doc-viewer-content h2")?.textContent?.trim() || "";
+                                const scrollAfter = window.scrollY;
+                                const pre = document.createElement("pre");
+                                pre.id = "probe-results";
+                                pre.textContent = JSON.stringify({
+                                  activeTab,
+                                  sectionTitle,
+                                  viewerTitle,
+                                  scrollBefore,
+                                  scrollAfter,
+                                  hash: window.location.hash
+                                });
+                                document.body.appendChild(pre);
+                              }, 50);
+                            }, 50);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=2000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(
+                probe["activeTab"],
+                "Current Overview",
+                msg=f"Expected browser back to restore the previous dashboard section.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["sectionTitle"],
+                "Current Overview",
+                msg=f"Expected browser back to reopen the previous document section.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["viewerTitle"],
+                "2026 03 25 History Navigation",
+                msg=f"Expected browser back to restore the previously opened document.\nProbe: {probe}",
+            )
+            self.assertGreater(
+                probe["scrollBefore"],
+                200,
+                msg=f"Expected the test to capture a meaningful initial scroll position.\nProbe: {probe}",
+            )
+            self.assertLessEqual(
+                abs(probe["scrollAfter"] - probe["scrollBefore"]),
+                80,
+                msg=f"Expected browser back to restore the previous scroll position closely.\nProbe: {probe}",
+            )
+
     def test_shared_search_filters_execution_items_from_the_top_controls(self) -> None:
         browser_path = self._find_chromium_path()
         if browser_path is None:
@@ -498,6 +1132,12 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                         """
                         <script>
                         window.addEventListener("load", () => {
+                          const executionTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Execution Items"));
+                          if (executionTab) {
+                            executionTab.click();
+                          }
+
                           const search = document.getElementById("search-filter");
                           search.value = "blocker";
                           search.dispatchEvent(new Event("input", { bubbles: true }));
@@ -1180,6 +1820,273 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 msg=f"Expected glossary row summary to show id, term, definition, and inspect only.\nProbe: {probe}",
             )
 
+    def test_foundation_navigation_prioritizes_project_definition_first(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard Foundation ordering test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            glossary_dir = workspace_root / "projects" / "project-alpha" / "01_PROJECT_FOUNDATION" / "glossary"
+            glossary_dir.mkdir(parents=True, exist_ok=True)
+            (glossary_dir / "glossary.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "TERM-001",
+                            "term": "DUA",
+                            "definition": "Business Unit Director role used in the alpha fixture.",
+                        }
+                    ],
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-foundation-order-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const foundationTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Foundation"));
+                          if (foundationTab) {
+                            foundationTab.click();
+                          }
+
+                          const docTitles = [...document.querySelectorAll("#doc-links .doc-link .doc-link-title")]
+                            .map((element) => element.textContent.replace(/\\s+/g, " ").trim());
+
+                          const pre = document.createElement("pre");
+                          pre.id = "probe-results";
+                          pre.textContent = JSON.stringify({ docTitles });
+                          document.body.appendChild(pre);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertGreaterEqual(
+                len(probe["docTitles"]),
+                3,
+                msg=f"Expected multiple Foundation documents in the probe.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["docTitles"][0],
+                "Project Definition Baseline",
+                msg=f"Expected Project Definition to lead the Foundation navigation.\nProbe: {probe}",
+            )
+
+    def test_generic_json_view_hides_row_field_in_summary_and_details(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for generic JSON row-field test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            review_log_dir = workspace_root / "projects" / "project-alpha" / "01_PROJECT_FOUNDATION" / "review_log"
+            review_log_dir.mkdir(parents=True, exist_ok=True)
+            (review_log_dir / "review_log.json").write_text(
+                json.dumps(
+                    [
+                        {
+                            "id": "REV-001",
+                            "title": "Shared dashboard cleanup",
+                            "status": "Draft",
+                            "owner": "Ops",
+                            "row": 12,
+                            "notes": "The persisted sheet row should not leak into the dashboard.",
+                        }
+                    ],
+                    indent=2,
+                )
+                + "\n",
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-generic-json-row-field-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const foundationTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Foundation"));
+                          if (foundationTab) {
+                            foundationTab.click();
+                          }
+
+                          const reviewLogLink = [...document.querySelectorAll("#doc-links .doc-link")]
+                            .find((element) => element.textContent.includes("Review Log"));
+                          if (reviewLogLink) {
+                            reviewLogLink.click();
+                          }
+
+                          const targetedRow = document.querySelector(".json-row-details");
+                          if (targetedRow) {
+                            targetedRow.setAttribute("open", "");
+                          }
+
+                          const headerLabels = [...document.querySelectorAll(".json-collection-head .json-column-label")]
+                            .map((element) => element.textContent.trim());
+                          const firstSummaryCells = [...document.querySelectorAll(".json-row-summary > *")]
+                            .map((element) => element.textContent.trim());
+                          const detailKeys = [...document.querySelectorAll(".json-row-panel .json-key")]
+                            .map((element) => element.textContent.trim());
+
+                          const pre = document.createElement("pre");
+                          pre.id = "probe-results";
+                          pre.textContent = JSON.stringify({ headerLabels, firstSummaryCells, detailKeys });
+                          document.body.appendChild(pre);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--window-size=1600,1200",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(
+                probe["headerLabels"],
+                ["Id", "Title", "Status", "Owner", "Inspect"],
+                msg=f"Expected generic JSON headers to exclude the row field.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["firstSummaryCells"],
+                [
+                    "REV-001",
+                    "Shared dashboard cleanup",
+                    "Draft",
+                    "Ops",
+                    "Inspect",
+                ],
+                msg=f"Expected generic JSON row summary to exclude the row field.\nProbe: {probe}",
+            )
+            self.assertNotIn(
+                "row",
+                [value.lower() for value in probe["detailKeys"]],
+                msg=f"Expected generic JSON detail panels to hide the row field.\nProbe: {probe}",
+            )
+
     def test_stakeholder_general_view_uses_id_name_affiliation_role_and_inspect(self) -> None:
         browser_path = self._find_chromium_path()
         if browser_path is None:
@@ -1794,6 +2701,254 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                 msg=f"Expected document viewer content to render after clicking Current Overview.\nProbe: {probe}",
             )
 
+    def test_dashboard_lands_on_current_overview_by_default(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard interaction test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-default-current-overview-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const activeTab = document.querySelector(".tab-button.is-active .tab-title");
+                          const activeDocLink = document.querySelector("#doc-links .doc-link.is-active .doc-link-title");
+                          const viewerTitle = document.querySelector("#doc-viewer-content h2");
+                          const result = {
+                            activeTab: activeTab?.textContent?.trim() || "",
+                            activeSection: document.getElementById("doc-section-title")?.textContent || "",
+                            documentPanelActive: document.getElementById("document-panel")?.classList.contains("is-active") || false,
+                            executionPanelActive: document.getElementById("execution-panel")?.classList.contains("is-active") || false,
+                            docLinkCount: document.querySelectorAll("#doc-links .doc-link").length,
+                            activeDocLinkTitle: activeDocLink?.textContent?.trim() || "",
+                            viewerTitle: viewerTitle?.textContent?.trim() || ""
+                          };
+
+                          const pre = document.createElement("pre");
+                          pre.id = "probe-results";
+                          pre.textContent = JSON.stringify(result);
+                          document.body.appendChild(pre);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertEqual(probe["activeTab"], "Current Overview")
+            self.assertEqual(probe["activeSection"], "Current Overview")
+            self.assertTrue(probe["documentPanelActive"])
+            self.assertFalse(probe["executionPanelActive"])
+            self.assertGreater(
+                probe["docLinkCount"],
+                0,
+                msg=f"Expected Current Overview links to render on initial load.\nProbe: {probe}",
+            )
+            self.assertTrue(
+                probe["activeDocLinkTitle"],
+                msg=f"Expected an active Current Overview document on initial load.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["viewerTitle"],
+                probe["activeDocLinkTitle"],
+                msg=f"Expected the opened Current Overview document to match the active left-nav card.\nProbe: {probe}",
+            )
+
+    def test_current_overview_left_nav_shows_latest_overview_first(self) -> None:
+        browser_path = self._find_chromium_path()
+        if browser_path is None:
+            self.skipTest("Chromium browser not available for dashboard interaction test")
+
+        with tempfile.TemporaryDirectory() as temp_dir:
+            workspace_root = Path(temp_dir)
+            self._write_workspace_fixture(workspace_root)
+            (
+                workspace_root
+                / "projects"
+                / "project-alpha"
+                / "00_GOVERNANCE"
+                / "current_overview"
+                / "2026-03-24-dashboard_refresh.md"
+            ).write_text(
+                textwrap.dedent(
+                    """
+                    # Dashboard Refresh
+
+                    The refreshed overview should be the first card in the left navigation.
+                    """
+                ).strip()
+                + "\n",
+                encoding="utf-8",
+            )
+            output_html = workspace_root / "dashboard.html"
+
+            result = subprocess.run(
+                [
+                    "powershell",
+                    "-NoProfile",
+                    "-ExecutionPolicy",
+                    "Bypass",
+                    "-File",
+                    str(SCRIPT_PATH),
+                    "-WorkspaceRoot",
+                    str(workspace_root),
+                    "-OutputHtmlPath",
+                    str(output_html),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                result.returncode,
+                0,
+                msg=f"Generator failed.\nSTDOUT:\n{result.stdout}\nSTDERR:\n{result.stderr}",
+            )
+
+            probe_html = workspace_root / "dashboard-current-overview-order-probe.html"
+            probe_html.write_text(
+                output_html.read_text(encoding="utf-8").replace(
+                    "</body>",
+                    textwrap.dedent(
+                        """
+                        <script>
+                        window.addEventListener("load", () => {
+                          const currentOverviewTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Current Overview"));
+                          if (currentOverviewTab) {
+                            currentOverviewTab.click();
+                          }
+
+                          setTimeout(() => {
+                            const titles = [...document.querySelectorAll("#doc-links .doc-link .doc-link-title")]
+                              .map((element) => element.textContent.trim());
+                            const activeTitle = document.querySelector("#doc-links .doc-link.is-active .doc-link-title")?.textContent?.trim() || "";
+                            const viewerTitle = document.querySelector("#doc-viewer-content h2")?.textContent?.trim() || "";
+                            const pre = document.createElement("pre");
+                            pre.id = "probe-results";
+                            pre.textContent = JSON.stringify({
+                              titles,
+                              activeTitle,
+                              viewerTitle
+                            });
+                            document.body.appendChild(pre);
+                          }, 0);
+                        });
+                        </script>
+                        </body>
+                        """
+                    ),
+                ),
+                encoding="utf-8",
+            )
+
+            dom_dump = subprocess.run(
+                [
+                    str(browser_path),
+                    "--headless",
+                    "--disable-gpu",
+                    "--virtual-time-budget=1000",
+                    "--dump-dom",
+                    probe_html.resolve().as_uri(),
+                ],
+                capture_output=True,
+                text=True,
+                check=False,
+            )
+
+            self.assertEqual(
+                dom_dump.returncode,
+                0,
+                msg=f"Browser dump failed.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            match = re.search(r'<pre id="probe-results">(.+?)</pre>', dom_dump.stdout)
+            self.assertIsNotNone(
+                match,
+                msg=f"Expected probe results in dumped DOM.\nSTDOUT:\n{dom_dump.stdout}\nSTDERR:\n{dom_dump.stderr}",
+            )
+
+            probe = json.loads(match.group(1))
+            self.assertGreaterEqual(
+                len(probe["titles"]),
+                2,
+                msg=f"Expected at least two Current Overview cards to verify ordering.\nProbe: {probe}",
+            )
+            self.assertEqual(probe["titles"][0], "2026 03 24 Dashboard Refresh")
+            self.assertEqual(probe["titles"][1], "2026 03 22 Dashboard Seed Overview")
+            self.assertEqual(
+                probe["activeTitle"],
+                "2026 03 24 Dashboard Refresh",
+                msg=f"Expected the newest Current Overview to be selected by default.\nProbe: {probe}",
+            )
+            self.assertEqual(
+                probe["viewerTitle"],
+                "2026 03 24 Dashboard Refresh",
+                msg=f"Expected the newest Current Overview to open in the viewer.\nProbe: {probe}",
+            )
+
     def test_document_viewer_and_cards_keep_project_context_while_staying_compact(self) -> None:
         browser_path = self._find_chromium_path()
         if browser_path is None:
@@ -2095,6 +3250,12 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                         """
                         <script>
                         window.addEventListener("load", () => {
+                          const executionTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Execution Items"));
+                          if (executionTab) {
+                            executionTab.click();
+                          }
+
                           const getSnapshot = () => ({
                             titles: [...document.querySelectorAll(".card")]
                               .map((element) => element.textContent.replace(/\\s+/g, " ").trim()),
@@ -2229,6 +3390,12 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                         """
                         <script>
                         window.addEventListener("load", () => {
+                          const executionTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Execution Items"));
+                          if (executionTab) {
+                            executionTab.click();
+                          }
+
                           const blockerCard = [...document.querySelectorAll(".card")]
                             .find((element) => element.textContent.includes("Alpha blocker"));
                           if (blockerCard) {
@@ -2367,6 +3534,12 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
                         """
                         <script>
                         window.addEventListener("load", () => {
+                          const executionTab = [...document.querySelectorAll(".tab-button")]
+                            .find((element) => element.textContent.includes("Execution Items"));
+                          if (executionTab) {
+                            executionTab.click();
+                          }
+
                           const blockerCard = [...document.querySelectorAll(".card")]
                             .find((element) => element.textContent.includes("Alpha blocker"));
                           if (blockerCard) {
@@ -3028,6 +4201,7 @@ class GenerateExecutionDashboardTests(unittest.TestCase):
 
                 - Lock the shared dashboard information architecture.
                 - Keep the execution view read-only.
+                - Track the active delivery risk in [RSK-0001](../../07_PROJECT_EXECUTION/project_risk_register/project_risk_register.json).
                 """
             ).strip()
             + "\n",

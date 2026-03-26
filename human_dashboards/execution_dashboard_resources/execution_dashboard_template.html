@@ -646,6 +646,160 @@
       padding-left: 18px;
     }
 
+    .doc-article a, .json-entry a, .json-inline-list a, .json-primitive a {
+      color: #6d2c13;
+      text-decoration: underline;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.16em;
+    }
+
+    .doc-article a.unresolved-dashboard-link,
+    .json-entry a.unresolved-dashboard-link,
+    .json-inline-list a.unresolved-dashboard-link,
+    .json-primitive a.unresolved-dashboard-link {
+      color: color-mix(in srgb, var(--muted) 82%, var(--ink) 18%);
+      text-decoration-line: underline;
+      text-decoration-style: dashed;
+      text-decoration-thickness: 0.08em;
+      text-underline-offset: 0.18em;
+    }
+
+    .doc-article a.unresolved-dashboard-link:hover,
+    .doc-article a.unresolved-dashboard-link:focus-visible,
+    .json-entry a.unresolved-dashboard-link:hover,
+    .json-entry a.unresolved-dashboard-link:focus-visible,
+    .json-inline-list a.unresolved-dashboard-link:hover,
+    .json-inline-list a.unresolved-dashboard-link:focus-visible,
+    .json-primitive a.unresolved-dashboard-link:hover,
+    .json-primitive a.unresolved-dashboard-link:focus-visible {
+      color: var(--ink);
+    }
+
+    .floating-overlay {
+      position: fixed;
+      inset: 0;
+      z-index: 40;
+      display: none;
+      background: rgba(27, 26, 23, 0.08);
+    }
+
+    .floating-overlay[data-state="open"] {
+      display: block;
+    }
+
+    .floating-overlay-panel {
+      position: absolute;
+      width: min(420px, calc(100vw - 32px));
+      padding: 14px 16px;
+      border: 1px solid rgba(27, 26, 23, 0.14);
+      border-radius: 16px;
+      background: rgba(255, 251, 242, 0.96);
+      box-shadow: 0 20px 48px rgba(34, 26, 18, 0.18);
+      display: grid;
+      gap: 12px;
+    }
+
+    .floating-overlay-copy {
+      min-height: 40px;
+      padding: 0 14px 0 12px;
+      border-radius: 999px;
+      border: 1px solid rgba(27, 26, 23, 0.14);
+      background: rgba(255, 255, 255, 0.82);
+      color: var(--ink);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      justify-self: end;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.03em;
+      transition: transform 160ms ease, box-shadow 160ms ease, border-color 160ms ease, background 160ms ease;
+    }
+
+    .floating-overlay-copy:hover,
+    .floating-overlay-copy:focus-visible {
+      transform: translateY(-1px);
+      box-shadow: 0 10px 18px rgba(34, 26, 18, 0.12);
+      border-color: rgba(198, 93, 46, 0.28);
+      outline: none;
+    }
+
+    .floating-overlay-copy:active {
+      transform: translateY(0) scale(0.97);
+    }
+
+    .floating-overlay-copy[data-copy-state="copied"] {
+      border-color: rgba(46, 122, 79, 0.34);
+      background: rgba(46, 122, 79, 0.12);
+      box-shadow: 0 12px 24px rgba(46, 122, 79, 0.16);
+      animation: floating-overlay-copy-pulse 320ms ease;
+    }
+
+    .floating-overlay-copy[data-copy-state="error"] {
+      border-color: rgba(164, 54, 40, 0.34);
+      background: rgba(164, 54, 40, 0.1);
+      box-shadow: 0 12px 24px rgba(164, 54, 40, 0.14);
+    }
+
+    .floating-overlay-copy-label {
+      line-height: 1;
+      white-space: nowrap;
+    }
+
+    .floating-overlay-copy-icon {
+      position: relative;
+      width: 16px;
+      height: 16px;
+      flex: 0 0 16px;
+    }
+
+    .floating-overlay-copy-icon::before,
+    .floating-overlay-copy-icon::after {
+      content: "";
+      position: absolute;
+      width: 10px;
+      height: 12px;
+      border: 1.4px solid currentColor;
+      border-radius: 3px;
+      background: rgba(255, 255, 255, 0.9);
+    }
+
+    .floating-overlay-copy-icon::before {
+      top: 1px;
+      left: 4px;
+    }
+
+    .floating-overlay-copy-icon::after {
+      top: 4px;
+      left: 1px;
+      background: transparent;
+    }
+
+    @keyframes floating-overlay-copy-pulse {
+      0% {
+        transform: scale(0.96);
+      }
+      60% {
+        transform: scale(1.04);
+      }
+      100% {
+        transform: scale(1);
+      }
+    }
+
+    .floating-overlay-path {
+      margin: 0;
+      padding: 10px 12px;
+      border-radius: 12px;
+      background: rgba(27, 26, 23, 0.06);
+      color: var(--ink);
+      font-size: 12px;
+      line-height: 1.55;
+      overflow-wrap: anywhere;
+      word-break: break-word;
+    }
+
     .doc-article code {
       padding: 1px 5px;
       border-radius: 6px;
@@ -675,6 +829,11 @@
     }
 
     .json-key { display: block; margin-bottom: 8px; font-size: 12px; }
+
+    .is-target {
+      outline: 2px solid rgba(198, 93, 46, 0.55);
+      box-shadow: 0 0 0 4px rgba(198, 93, 46, 0.12);
+    }
 
     .empty-state {
       padding: 18px;
@@ -719,6 +878,13 @@
       .json-cell-action {
         text-align: left;
       }
+      .floating-overlay-panel {
+        left: 16px !important;
+        right: 16px;
+        top: 50% !important;
+        transform: translateY(-50%);
+        width: auto;
+      }
     }
   </style>
 </head>
@@ -746,7 +912,7 @@
       </div>
     </section>
 
-    <section class="tab-panel is-active" id="execution-panel">
+    <section class="tab-panel" id="execution-panel">
       <section class="snapshot snapshot-compact">
         <div class="snapshot-strip">
           <div class="snapshot-summary">
@@ -812,7 +978,7 @@
       </section>
     </section>
 
-    <section class="tab-panel" id="document-panel">
+    <section class="tab-panel is-active" id="document-panel">
       <section class="doc-layout">
         <aside class="doc-nav">
           <div class="eyebrow" id="doc-eyebrow">Section</div>
@@ -825,6 +991,24 @@
         </article>
       </section>
     </section>
+  </div>
+  <div class="floating-overlay" id="unresolved-link-overlay" data-state="closed" data-unresolved-link-overlay>
+    <div class="floating-overlay-panel" id="unresolved-link-panel" role="dialog" aria-modal="false" aria-labelledby="unresolved-link-title">
+      <button
+        type="button"
+        class="floating-overlay-copy"
+        id="unresolved-link-copy"
+        data-unresolved-link-copy
+        aria-label="Copy path"
+        title="Copy path"
+      >
+        <span class="floating-overlay-copy-icon" aria-hidden="true">⧉</span>
+      </button>
+      <div class="eyebrow">Repo Path</div>
+      <h3 id="unresolved-link-title">Not available in dashboard</h3>
+      <p>This link points to a repo artifact that is not packaged into this dashboard view.</p>
+      <p class="floating-overlay-path" id="unresolved-link-path" data-unresolved-link-path></p>
+    </div>
   </div>
   <script>
     const DASHBOARD_DATA_RAW = __DASHBOARD_DATA__;
@@ -843,6 +1027,7 @@
         { key: "done", label: "Done" }
       ]
     };
+    const DEFAULT_STATUS_GROUP = "active";
 
     function ensureArray(value) {
       if (Array.isArray(value)) {
@@ -868,13 +1053,32 @@
     function normalizeSections(sections) {
       return ensureArray(sections).map((section) => ({
         ...section,
-        documents: ensureArray(section.documents)
+        documents: ensureArray(section.documents).map((document) => ({
+          ...document,
+          section_key: document.section_key || section.key
+        }))
       }));
     }
 
     const DASHBOARD_DATA = normalizeItems(DASHBOARD_DATA_RAW);
     const DASHBOARD_WARNINGS = ensureArray(DASHBOARD_WARNINGS_RAW);
     const WORKSPACE_SECTIONS = normalizeSections(WORKSPACE_SECTIONS_RAW);
+    const DOCUMENTS_BY_ID = new Map();
+    const DOCUMENTS_BY_PATH = new Map();
+    const EXECUTION_ITEMS_BY_ID = new Map();
+    const EXECUTION_ITEMS_BY_PATH = new Map();
+
+    WORKSPACE_SECTIONS.forEach((section) => {
+      ensureArray(section.documents).forEach((document) => {
+        DOCUMENTS_BY_ID.set(document.id, document);
+        DOCUMENTS_BY_PATH.set(normalizePathKey(document.relative_path), document);
+      });
+    });
+
+    DASHBOARD_DATA.forEach((item) => {
+      EXECUTION_ITEMS_BY_ID.set(item.id, item);
+      EXECUTION_ITEMS_BY_PATH.set(normalizePathKey(item.relative_path), item);
+    });
 
     const els = {
       sectionTabs: document.getElementById("section-tabs"),
@@ -899,14 +1103,29 @@
       docSectionTitle: document.getElementById("doc-section-title"),
       docSectionDescription: document.getElementById("doc-section-description"),
       docLinks: document.getElementById("doc-links"),
-      docViewerContent: document.getElementById("doc-viewer-content")
+      docViewerContent: document.getElementById("doc-viewer-content"),
+      unresolvedLinkOverlay: document.getElementById("unresolved-link-overlay"),
+      unresolvedLinkPanel: document.getElementById("unresolved-link-panel"),
+      unresolvedLinkPath: document.getElementById("unresolved-link-path"),
+      unresolvedLinkCopy: document.getElementById("unresolved-link-copy")
     };
 
+    els.unresolvedLinkCopy.innerHTML = '<span class="floating-overlay-copy-label">Copy path</span><span class="floating-overlay-copy-icon" aria-hidden="true"></span>';
+    els.unresolvedLinkCopy.setAttribute("data-copy-state", "idle");
+
     const state = {
-      activeSectionKey: "execution_items",
+      activeSectionKey: "current_overview",
       selectedId: DASHBOARD_DATA[0] ? DASHBOARD_DATA[0].id : null,
-      selectedDocumentIds: {}
+      selectedDocumentIds: {},
+      pendingNavigation: null,
+      pendingHistoryRestore: null,
+      currentNavigationTarget: null,
+      ignoreNextHashChange: false,
+      unresolvedLinkPath: "",
+      unresolvedLinkTrigger: null,
+      unresolvedLinkCopyResetTimer: 0
     };
+    let pendingHistorySnapshotFrame = 0;
 
     function titleCase(value) {
       return value.replaceAll("_", " ").replace(/\b\w/g, (match) => match.toUpperCase());
@@ -921,10 +1140,399 @@
         .replaceAll("'", "&#39;");
     }
 
-    function renderInlineMarkdown(text) {
+    function normalizePathKey(value) {
+      return String(value || "")
+        .trim()
+        .replaceAll("\\", "/")
+        .replace(/^\.\/+/, "")
+        .replace(/^\/+/, "");
+    }
+
+    function getDirectoryPath(value) {
+      const normalized = normalizePathKey(value);
+      const separatorIndex = normalized.lastIndexOf("/");
+      return separatorIndex === -1 ? "" : normalized.slice(0, separatorIndex);
+    }
+
+    function normalizeJoinedPath(value) {
+      const parts = [];
+      normalizePathKey(value).split("/").forEach((segment) => {
+        if (!segment || segment === ".") {
+          return;
+        }
+        if (segment === "..") {
+          if (parts.length) {
+            parts.pop();
+          }
+          return;
+        }
+        parts.push(segment);
+      });
+      return parts.join("/");
+    }
+
+    function resolveRelativePath(targetPath, baseRelativePath = "") {
+      const decodedTarget = decodeURIComponent(String(targetPath || "").trim());
+      if (!decodedTarget) {
+        return normalizePathKey(baseRelativePath);
+      }
+      if (/^(?:[a-z]+:|\/\/)/i.test(decodedTarget) || /^[A-Za-z]:[\\/]/.test(decodedTarget)) {
+        return "";
+      }
+
+      const normalizedTarget = normalizePathKey(decodedTarget);
+      if (normalizedTarget.startsWith("projects/")) {
+        return normalizeJoinedPath(normalizedTarget);
+      }
+
+      const baseDirectory = getDirectoryPath(baseRelativePath);
+      return normalizeJoinedPath(baseDirectory ? `${baseDirectory}/${normalizedTarget}` : normalizedTarget);
+    }
+
+    function splitRawLinkTarget(rawTarget) {
+      const target = String(rawTarget || "").trim();
+      if (!target) {
+        return null;
+      }
+
+      if (/^(?:[a-z]+:|\/\/)/i.test(target) || /^[A-Za-z]:[\\/]/.test(target)) {
+        return { external: true, path: target, fragment: "" };
+      }
+
+      const hashIndex = target.indexOf("#");
+      if (hashIndex === -1) {
+        return { external: false, path: target, fragment: "" };
+      }
+
+      return {
+        external: false,
+        path: target.slice(0, hashIndex),
+        fragment: decodeURIComponent(target.slice(hashIndex + 1))
+      };
+    }
+
+    function slugifyHeading(value) {
+      return String(value || "")
+        .trim()
+        .toLowerCase()
+        .replace(/[`"'()[\]{}]+/g, "")
+        .replace(/[^a-z0-9]+/g, "-")
+        .replace(/^-+|-+$/g, "");
+    }
+
+    function escapeJsonPointerToken(value) {
+      return String(value || "").replaceAll("~", "~0").replaceAll("/", "~1");
+    }
+
+    function buildJsonPointer(parentPath, token) {
+      const encodedToken = escapeJsonPointerToken(token);
+      return parentPath ? `${parentPath}/${encodedToken}` : `/${encodedToken}`;
+    }
+
+    function getJsonRecordIdentifiers(value) {
+      if (!isJsonObject(value)) {
+        return [];
+      }
+
+      return ["id", "key", "name", "title", "term"]
+        .map((key) => value[key])
+        .filter((entry) => entry !== undefined && entry !== null && String(entry).trim())
+        .map((entry) => String(entry).trim());
+    }
+
+    function jsonContainsRecordIdentifier(value, candidate) {
+      if (!candidate) {
+        return false;
+      }
+
+      if (Array.isArray(value)) {
+        return value.some((entry) => jsonContainsRecordIdentifier(entry, candidate));
+      }
+
+      if (isJsonObject(value)) {
+        if (getJsonRecordIdentifiers(value).includes(candidate)) {
+          return true;
+        }
+        return Object.entries(value).some(([key, entryValue]) =>
+          key === candidate || jsonContainsRecordIdentifier(entryValue, candidate)
+        );
+      }
+
+      return false;
+    }
+
+    function findJsonRecordTarget(documentRecord, rawReference, linkLabel = "") {
+      if (!documentRecord || documentRecord.format !== "json") {
+        return "";
+      }
+
+      const fragmentReference = String(rawReference || "").trim();
+      if (fragmentReference.startsWith("/")) {
+        return fragmentReference;
+      }
+
+      const candidates = [fragmentReference, String(linkLabel || "").trim()].filter(Boolean);
+      return candidates.find((candidate) => jsonContainsRecordIdentifier(documentRecord.content, candidate)) || "";
+    }
+
+    function serializeDashboardHash(target) {
+      const params = new URLSearchParams();
+      if (target.section) {
+        params.set("section", target.section);
+      }
+      if (target.doc) {
+        params.set("doc", target.doc);
+      }
+      if (target.record) {
+        params.set("record", target.record);
+      }
+      if (target.anchor) {
+        params.set("anchor", target.anchor);
+      }
+      if (target.execution) {
+        params.set("execution", target.execution);
+      }
+      if (target.project) {
+        params.set("project", target.project);
+      }
+      if (target.lifecycle) {
+        params.set("lifecycle", target.lifecycle);
+      }
+      if (target.type) {
+        params.set("type", target.type);
+      }
+      if (target.owner) {
+        params.set("owner", target.owner);
+      }
+      if (target.priority) {
+        params.set("priority", target.priority);
+      }
+      if (target.search) {
+        params.set("search", target.search);
+      }
+      return `#${params.toString()}`;
+    }
+
+    function parseDashboardHash(rawHash) {
+      const hash = String(rawHash || "").replace(/^#/, "").trim();
+      if (!hash || !hash.includes("=")) {
+        return null;
+      }
+
+      const params = new URLSearchParams(hash);
+      const target = {
+        section: params.get("section") || "",
+        doc: params.get("doc") || "",
+        record: params.get("record") || "",
+        anchor: params.get("anchor") || "",
+        execution: params.get("execution") || "",
+        project: params.get("project") || "",
+        lifecycle: params.get("lifecycle") || "",
+        type: params.get("type") || "",
+        owner: params.get("owner") || "",
+        priority: params.get("priority") || "",
+        search: params.get("search") || ""
+      };
+
+      return target.section || target.doc || target.execution ? target : null;
+    }
+
+    function getCurrentFilterState() {
+      return {
+        project: els.projectFilter.value || "",
+        lifecycle: els.statusFilter.value || DEFAULT_STATUS_GROUP,
+        type: els.typeFilter.value || "",
+        owner: els.ownerFilter.value || "",
+        priority: els.priorityFilter.value || "",
+        search: els.searchFilter.value.trim()
+      };
+    }
+
+    function applyFilterState(target = {}) {
+      els.projectFilter.value = target.project || "";
+      els.statusFilter.value = target.lifecycle || DEFAULT_STATUS_GROUP;
+      els.typeFilter.value = target.type || "";
+      els.ownerFilter.value = target.owner || "";
+      els.priorityFilter.value = target.priority || "";
+      els.searchFilter.value = target.search || "";
+    }
+
+    function normalizeDashboardTarget(target = {}) {
+      const filters = getCurrentFilterState();
+      return {
+        section: String(target.section || ""),
+        doc: String(target.doc || ""),
+        record: String(target.record || ""),
+        anchor: String(target.anchor || ""),
+        execution: String(target.execution || ""),
+        project: String(target.project ?? filters.project ?? ""),
+        lifecycle: String(target.lifecycle ?? filters.lifecycle ?? DEFAULT_STATUS_GROUP),
+        type: String(target.type ?? filters.type ?? ""),
+        owner: String(target.owner ?? filters.owner ?? ""),
+        priority: String(target.priority ?? filters.priority ?? ""),
+        search: String(target.search ?? filters.search ?? "")
+      };
+    }
+
+    function buildCurrentDashboardTarget() {
+      const currentTarget = state.currentNavigationTarget || {};
+      const filters = getCurrentFilterState();
+
+      if (state.activeSectionKey === "execution_items") {
+        return normalizeDashboardTarget({
+          ...currentTarget,
+          ...filters,
+          section: "execution_items",
+          execution: state.selectedId || ""
+        });
+      }
+
+      const section = getSection(state.activeSectionKey) || getSection("current_overview");
+      const selectedDocument = getSelectedDocument(section);
+      return normalizeDashboardTarget({
+        ...currentTarget,
+        ...filters,
+        section: section ? section.key : "current_overview",
+        doc: selectedDocument ? selectedDocument.id : ""
+      });
+    }
+
+    function buildSectionNavigationTarget(sectionKey) {
+      if (sectionKey === "execution_items") {
+        const visibleItems = DASHBOARD_DATA.filter(matchesFilters);
+        return normalizeDashboardTarget({
+          section: "execution_items",
+          execution: state.selectedId || (visibleItems[0] ? visibleItems[0].id : "")
+        });
+      }
+
+      const section = getSection(sectionKey);
+      const selectedDocument = getSelectedDocument(section);
+      return normalizeDashboardTarget({
+        section: section ? section.key : "current_overview",
+        doc: selectedDocument ? selectedDocument.id : ""
+      });
+    }
+
+    function buildHistoryState(target, options = {}) {
+      return {
+        target: normalizeDashboardTarget(target),
+        scrollX: Number.isFinite(options.scrollX) ? options.scrollX : window.scrollX,
+        scrollY: Number.isFinite(options.scrollY) ? options.scrollY : window.scrollY
+      };
+    }
+
+    function syncCurrentHistoryEntry(target = buildCurrentDashboardTarget(), options = {}) {
+      const normalizedTarget = normalizeDashboardTarget(target);
+      state.currentNavigationTarget = normalizedTarget;
+      history.replaceState(
+        buildHistoryState(normalizedTarget, options),
+        "",
+        serializeDashboardHash(normalizedTarget)
+      );
+    }
+
+    function queueHistorySnapshotSync() {
+      if (pendingHistorySnapshotFrame) {
+        return;
+      }
+
+      pendingHistorySnapshotFrame = window.requestAnimationFrame(() => {
+        pendingHistorySnapshotFrame = 0;
+        syncCurrentHistoryEntry();
+      });
+    }
+
+    function restorePendingViewport() {
+      const restoreState = state.pendingHistoryRestore;
+      if (!restoreState) {
+        return;
+      }
+
+      window.scrollTo(restoreState.scrollX || 0, restoreState.scrollY || 0);
+      state.pendingHistoryRestore = null;
+    }
+
+    function resolveDashboardLinkTarget(rawTarget, contextDocument, linkLabel = "") {
+      const parts = splitRawLinkTarget(rawTarget);
+      if (!parts || parts.external) {
+        return null;
+      }
+
+      const resolvedPath = parts.path
+        ? resolveRelativePath(parts.path, contextDocument ? contextDocument.relative_path : "")
+        : (contextDocument ? normalizePathKey(contextDocument.relative_path) : "");
+
+      const targetDocument = resolvedPath ? DOCUMENTS_BY_PATH.get(resolvedPath) : contextDocument || null;
+      if (targetDocument) {
+        const target = {
+          section: targetDocument.section_key,
+          doc: targetDocument.id
+        };
+
+        if (targetDocument.format === "markdown" && parts.fragment) {
+          target.anchor = slugifyHeading(parts.fragment);
+        }
+
+        if (targetDocument.format === "json") {
+          const recordTarget = findJsonRecordTarget(targetDocument, parts.fragment, linkLabel);
+          if (recordTarget) {
+            target.record = recordTarget;
+          }
+        }
+
+        return target;
+      }
+
+      if (!resolvedPath) {
+        return null;
+      }
+
+      const executionItem = EXECUTION_ITEMS_BY_PATH.get(resolvedPath);
+      if (!executionItem) {
+        return null;
+      }
+
+      return {
+        section: "execution_items",
+        execution: executionItem.id
+      };
+    }
+
+    function resolveUnresolvedRepoPath(rawTarget, contextDocument) {
+      const parts = splitRawLinkTarget(rawTarget);
+      if (!parts || parts.external) {
+        return "";
+      }
+
+      return parts.path
+        ? resolveRelativePath(parts.path, contextDocument ? contextDocument.relative_path : "")
+        : "";
+    }
+
+    function renderDashboardAnchor(contentHtml, target, fallbackHref = "", external = false, unresolvedPath = "") {
+      if (!target) {
+        if (!fallbackHref || external) {
+          return `<a href="${escapeHtml(fallbackHref || "#")}" target="_blank" rel="noreferrer">${contentHtml}</a>`;
+        }
+        if (unresolvedPath) {
+          return `<a href="#unresolved-link" class="unresolved-dashboard-link" data-unresolved-path="${escapeHtml(unresolvedPath)}">${contentHtml}</a>`;
+        }
+        return `<a href="${escapeHtml(fallbackHref)}">${contentHtml}</a>`;
+      }
+
+      return `<a href="${escapeHtml(serializeDashboardHash(target))}" data-dashboard-link="true">${contentHtml}</a>`;
+    }
+
+    function renderInlineMarkdown(text, contextDocument) {
       return escapeHtml(text)
         .replace(/`([^`]+)`/g, "<code>$1</code>")
-        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noreferrer">$1</a>');
+        .replace(/\[([^\]]+)\]\(([^)]+)\)/g, (match, label, href) => {
+          const target = resolveDashboardLinkTarget(href, contextDocument, label);
+          const external = Boolean(splitRawLinkTarget(href)?.external);
+          const unresolvedPath = target ? "" : resolveUnresolvedRepoPath(href, contextDocument);
+          return renderDashboardAnchor(label, target, href, external, unresolvedPath);
+        });
     }
 
     function getSearchValue() {
@@ -1039,7 +1647,7 @@
       textNodes.forEach((node) => highlightTextNode(node, searchValue));
     }
 
-    function renderMarkdown(source) {
+    function renderMarkdown(source, contextDocument) {
       const lines = String(source || "").replace(/\r\n/g, "\n").split("\n");
       const blocks = [];
       let paragraph = [];
@@ -1051,7 +1659,7 @@
         if (!paragraph.length) {
           return;
         }
-        blocks.push(`<p>${renderInlineMarkdown(paragraph.join(" "))}</p>`);
+        blocks.push(`<p>${renderInlineMarkdown(paragraph.join(" "), contextDocument)}</p>`);
         paragraph = [];
       }
 
@@ -1059,7 +1667,7 @@
         if (!listItems.length) {
           return;
         }
-        blocks.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item)}</li>`).join("")}</ul>`);
+        blocks.push(`<ul>${listItems.map((item) => `<li>${renderInlineMarkdown(item, contextDocument)}</li>`).join("")}</ul>`);
         listItems = [];
       }
 
@@ -1092,7 +1700,8 @@
           flushParagraph();
           flushList();
           const level = Math.min(heading[1].length, 3);
-          blocks.push(`<h${level}>${renderInlineMarkdown(heading[2].trim())}</h${level}>`);
+          const headingText = heading[2].trim();
+          blocks.push(`<h${level} id="${escapeHtml(slugifyHeading(headingText))}">${renderInlineMarkdown(headingText, contextDocument)}</h${level}>`);
           return;
         }
 
@@ -1188,7 +1797,7 @@
       });
 
       return [...frequency.entries()]
-        .filter(([key]) => !["notes", "linked_artifacts", "dependencies"].includes(key))
+        .filter(([key]) => !["row", "notes", "linked_artifacts", "dependencies"].includes(key))
         .sort((left, right) => {
           const [leftKey, leftCount] = left;
           const [rightKey, rightCount] = right;
@@ -1278,24 +1887,138 @@
 
       return {
         columns: getJsonScanColumns(entries),
-        showRowIndex: true,
+        showRowIndex: false,
         actionLabel: "Inspect"
       };
     }
 
-    function renderPrimitiveList(values) {
-      return `<ul class="json-inline-list">${values.map((entry) => `<li>${escapeHtml(entry)}</li>`).join("")}</ul>`;
+    function renderJsonPrimitiveValue(value, contextDocument) {
+      if (typeof value === "string") {
+        const target = resolveDashboardLinkTarget(value, contextDocument);
+        const unresolvedPath = target ? "" : resolveUnresolvedRepoPath(value, contextDocument);
+        if (target || unresolvedPath) {
+          return renderDashboardAnchor(escapeHtml(value), target, value, false, unresolvedPath);
+        }
+      }
+
+      return escapeHtml(value);
+    }
+
+    function positionUnresolvedOverlay(trigger) {
+      const panel = els.unresolvedLinkPanel;
+      if (!panel) {
+        return;
+      }
+
+      if (!trigger || window.innerWidth <= 720) {
+        panel.style.left = "16px";
+        panel.style.top = "50%";
+        panel.style.transform = "translateY(-50%)";
+        return;
+      }
+
+      panel.style.transform = "";
+      const rect = trigger.getBoundingClientRect();
+      const panelWidth = panel.offsetWidth || 420;
+      const panelHeight = panel.offsetHeight || 220;
+      const margin = 16;
+      const left = Math.min(
+        Math.max(margin, rect.left),
+        Math.max(margin, window.innerWidth - panelWidth - margin)
+      );
+      const maxTop = Math.max(margin, window.innerHeight - panelHeight - margin);
+      const desiredTop = rect.bottom + 12;
+      const top = desiredTop <= maxTop ? desiredTop : Math.max(margin, rect.top - panelHeight - 12);
+      panel.style.left = `${left}px`;
+      panel.style.top = `${top}px`;
+    }
+
+    function openUnresolvedLinkOverlay(path, trigger) {
+      resetUnresolvedLinkCopyState();
+      state.unresolvedLinkPath = String(path || "");
+      state.unresolvedLinkTrigger = trigger || null;
+      els.unresolvedLinkPath.textContent = state.unresolvedLinkPath;
+      els.unresolvedLinkOverlay.setAttribute("data-state", "open");
+      positionUnresolvedOverlay(trigger);
+      els.unresolvedLinkCopy.focus({ preventScroll: true });
+    }
+
+    function closeUnresolvedLinkOverlay() {
+      if (!els.unresolvedLinkOverlay || els.unresolvedLinkOverlay.getAttribute("data-state") !== "open") {
+        return;
+      }
+
+      resetUnresolvedLinkCopyState();
+      els.unresolvedLinkOverlay.setAttribute("data-state", "closed");
+      els.unresolvedLinkPath.textContent = "";
+      const trigger = state.unresolvedLinkTrigger;
+      state.unresolvedLinkPath = "";
+      state.unresolvedLinkTrigger = null;
+      if (trigger && typeof trigger.focus === "function") {
+        trigger.focus({ preventScroll: true });
+      }
+    }
+
+    function resetUnresolvedLinkCopyState() {
+      if (state.unresolvedLinkCopyResetTimer) {
+        window.clearTimeout(state.unresolvedLinkCopyResetTimer);
+        state.unresolvedLinkCopyResetTimer = 0;
+      }
+      els.unresolvedLinkCopy.setAttribute("data-copy-state", "idle");
+    }
+
+    function setUnresolvedLinkCopyState(nextState) {
+      els.unresolvedLinkCopy.setAttribute("data-copy-state", nextState);
+      if (state.unresolvedLinkCopyResetTimer) {
+        window.clearTimeout(state.unresolvedLinkCopyResetTimer);
+      }
+      state.unresolvedLinkCopyResetTimer = window.setTimeout(() => {
+        els.unresolvedLinkCopy.setAttribute("data-copy-state", "idle");
+        state.unresolvedLinkCopyResetTimer = 0;
+      }, 1200);
+    }
+
+    function copyTextToClipboard(value) {
+      const text = String(value || "");
+      if (!text) {
+        return Promise.resolve(false);
+      }
+
+      if (navigator.clipboard && typeof navigator.clipboard.writeText === "function") {
+        return navigator.clipboard.writeText(text).then(() => true).catch(() => false);
+      }
+
+      const helper = document.createElement("textarea");
+      helper.value = text;
+      helper.setAttribute("readonly", "readonly");
+      helper.style.position = "fixed";
+      helper.style.opacity = "0";
+      document.body.appendChild(helper);
+      helper.select();
+      let copied = false;
+      try {
+        copied = document.execCommand("copy");
+      } catch (error) {
+        copied = false;
+      }
+      helper.remove();
+      return Promise.resolve(copied);
+    }
+
+    function renderPrimitiveList(values, options = {}) {
+      return `<ul class="json-inline-list">${values.map((entry) => `<li>${renderJsonPrimitiveValue(entry, options.contextDocument)}</li>`).join("")}</ul>`;
     }
 
     function renderJsonObjectEntries(value, options = {}) {
-      const { depth = 0, searchValue = "" } = options;
+      const { depth = 0, searchValue = "", jsonPath = "", contextDocument = null } = options;
       const entries = Object.entries(value)
+        .filter(([key]) => key !== "row")
         .filter(([key, entryValue]) => depth !== 0 || !searchValue || jsonValueMatchesSearch([key, entryValue], searchValue));
       return entries.length
         ? `<div class="json-object">${entries.map(([key, entryValue]) => `
-            <div class="json-entry${isStructuredJsonValue(entryValue) ? " json-entry-complex" : ""}">
+            <div class="json-entry${isStructuredJsonValue(entryValue) ? " json-entry-complex" : ""}" data-json-path="${escapeHtml(buildJsonPointer(jsonPath, key))}"${getJsonRecordIdentifiers(entryValue)[0] ? ` data-json-record-id="${escapeHtml(getJsonRecordIdentifiers(entryValue)[0])}"` : ""}>
               <span class="json-key">${escapeHtml(key)}</span>
-              ${renderJsonValue(entryValue, { depth: depth + 1, searchValue })}
+              ${renderJsonValue(entryValue, { depth: depth + 1, searchValue, jsonPath: buildJsonPointer(jsonPath, key), contextDocument })}
             </div>
           `).join("")}</div>`
         : '<div class="json-primitive">{}</div>';
@@ -1318,14 +2041,16 @@
             <span class="json-column-label json-column-action">${escapeHtml(actionLabel)}</span>
           </div>
           ${entries.map((entry, index) => {
+            const itemPath = buildJsonPointer(options.jsonPath || "", String(index));
+            const recordId = getJsonRecordIdentifiers(entry)[0] || "";
             const summaryCells = columns.length
               ? columns.map((key) => `<span class="json-cell">${escapeHtml(summarizeJsonValue(entry[key]))}</span>`).join("")
               : `<span class="json-cell">${escapeHtml(summarizeJsonValue(entry))}</span>`;
             const detailContent = isJsonObject(entry)
-              ? renderJsonObjectEntries(entry, { depth: options.depth + 1, searchValue: options.searchValue })
-              : renderJsonValue(entry, { depth: options.depth + 1, searchValue: options.searchValue });
+              ? renderJsonObjectEntries(entry, { depth: options.depth + 1, searchValue: options.searchValue, jsonPath: itemPath, contextDocument: options.contextDocument })
+              : renderJsonValue(entry, { depth: options.depth + 1, searchValue: options.searchValue, jsonPath: itemPath, contextDocument: options.contextDocument });
             return `
-              <details class="json-row-details">
+              <details class="json-row-details" data-json-path="${escapeHtml(itemPath)}"${recordId ? ` data-json-record-id="${escapeHtml(recordId)}"` : ""}>
                 <summary class="json-row-summary">
                   ${showRowIndex ? `<span class="json-row-index">${index + 1}</span>` : ""}
                   ${summaryCells}
@@ -1342,7 +2067,7 @@
     }
 
     function renderJsonValue(value, options = {}) {
-      const { depth = 0, searchValue = "" } = options;
+      const { depth = 0, searchValue = "", jsonPath = "", contextDocument = null } = options;
       if (value === null || value === undefined) {
         return '<div class="json-primitive">null</div>';
       }
@@ -1357,26 +2082,26 @@
 
         const allPrimitive = visibleItems.every((entry) => entry === null || typeof entry !== "object");
         if (allPrimitive) {
-          return renderPrimitiveList(visibleItems);
+          return renderPrimitiveList(visibleItems, { contextDocument });
         }
 
         if (visibleItems.every((entry) => isJsonObject(entry))) {
-          return renderJsonCompactCollection(visibleItems, { depth, searchValue });
+          return renderJsonCompactCollection(visibleItems, { depth, searchValue, jsonPath, contextDocument });
         }
 
         return `<div class="json-array">${visibleItems.map((entry, index) => `
-          <div class="json-card">
+          <div class="json-card" data-json-path="${escapeHtml(buildJsonPointer(jsonPath, String(index)))}">
             <span class="json-key">Item ${index + 1}</span>
-            ${renderJsonValue(entry, { depth: depth + 1, searchValue })}
+            ${renderJsonValue(entry, { depth: depth + 1, searchValue, jsonPath: buildJsonPointer(jsonPath, String(index)), contextDocument })}
           </div>
         `).join("")}</div>`;
       }
 
       if (typeof value === "object") {
-        return renderJsonObjectEntries(value, { depth, searchValue });
+        return renderJsonObjectEntries(value, { depth, searchValue, jsonPath, contextDocument });
       }
 
-      return `<div class="json-primitive">${escapeHtml(value)}</div>`;
+      return `<div class="json-primitive">${renderJsonPrimitiveValue(value, contextDocument)}</div>`;
     }
 
     function getSection(sectionKey) {
@@ -1541,6 +2266,7 @@
       card.type = "button";
       card.className = "card";
       card.dataset.status = item.status;
+      card.dataset.itemId = item.id;
       card.innerHTML = `
         <div class="card-top">
           <span class="micro">${item.id}</span>
@@ -1559,8 +2285,10 @@
         </div>
       `;
       card.addEventListener("click", () => {
-        state.selectedId = item.id;
-        renderDetails(item);
+        navigateToDashboardTarget({
+          section: "execution_items",
+          execution: item.id
+        });
       });
       return card;
     }
@@ -1680,6 +2408,7 @@
       const selected = filteredItems.find((item) => item.id === state.selectedId) || filteredItems[0] || null;
       state.selectedId = selected ? selected.id : null;
       renderDetails(selected);
+      applyPendingNavigation();
     }
 
     function renderWarnings() {
@@ -1705,8 +2434,7 @@
           <span class="tab-caption">${escapeHtml(count)}</span>
         `;
         button.addEventListener("click", () => {
-          state.activeSectionKey = section.key;
-          renderActiveSection();
+          navigateToDashboardTarget(buildSectionNavigationTarget(section.key));
         });
         els.sectionTabs.appendChild(button);
       });
@@ -1731,8 +2459,10 @@
           <span class="doc-link-title">${escapeHtml(documentRecord.title)}</span>
         `;
         button.addEventListener("click", () => {
-          state.selectedDocumentIds[section.key] = documentRecord.id;
-          renderDocumentsSection(section.key);
+          navigateToDashboardTarget({
+            section: section.key,
+            doc: documentRecord.id
+          });
         });
         els.docLinks.appendChild(button);
       });
@@ -1746,8 +2476,8 @@
 
       const searchValue = getSearchValue();
       const contentHtml = document.format === "markdown"
-        ? renderMarkdown(document.content)
-        : renderJsonValue(document.content, { depth: 0, searchValue });
+        ? renderMarkdown(document.content, document)
+        : renderJsonValue(document.content, { depth: 0, searchValue, jsonPath: "", contextDocument: document });
 
       els.docViewerContent.innerHTML = `
         <div class="eyebrow">Document / ${escapeHtml(document.project_id)}</div>
@@ -1758,6 +2488,8 @@
       if (searchValue) {
         highlightVisibleTextMatches(els.docViewerContent, searchValue);
       }
+
+      applyPendingNavigation();
     }
 
     function renderDocumentsSection(sectionKey) {
@@ -1790,6 +2522,176 @@
       renderDocumentsSection(state.activeSectionKey);
     }
 
+    function clearTargetHighlight() {
+      const current = document.querySelector(".is-target");
+      if (current) {
+        current.classList.remove("is-target");
+      }
+    }
+
+    function focusElement(element) {
+      if (!element) {
+        return;
+      }
+
+      clearTargetHighlight();
+      element.classList.add("is-target");
+      element.scrollIntoView({ block: "center", inline: "nearest" });
+    }
+
+    function openAncestorDetails(element) {
+      let current = element;
+      while (current && current !== document.body) {
+        if (current.tagName === "DETAILS") {
+          current.open = true;
+        }
+        current = current.parentElement;
+      }
+    }
+
+    function findJsonNavigationTarget(recordTarget) {
+      if (!recordTarget) {
+        return null;
+      }
+
+      const nodes = [...els.docViewerContent.querySelectorAll("[data-json-record-id], [data-json-path]")];
+      return nodes.find((node) =>
+        node.dataset.jsonRecordId === recordTarget || node.dataset.jsonPath === recordTarget
+      ) || null;
+    }
+
+    function applyPendingNavigation() {
+      const target = state.pendingNavigation;
+      if (!target) {
+        restorePendingViewport();
+        return;
+      }
+
+      if (target.section === "execution_items") {
+        const item = EXECUTION_ITEMS_BY_ID.get(target.execution);
+        const card = item
+          ? [...document.querySelectorAll(".card[data-item-id]")].find((node) => node.dataset.itemId === item.id)
+          : null;
+        if (card) {
+          focusElement(card);
+        }
+        state.pendingNavigation = null;
+        restorePendingViewport();
+        return;
+      }
+
+      const selectedDocument = DOCUMENTS_BY_ID.get(target.doc);
+      if (!selectedDocument || state.activeSectionKey !== selectedDocument.section_key) {
+        return;
+      }
+
+      if (target.record) {
+        const jsonTarget = findJsonNavigationTarget(target.record);
+        if (jsonTarget) {
+          if (jsonTarget.tagName === "DETAILS") {
+            jsonTarget.open = true;
+          }
+          openAncestorDetails(jsonTarget);
+          focusElement(jsonTarget);
+          state.pendingNavigation = null;
+          restorePendingViewport();
+          return;
+        }
+      }
+
+      if (target.anchor) {
+        const headingTarget = [...els.docViewerContent.querySelectorAll("h1, h2, h3")]
+          .find((node) => node.id === target.anchor);
+        if (headingTarget) {
+          focusElement(headingTarget);
+          state.pendingNavigation = null;
+          restorePendingViewport();
+          return;
+        }
+      }
+
+      focusElement(els.docViewerContent.querySelector("h2") || els.docViewerContent);
+      state.pendingNavigation = null;
+      restorePendingViewport();
+    }
+
+    function applyDashboardTarget(rawTarget, options = {}) {
+      const fallbackTarget = buildCurrentDashboardTarget();
+      const target = normalizeDashboardTarget(rawTarget || fallbackTarget);
+
+      applyFilterState(target);
+      state.currentNavigationTarget = target;
+
+      if (target.execution) {
+        const item = EXECUTION_ITEMS_BY_ID.get(target.execution);
+        if (!item) {
+          renderActiveSection();
+          syncCurrentHistoryEntry();
+          return;
+        }
+
+        if (!matchesProjectSelection(item.project_id)) {
+          els.projectFilter.value = item.project_id;
+        }
+        els.statusFilter.value = target.lifecycle || getLifecycleGroup(item);
+        state.activeSectionKey = "execution_items";
+        state.selectedId = item.id;
+        state.pendingNavigation = target;
+        if (options.historyRestore) {
+          state.pendingHistoryRestore = options.historyRestore;
+        }
+        renderActiveSection();
+        syncCurrentHistoryEntry();
+        return;
+      }
+
+      const documentRecord = DOCUMENTS_BY_ID.get(target.doc);
+      if (documentRecord) {
+        if (!matchesProjectSelection(documentRecord.project_id)) {
+          els.projectFilter.value = documentRecord.project_id;
+        }
+        state.activeSectionKey = documentRecord.section_key;
+        state.selectedDocumentIds[documentRecord.section_key] = documentRecord.id;
+      } else {
+        state.activeSectionKey = target.section || "current_overview";
+      }
+
+      state.pendingNavigation = target;
+      if (options.historyRestore) {
+        state.pendingHistoryRestore = options.historyRestore;
+      }
+      renderActiveSection();
+      syncCurrentHistoryEntry();
+    }
+
+    function applyDashboardHashNavigation() {
+      const target = parseDashboardHash(window.location.hash) || buildCurrentDashboardTarget();
+      applyDashboardTarget(target);
+    }
+
+    function navigateToDashboardTarget(target) {
+      const nextTarget = normalizeDashboardTarget(target);
+      const nextHash = serializeDashboardHash(nextTarget);
+      const currentTarget = buildCurrentDashboardTarget();
+
+      if (nextHash === serializeDashboardHash(currentTarget)) {
+        state.currentNavigationTarget = nextTarget;
+        state.pendingNavigation = nextTarget;
+        applyPendingNavigation();
+        syncCurrentHistoryEntry(nextTarget);
+        return;
+      }
+
+      syncCurrentHistoryEntry(currentTarget);
+      history.pushState(
+        buildHistoryState(nextTarget, { scrollX: 0, scrollY: 0 }),
+        "",
+        nextHash
+      );
+      state.pendingHistoryRestore = null;
+      applyDashboardTarget(nextTarget, { historyRestore: null });
+    }
+
     function initialise() {
       fillSelect(els.projectFilter, buildProjectOptions());
       fillSelect(els.statusFilter, [
@@ -1799,16 +2701,84 @@
       fillSelect(els.typeFilter, buildOptions(DASHBOARD_DATA, "type", "All types"));
       fillSelect(els.ownerFilter, buildOptions(DASHBOARD_DATA, "owner", "All owners"));
       fillSelect(els.priorityFilter, buildOptions(DASHBOARD_DATA, "priority", "All priorities"));
-      els.statusFilter.value = "active";
+      els.statusFilter.value = DEFAULT_STATUS_GROUP;
 
-      els.projectFilter.addEventListener("change", renderActiveSection);
+      if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+      }
+
+      els.projectFilter.addEventListener("change", () => {
+        renderActiveSection();
+        syncCurrentHistoryEntry();
+      });
       els.statusFilter.addEventListener("change", () => {
         renderSectionTabs();
         renderBoard();
+        syncCurrentHistoryEntry();
       });
       [els.typeFilter, els.ownerFilter, els.priorityFilter]
-        .forEach((element) => element.addEventListener("change", renderBoard));
-      els.searchFilter.addEventListener("input", renderActiveSection);
+        .forEach((element) => element.addEventListener("change", () => {
+          renderBoard();
+          syncCurrentHistoryEntry();
+        }));
+      els.searchFilter.addEventListener("input", () => {
+        renderActiveSection();
+        syncCurrentHistoryEntry();
+      });
+      document.addEventListener("click", (event) => {
+        const unresolvedLink = event.target.closest("a[data-unresolved-path]");
+        if (unresolvedLink) {
+          event.preventDefault();
+          openUnresolvedLinkOverlay(unresolvedLink.getAttribute("data-unresolved-path"), unresolvedLink);
+          return;
+        }
+
+        const link = event.target.closest("a[data-dashboard-link]");
+        if (!link) {
+          return;
+        }
+        event.preventDefault();
+        const target = parseDashboardHash(link.getAttribute("href"));
+        if (target) {
+          navigateToDashboardTarget(target);
+        }
+      });
+      els.unresolvedLinkOverlay.addEventListener("click", (event) => {
+        if (!event.target.closest(".floating-overlay-panel")) {
+          closeUnresolvedLinkOverlay();
+        }
+      });
+      els.unresolvedLinkCopy.addEventListener("click", () => {
+        copyTextToClipboard(state.unresolvedLinkPath).then((copied) => {
+          setUnresolvedLinkCopyState(copied ? "copied" : "error");
+        });
+      });
+      window.addEventListener("resize", () => {
+        if (els.unresolvedLinkOverlay.getAttribute("data-state") === "open") {
+          positionUnresolvedOverlay(state.unresolvedLinkTrigger);
+        }
+      });
+      document.addEventListener("keydown", (event) => {
+        if (event.key === "Escape") {
+          closeUnresolvedLinkOverlay();
+        }
+      });
+      window.addEventListener("scroll", queueHistorySnapshotSync, { passive: true });
+      window.addEventListener("hashchange", () => {
+        if (state.ignoreNextHashChange) {
+          state.ignoreNextHashChange = false;
+          return;
+        }
+        applyDashboardHashNavigation();
+      });
+      window.addEventListener("popstate", (event) => {
+        state.ignoreNextHashChange = true;
+        window.setTimeout(() => {
+          state.ignoreNextHashChange = false;
+        }, 0);
+        const target = event.state?.target || parseDashboardHash(window.location.hash) || buildCurrentDashboardTarget();
+        applyDashboardTarget(target, { historyRestore: event.state || null });
+      });
 
       WORKSPACE_SECTIONS.forEach((section) => {
         if (section.type === "documents" && section.documents[0]) {
@@ -1817,7 +2787,14 @@
       });
 
       renderWarnings();
+      const initialTarget = parseDashboardHash(window.location.hash);
+      if (initialTarget) {
+        applyDashboardTarget(initialTarget);
+        return;
+      }
+
       renderActiveSection();
+      syncCurrentHistoryEntry();
     }
 
     initialise();
